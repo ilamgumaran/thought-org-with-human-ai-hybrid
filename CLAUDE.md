@@ -1,7 +1,7 @@
-# Harmonized Intelligence Organization (HIO) Framework
+# Harmonized Intelligence Orchestration (HIO) Framework
 
 ## Project Purpose
-This project contains the HIO Framework — a strategic framework for building organizations where human (organic) and AI (inorganic) intelligence work in harmony. It is designed for leaders setting up new organizations, particularly startup-style teams within larger enterprises.
+This project contains the HIO Framework — a strategic framework for orchestrating human (organic) and AI (inorganic) intelligence into thriving, purpose-driven ecosystems at any scale — from a family to a nation. "Orchestration" not "Organization" because this is about the living act of arranging different voices into something greater than any single voice, not a static structure.
 
 ## Key Concepts
 - **Organic Intelligence**: Human cognition — creativity, judgment, emotional intelligence
