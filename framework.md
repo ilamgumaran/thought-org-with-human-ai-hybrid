@@ -54,6 +54,29 @@ The moment an organization frames AI as "replacing" human work, it has already f
 
 **Harmonization means**: designing workflows, decisions, and outcomes where both types of intelligence contribute what they do best and find most fulfilling, and where the interaction between them produces emergent capabilities neither could achieve alone.
 
+**Guidelines for Principle 2: Outcome-First Workflow Design**
+
+The focus of harmonization is not "what is human work?" and "what is AI work?" — that framing already divides the ecosystem into territories. The focus is: **what is the best possible path to the outcome?**
+
+For any objective, the right question is: *What combination of skills, intelligences, and tools produces the best result?* The answer will vary:
+
+- **Some workflows will be entirely human-driven.** A difficult negotiation with a strategic partner. A conversation with a team member going through a personal crisis. The creative leap that redefines the product. These don't need AI involvement, and inserting AI would diminish them. That's not a failure of harmonization — it *is* harmonization. The system is routing to the best path.
+
+- **Some workflows will be entirely machine-driven.** Continuous monitoring of production systems. Data pipeline orchestration. Regression testing across thousands of scenarios. Humans reviewing these outputs adds latency without adding value. Let the machine run. That's harmonization too.
+
+- **Many workflows will blend both in varying ratios.** An architecture decision where AI models trade-off scenarios while humans apply judgment and values. A customer research initiative where AI synthesizes thousands of data points while humans conduct the intimate conversations that reveal what data cannot. The ratio isn't fixed — it shifts as the work evolves, as AI capabilities grow, as humans develop new insights.
+
+The organizational stance toward this should be **excitement, not anxiety**. Designing these workflows — figuring out the optimal blend for each objective, watching how a well-harmonized process produces outcomes neither intelligence could achieve alone, discovering unexpected combinations that unlock new possibilities — this is some of the most creative and rewarding work the organization will do.
+
+**Practical guidelines**:
+
+1. **Start from the outcome, not the resource.** Define what success looks like first. Then work backward to the best combination of capabilities to get there. Don't start with "we have engineers and AI agents — what should each do?"
+2. **Don't force blending.** If an outcome is best achieved by humans alone or AI alone, honor that. Mandatory human-AI collaboration on every task is as wasteful as refusing to collaborate at all.
+3. **Design workflows as experiments.** Try a ratio. Measure the result. Adjust. The first attempt at blending will rarely be optimal. Build a culture that treats workflow design as an iterative, creative craft — not a one-time org chart exercise.
+4. **Celebrate the discovery.** When a team finds a new combination that works brilliantly — an unexpected way of blending human insight with AI capability — share it widely. These discoveries are the organization's competitive advantage.
+5. **Let workflows evolve.** A process that is 80% human today may be 40% human in six months as AI capabilities improve, or it may become 90% human because the team discovered the human dimension was more critical than assumed. Neither direction is inherently better. The best direction is whatever produces the best outcome.
+6. **Watch for territorial instincts.** When someone says "that's my job, not the AI's" or when an AI workflow is preserved simply because it was invested in — these are signals that identity grip (see Part II) or sunk cost is overriding outcome-first thinking. Gently redirect to: "What produces the best result?"
+
 #### Principle 3: Fulfillment Drives Performance
 
 People do their best work when they experience:
