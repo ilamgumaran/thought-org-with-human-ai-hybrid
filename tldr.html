@@ -3,409 +3,436 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Harmonized Intelligence Orchestration (HIO) Framework</title>
+<title>HIO Framework — Harmonized Intelligence Orchestration</title>
 <style>
-  /* Reset and base */
-  *, *::before, *::after { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 0;
-    background: #fff;
-    color: #1a1a1a;
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 17px;
-    line-height: 1.8;
-    -webkit-font-smoothing: antialiased;
-  }
-  .container {
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 4rem;
-  }
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Headings */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #1a2744;
-    line-height: 1.3;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-  h1 { font-size: 2.2rem; margin-top: 0; }
-  h2 { font-size: 1.6rem; border-bottom: 1px solid #ddd; padding-bottom: 0.4rem; }
-  h3 { font-size: 1.3rem; }
-  h4 { font-size: 1.1rem; }
-  h5 { font-size: 1rem; font-weight: 600; }
+:root {
+  --accent: #1a6b7a;
+  --accent-light: #e6f3f5;
+  --accent-dark: #0e4651;
+  --warm: #c06014;
+  --warm-light: #fef5ee;
+  --warm-border: #e8a46d;
+  --bg: #fafbfc;
+  --surface: #ffffff;
+  --text: #1d2d35;
+  --text-light: #4a5c68;
+  --border: #d8dee4;
+  --border-light: #e8edf1;
+  --code-bg: #f0f3f6;
+  --nav-width: 260px;
+  --content-max: 820px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
 
-  /* Links */
-  a { color: #1a2744; text-decoration: underline; text-underline-offset: 2px; }
-  a:hover { color: #2c3e6b; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+}
 
-  /* Paragraphs */
-  p { margin: 0 0 1.2rem; }
+/* ===== Sidebar Nav (desktop) ===== */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1rem;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+.sidebar-brand {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent-dark);
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+}
+.sidebar nav a {
+  display: block;
+  padding: 0.3rem 0.6rem;
+  margin: 0.1rem 0;
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+.sidebar nav a:hover,
+.sidebar nav a:focus {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+}
+.sidebar nav a.indent {
+  padding-left: 1.4rem;
+  font-size: 0.8rem;
+}
 
-  /* Horizontal rules */
-  hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 3rem 0;
-  }
+/* Hamburger toggle */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 0.8rem; left: 0.8rem;
+  z-index: 200;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.65rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--text);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 90;
+}
 
-  /* Title page */
-  .title-page {
-    text-align: center;
-    padding: 3rem 0 2rem;
-    border-bottom: 2px solid #1a2744;
-    margin-bottom: 3rem;
-  }
-  .title-page h1 {
-    font-size: 2.4rem;
-    margin-bottom: 0.5rem;
-    color: #1a2744;
-  }
-  .title-page .subtitle {
-    font-size: 1.15rem;
-    color: #444;
-    font-style: italic;
-    margin-bottom: 2rem;
-    font-family: Georgia, "Times New Roman", Times, serif;
-    line-height: 1.6;
-  }
-  .title-page .banner {
-    background: #f0f2f5;
-    border: 1px solid #d0d4db;
-    border-radius: 4px;
-    padding: 0.8rem 1.2rem;
-    margin: 1.5rem auto;
-    max-width: 520px;
-    font-size: 0.95rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  .title-page .note {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 1rem;
-  }
+/* ===== Main Content ===== */
+.main {
+  margin-left: var(--nav-width);
+  padding: 2.5rem 2rem 4rem;
+  max-width: calc(var(--content-max) + 4rem);
+}
 
-  /* Table of Contents */
-  .toc {
-    background: #fafbfc;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    padding: 2rem 2.5rem;
-    margin-bottom: 3rem;
-  }
-  .toc h2 {
-    border-bottom: none;
-    margin-top: 0;
-    font-size: 1.4rem;
-    text-align: center;
-  }
-  .toc ol {
-    padding-left: 1.5rem;
-    margin: 0;
-  }
-  .toc li {
-    margin-bottom: 0.3rem;
-  }
-  .toc > ol > li {
-    margin-bottom: 0.6rem;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 0.95rem;
-  }
-  .toc ol ol {
-    margin-top: 0.3rem;
-    font-weight: 400;
-    font-size: 0.9rem;
-  }
-  .toc a { text-decoration: none; }
-  .toc a:hover { text-decoration: underline; }
+/* ===== Typography ===== */
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin: 2.5rem 0 0.6rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border-light);
+}
+h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 2rem 0 0.5rem;
+}
+h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 1.5rem 0 0.4rem;
+}
+h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 1.2rem 0 0.3rem;
+}
+p { margin: 0.7rem 0; }
+ul, ol { margin: 0.6rem 0 0.6rem 1.5rem; }
+li { margin: 0.25rem 0; }
+strong { color: var(--text); }
+hr {
+  border: none;
+  border-top: 2px solid var(--border-light);
+  margin: 2rem 0;
+}
 
-  /* TLDR / Summary boxes */
-  .tldr {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-left: 3px solid #1a2744;
-    padding: 1.2rem 1.5rem;
-    margin: 1.5rem 0;
-    border-radius: 2px;
-    font-size: 0.95rem;
-  }
-  .tldr::before {
-    content: "Summary:";
-    display: block;
-    font-style: italic;
-    font-weight: 600;
-    color: #1a2744;
-    margin-bottom: 0.4rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+/* ===== TLDR Boxes ===== */
+.tldr {
+  background: var(--warm-light);
+  border-left: 4px solid var(--warm-border);
+  padding: 1rem 1.2rem;
+  margin: 0.8rem 0 1rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.tldr-label {
+  display: inline-block;
+  background: var(--warm);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.4rem;
+}
 
-  /* Blockquotes */
-  blockquote {
-    border-left: 3px solid #1a2744;
-    margin: 1.5rem 0;
-    padding: 0.5rem 1.5rem;
-    font-style: italic;
-    color: #333;
-    background: transparent;
-  }
-  blockquote p:last-child { margin-bottom: 0; }
+/* ===== Audience Reading Guide ===== */
+.reading-guide {
+  background: var(--accent-light);
+  border: 1px solid #c1dde2;
+  border-radius: 8px;
+  padding: 1.4rem 1.6rem;
+  margin: 1.5rem 0 2rem;
+}
+.reading-guide h3 {
+  margin-top: 0;
+  color: var(--accent-dark);
+  font-size: 1.15rem;
+}
+.reading-guide dl {
+  margin: 0.8rem 0 0;
+}
+.reading-guide dt {
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin-top: 0.7rem;
+}
+.reading-guide dd {
+  margin-left: 1rem;
+  color: var(--text-light);
+  font-size: 0.92rem;
+}
 
-  /* Tables */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 0.92rem;
-    line-height: 1.5;
-  }
-  th, td {
-    border: 1px solid #d0d0d0;
-    padding: 0.6rem 0.8rem;
-    text-align: left;
-    vertical-align: top;
-  }
-  th {
-    background: #f0f0f0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 600;
-    font-size: 0.88rem;
-  }
+/* ===== Blockquotes (Essence lines) ===== */
+blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 0.8rem 1.2rem;
+  margin: 1rem 0;
+  background: var(--accent-light);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--accent-dark);
+  line-height: 1.6;
+}
+blockquote strong { color: var(--accent-dark); }
 
-  /* Code and pre */
-  code {
-    font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
-    font-size: 0.88em;
-    background: #f4f4f4;
-    padding: 0.15rem 0.35rem;
-    border-radius: 3px;
-  }
-  pre {
-    background: #f4f5f6;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    padding: 1.2rem 1.5rem;
-    overflow-x: auto;
-    font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
-    font-size: 0.82rem;
-    line-height: 1.6;
-    margin: 1.5rem 0;
-  }
-  pre code {
-    background: none;
-    padding: 0;
-    font-size: inherit;
-  }
+/* ===== Tables ===== */
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+}
+td {
+  padding: 0.55rem 0.8rem;
+  border-top: 1px solid var(--border-light);
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #f7f9fa; }
+tr:hover td { background: var(--accent-light); }
 
-  /* Lists */
-  ul, ol { margin: 0 0 1.2rem; padding-left: 2rem; }
-  li { margin-bottom: 0.4rem; }
-  li > ul, li > ol { margin-top: 0.3rem; margin-bottom: 0.3rem; }
+/* ===== Code / Pre ===== */
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--code-bg);
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85rem;
+}
 
-  /* Section numbers */
-  .section-num {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: #888;
-    font-size: 0.85em;
-    font-weight: 400;
-    margin-right: 0.3rem;
-  }
+/* ===== Details / Summary ===== */
+details {
+  margin: 0.5rem 0 1.5rem;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  overflow: hidden;
+}
+details > summary {
+  cursor: pointer;
+  padding: 0.7rem 1rem;
+  background: #f5f7f9;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--accent);
+  list-style: none;
+  user-select: none;
+}
+details > summary::-webkit-details-marker { display: none; }
+details > summary::before {
+  content: "\25B6\00a0";
+  font-size: 0.75em;
+}
+details[open] > summary::before {
+  content: "\25BC\00a0";
+}
+details > summary:hover {
+  background: var(--accent-light);
+}
+details > .details-content {
+  padding: 1rem 1.2rem;
+}
 
-  /* Part headers */
-  .part-header {
-    margin-top: 4rem;
-  }
+/* ===== Checklist ===== */
+.checklist {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.checklist li {
+  padding-left: 1.6rem;
+  position: relative;
+  margin: 0.35rem 0;
+}
+.checklist li::before {
+  content: "\2610";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
 
-  /* At a glance box */
-  .at-a-glance {
-    border: 1px solid #dee2e6;
-    background: #fafbfc;
-    padding: 1.2rem 1.5rem;
-    margin: 1.5rem 0;
-    border-radius: 2px;
-    font-size: 0.95rem;
-  }
+/* ===== Footer ===== */
+footer {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 2px solid var(--border-light);
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-light);
+}
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+footer a:hover { text-decoration: underline; }
 
-  /* Checklist */
-  .checklist {
-    list-style: none;
-    padding-left: 0;
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .sidebar {
+    transform: translateX(-100%);
   }
-  .checklist li {
-    padding-left: 1.8rem;
-    position: relative;
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
   }
-  .checklist li::before {
-    content: "\2610";
-    position: absolute;
-    left: 0;
-    font-size: 1.1em;
+  .overlay.show { display: block; }
+  .hamburger { display: block; }
+  .main {
+    margin-left: 0;
+    padding: 3.5rem 1.2rem 3rem;
   }
-
-  /* Footer */
-  .footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 2px solid #1a2744;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  .footer a { color: #1a2744; }
-  .footer p { margin: 0.5rem 0; }
-
-  /* Strong in emphasis */
-  strong { color: #111; }
-
-  /* Responsive */
-  @media (max-width: 800px) {
-    .container { padding: 1.5rem 1rem 2rem; }
-    h1 { font-size: 1.8rem; }
-    .title-page h1 { font-size: 1.9rem; }
-    table { font-size: 0.85rem; }
-    th, td { padding: 0.4rem 0.5rem; }
-    pre { font-size: 0.75rem; padding: 0.8rem 1rem; }
-  }
-
-  /* Print styles */
-  @media print {
-    body { font-size: 11pt; line-height: 1.6; color: #000; }
-    .container { max-width: none; padding: 0; margin: 0; }
-    .title-page { border-bottom: 2pt solid #000; }
-    .title-page .banner { border: 1pt solid #999; }
-    a { color: #000; text-decoration: none; }
-    .toc { border: 1pt solid #999; }
-    .tldr { border: 1pt solid #999; border-left: 3pt solid #333; }
-    h2 { border-bottom: 0.5pt solid #999; }
-    .part-header { page-break-before: always; }
-    .footer { border-top: 2pt solid #000; }
-    pre { border: 0.5pt solid #999; font-size: 9pt; }
-    table { font-size: 9pt; }
-    th, td { border: 0.5pt solid #999; }
-    th { background: #eee !important; }
-    .no-print { display: none; }
-  }
+}
 </style>
 </head>
 <body>
-<div class="container">
 
-<!-- ============================================================ -->
-<!-- TITLE PAGE -->
-<!-- ============================================================ -->
-<div class="title-page">
-  <h1>The Harmonized Intelligence Orchestration (HIO) Framework</h1>
-  <p class="subtitle">A Framework for Orchestrating Human and Artificial Intelligence Into Thriving, Purpose-Driven Ecosystems &mdash; At Any Scale</p>
-  <div class="banner">
-    Read the <a href="tldr.html">TLDR version</a> for a quick overview with collapsible sections
-  </div>
-  <p class="note">This is the complete framework. For a summary version with audience-specific reading guides, see the <a href="tldr.html">TLDR version</a>.</p>
+<!-- Hamburger (mobile) -->
+<button class="hamburger" id="hamburger" aria-label="Open navigation">&#9776;</button>
+<div class="overlay" id="overlay"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">HIO Framework</div>
+  <nav>
+    <a href="#top">Home</a>
+    <a href="#reading-guide">Audience Guide</a>
+    <a href="#preface">Preface</a>
+    <a href="#part-i">Part I: Core Philosophy</a>
+    <a href="#principle-1" class="indent">Principle 1: Purpose</a>
+    <a href="#principle-2" class="indent">Principle 2: Harmonize</a>
+    <a href="#principle-3" class="indent">Principle 3: Fulfillment</a>
+    <a href="#principle-4" class="indent">Principle 4: Measure</a>
+    <a href="#part-ii">Part II: Resonant Human</a>
+    <a href="#part-iii">Part III: Ecosystem Design</a>
+    <a href="#part-iv">Part IV: Task Alignment</a>
+    <a href="#part-v">Part V: Culture</a>
+    <a href="#part-vi">Part VI: Execution</a>
+    <a href="#part-vii">Part VII: Measurement</a>
+    <a href="#part-viii">Part VIII: Implementation</a>
+    <a href="#part-ix">Part IX: Contemplative Leader</a>
+    <a href="#appendix-a">Appendix A: Glossary</a>
+    <a href="#appendix-b">Appendix B: Checklist</a>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<div class="main" id="top">
+
+<div style="background: var(--accent-light); border: 1px solid var(--accent); border-radius: 6px; padding: 0.8rem 1.2rem; margin-bottom: 1.5rem; font-size: 0.9rem;">
+  <strong>You are reading the TLDR version.</strong> &nbsp; <a href="index.html" style="color: var(--accent-dark); font-weight: 600;">Read the full academic white paper &rarr;</a>
 </div>
 
-<!-- ============================================================ -->
-<!-- TABLE OF CONTENTS -->
-<!-- ============================================================ -->
-<div class="toc">
-  <h2>Table of Contents</h2>
-  <ol>
-    <li><a href="#preface">Preface: Why This Framework Exists</a></li>
-    <li><a href="#part-i">Part I: Core Philosophy</a>
-      <ol>
-        <li><a href="#s1-1">The Harmonization Thesis</a></li>
-        <li><a href="#s1-2">Four Foundational Principles</a>
-          <ol>
-            <li><a href="#p1">Principle 1: Purpose as a Living Force</a></li>
-            <li><a href="#p2">Principle 2: Harmonize, Don't Compete</a></li>
-            <li><a href="#p3">Principle 3: Fulfillment as the Perpetual Engine</a></li>
-            <li><a href="#p4">Principle 4: Measure What Matters for the Whole</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#part-ii">Part II: The Resonant Human &mdash; Identity Beyond Roles</a>
-      <ol>
-        <li><a href="#s2-1">The Identity Trap</a></li>
-        <li><a href="#s2-2">The Resonant Cognition Insight</a></li>
-        <li><a href="#s2-3">Why This Changes Everything About Human-AI Collaboration</a></li>
-        <li><a href="#s2-4">What Humans Actually Are (Beyond Roles)</a></li>
-        <li><a href="#s2-5">The Skill Evolution Model</a></li>
-        <li><a href="#s2-6">Practical Implications for the Organization</a></li>
-        <li><a href="#s2-7">The Deeper Purpose: What Humans Are Actually For</a></li>
-      </ol>
-    </li>
-    <li><a href="#part-iii">Part III: Cognitive Ecosystem Design</a>
-      <ol>
-        <li><a href="#s3-1">Understanding the Two Intelligences</a></li>
-        <li><a href="#s3-2">Organizational Structure: The Hybrid Team Model</a></li>
-        <li><a href="#s3-3">Decision-Making Framework</a></li>
-      </ol>
-    </li>
-    <li><a href="#part-iv">Part IV: Task-Fulfillment Alignment</a>
-      <ol>
-        <li><a href="#s4-1">The Dual Optimization Problem</a></li>
-        <li><a href="#s4-2">The Task-Fulfillment Matrix</a></li>
-        <li><a href="#s4-3">Dynamic Task Rebalancing</a></li>
-        <li><a href="#s4-4">The Anti-Burnout, Anti-Underutilization Protocol</a></li>
-      </ol>
-    </li>
-    <li><a href="#part-v">Part V: Structural Strategic Culture</a>
-      <ol>
-        <li><a href="#s5-1">The Mindset Shift</a></li>
-        <li><a href="#s5-2">Cultural Practices</a></li>
-        <li><a href="#s5-3">Psychological Safety in the Age of AI</a></li>
-      </ol>
-    </li>
-    <li><a href="#part-vi">Part VI: Problem Understanding, Prioritization, and Execution</a>
-      <ol>
-        <li><a href="#s6-1">Problem Understanding: The Dual-Lens Approach</a></li>
-        <li><a href="#s6-2">Prioritization: The Stakeholder Harmony Score</a></li>
-        <li><a href="#s6-3">Execution: The Harmonized Sprint Model</a></li>
-        <li><a href="#s6-4">Mutual Support Protocols</a></li>
-      </ol>
-    </li>
-    <li><a href="#part-vii">Part VII: Measurement System &mdash; Metrics, KPIs, and Dashboards</a>
-      <ol>
-        <li><a href="#s7-1">Measurement Philosophy</a></li>
-        <li><a href="#s7-2">Metric Categories and KPIs</a></li>
-        <li><a href="#s7-3">The HIO Dashboard</a></li>
-        <li><a href="#s7-4">Reporting Cadence</a></li>
-      </ol>
-    </li>
-    <li><a href="#part-viii">Part VIII: Implementation Playbook</a>
-      <ol>
-        <li><a href="#s8-1">Phase 1: Foundation (Months 1-3)</a></li>
-        <li><a href="#s8-2">Phase 2: Experiment (Months 3-6)</a></li>
-        <li><a href="#s8-3">Phase 3: Scale (Months 6-12)</a></li>
-        <li><a href="#s8-4">Phase 4: Evolve (Ongoing)</a></li>
-      </ol>
-    </li>
-    <li><a href="#part-ix">Part IX: For the Contemplative Leader</a></li>
-    <li><a href="#appendix-a">Appendix A: Glossary</a></li>
-    <li><a href="#appendix-b">Appendix B: Quick-Start Checklist</a></li>
-  </ol>
-</div>
+<h1>The Harmonized Intelligence Orchestration (HIO) Framework</h1>
+<p class="subtitle">A Framework for Orchestrating Human and Artificial Intelligence Into Thriving, Purpose-Driven Ecosystems &mdash; At Any Scale</p>
 
-<!-- ============================================================ -->
-<!-- PREFACE -->
-<!-- ============================================================ -->
+<!-- ===== Audience Reading Guide ===== -->
+<section class="reading-guide" id="reading-guide">
+  <h3>Audience Reading Guide</h3>
+  <p>This is a comprehensive framework. Here is where to focus based on your role:</p>
+  <dl>
+    <dt>Executives &amp; Board</dt>
+    <dd>Preface, Part I (Four Principles), Part VII (Measurement), Part IX (Contemplative Leader)</dd>
+    <dt>Engineering / Tech Leaders</dt>
+    <dd>All parts, especially Part III (Ecosystem Design), Part IV (Task Alignment), Part VI (Execution)</dd>
+    <dt>Data Science Leaders</dt>
+    <dd>Part I, Part III, Part IV, Part VII (Metrics focus)</dd>
+    <dt>Product Leaders</dt>
+    <dd>Part I, Part II (Resonant Human), Part VI (Prioritization &amp; Execution)</dd>
+    <dt>Individual Contributors</dt>
+    <dd>Part II (Identity Beyond Roles), Part IV (Task Alignment), Part V (Culture)</dd>
+  </dl>
+</section>
+
+<hr>
+
+<!-- ===== PREFACE ===== -->
 <h2 id="preface">Preface: Why This Framework Exists</h2>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   This framework treats any organized human endeavor &mdash; from family to nation &mdash; as a cognitive ecosystem of organic (human) and inorganic (AI) intelligence. The goal: orchestrate them into something greater than either alone. &ldquo;Orchestration&rdquo; because it&rsquo;s a living act, not a static structure.
 </div>
+
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
 
 <p>The emergence of AI is not just a new tool &mdash; it is a new <em>kind of intelligence</em> entering every human ecosystem. Traditional management frameworks were designed for systems composed entirely of human minds. They optimize for human motivation, human communication, human decision-making. AI was bolted on as &ldquo;automation&rdquo; or &ldquo;tooling.&rdquo;</p>
 
 <p>This framework starts from a different premise: <strong>any organized human endeavor &mdash; from a family to a nation &mdash; is a cognitive ecosystem that now includes both organic intelligence (humans) and inorganic intelligence (AI and future artificial cognition)</strong>. The goal is not to optimize one at the expense of the other, but to <em>orchestrate</em> them &mdash; creating outcomes where all participants flourish, where each intelligence realizes its full potential, and where the emergent capability of the whole exceeds what either could achieve alone.</p>
 
-<p><strong>Why &ldquo;Orchestration,&rdquo; not &ldquo;Organization&rdquo;?</strong></p>
+<h4>Why &ldquo;Orchestration,&rdquo; not &ldquo;Organization&rdquo;?</h4>
 
 <p>An organization is a structure. An orchestration is a living act &mdash; the continuous, dynamic arrangement of different voices into something greater than any single voice. A conductor doesn&rsquo;t control the musicians; they create the conditions for harmony to emerge. The musicians don&rsquo;t compete for volume; they listen to each other and play their part in service of the whole.</p>
 
@@ -422,22 +449,26 @@
 
 <p>This framework is for leaders, founders, and curious minds who want to build something fundamentally different &mdash; whether they are running a household, launching a venture, leading a division, or shaping a society.</p>
 
+</div>
+</details>
+
 <hr>
 
-<!-- ============================================================ -->
-<!-- PART I: CORE PHILOSOPHY -->
-<!-- ============================================================ -->
-<h2 id="part-i" class="part-header">Part I: Core Philosophy</h2>
+<!-- ===== PART I ===== -->
+<h2 id="part-i">Part I: Core Philosophy</h2>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Four principles govern the HIO: (1) Purpose that inspires humans and directs AI, never finished; (2) Harmonize all intelligences toward outcomes, don&rsquo;t divide into territories; (3) Fulfillment is the perpetual engine &mdash; not reward after work, but the fuel for it; (4) Measure the whole ecosystem as interconnected &mdash; any metric rising while another falls is a warning.
 </div>
 
-<h3 id="s1-1"><span class="section-num">1.1</span> The Harmonization Thesis</h3>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
 
-<blockquote>
-  <p>The purpose of an organization is not to maximize output, but to harmonize the potential of all its intelligences &mdash; organic and inorganic &mdash; toward outcomes that fulfill every stakeholder.</p>
-</blockquote>
+<h3>1.1 The Harmonization Thesis</h3>
+
+<blockquote>The purpose of an organization is not to maximize output, but to harmonize the potential of all its intelligences &mdash; organic and inorganic &mdash; toward outcomes that fulfill every stakeholder.</blockquote>
 
 <p>Traditional organizations operate on an extraction model: extract maximum productivity from people, extract maximum ROI from technology, extract maximum value from customers. This creates tension. People burn out. Technology is underutilized in narrow roles. Customers feel transactional. Investors pressure for short-term returns at the expense of long-term health.</p>
 
@@ -452,26 +483,31 @@
   <li><strong>Thriving communities</strong> supply talent, trust, and social license to operate</li>
 </ul>
 
-<h3 id="s1-2"><span class="section-num">1.2</span> Four Foundational Principles</h3>
+<h3>1.2 Four Foundational Principles</h3>
 
-<div class="at-a-glance">
-  <p><strong>At a glance &mdash; for Human Intelligence</strong>: These four principles are invitations to think differently about why your organization exists, how its parts work together, what sustains its energy, and how you know it&rsquo;s truly healthy. Let them provoke questions, not just provide answers.</p>
-  <p><strong>At a glance &mdash; for Artificial Intelligence</strong>: These four principles define the optimization landscape. Principle 1 sets the objective function. Principle 2 defines how agents collaborate. Principle 3 identifies the energy source that sustains long-term performance. Principle 4 specifies the measurement framework and constraints. All four must be satisfied simultaneously &mdash; optimizing any one at the expense of another violates the framework.</p>
+<blockquote>
+<p><strong>At a glance &mdash; for Human Intelligence</strong>: These four principles are invitations to think differently about why your organization exists, how its parts work together, what sustains its energy, and how you know it&rsquo;s truly healthy. Let them provoke questions, not just provide answers.</p>
+<p><strong>At a glance &mdash; for Artificial Intelligence</strong>: These four principles define the optimization landscape. Principle 1 sets the objective function. Principle 2 defines how agents collaborate. Principle 3 identifies the energy source that sustains long-term performance. Principle 4 specifies the measurement framework and constraints. All four must be satisfied simultaneously &mdash; optimizing any one at the expense of another violates the framework.</p>
+</blockquote>
+
 </div>
+</details>
 
-<hr>
+<!-- Principle 1 -->
+<h3 id="principle-1">Principle 1: Purpose as a Living Force</h3>
 
-<h4 id="p1">Principle 1: Purpose as a Living Force</h4>
+<blockquote><strong>Essence</strong>: <em>Purpose is the gravitational center that orients every decision &mdash; by every intelligence. It must inspire curiosity in humans and provide clear direction for AI. It is never finished.</em></blockquote>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Purpose is the gravitational center for all decisions. It must pass four tests: spark curiosity, translate for AI, create win-win for all stakeholders, and be like a horizon &mdash; tangible enough to feel progress, but always receding to reveal new possibilities.
 </div>
 
-<blockquote>
-  <p><strong>Essence</strong>: <em>Purpose is the gravitational center that orients every decision &mdash; by every intelligence. It must inspire curiosity in humans and provide clear direction for AI. It is never finished.</em></p>
-</blockquote>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
 
-<h5><span class="section-num">1.1.1</span> The Core Idea</h5>
+<h5>1.1.1 The Core Idea</h5>
 
 <p>Purpose is not a mission statement on a wall. It is the force that pulls every decision, every workflow, every collaboration into coherence. Without it, harmonization has no direction. With it, both human and artificial intelligence can orient independently toward the same horizon &mdash; even when they can&rsquo;t communicate in real time.</p>
 
@@ -479,7 +515,7 @@
 
 <p>Each of these gives humans something to care about and AI something to optimize toward &mdash; without reducing either dimension.</p>
 
-<h5><span class="section-num">1.1.2</span> The Four Tests</h5>
+<h5>1.1.2 The Four Tests</h5>
 
 <p>Every HIO purpose must pass these tests:</p>
 
@@ -493,25 +529,30 @@
 
 <p>A purpose you can fully achieve is a project, not a purpose. A purpose with no tangible markers of progress is a daydream. The right purpose gives people the <em>sensation of advancing</em> &mdash; milestones reached, problems solved, impact felt &mdash; while ensuring they never arrive at a point where there is nothing left to pursue. Each summit reveals the next mountain range. This is what sustains motivation across years and decades: not the arrival, but the <em>quality of the journey</em> and the ever-expanding view.</p>
 
-<h5><span class="section-num">1.1.3</span> Applying This Principle</h5>
+<h5>1.1.3 Applying This Principle</h5>
 
 <p><strong>For leaders at any scale</strong>: Your purpose should be specific enough to guide decisions but open-ended enough to invite exploration. Apply the Horizon Test: can your people celebrate real wins along the way while knowing that the ultimate vision keeps expanding? If the purpose could be &ldquo;done&rdquo; in two years, it&rsquo;s a goal, not a purpose. If no one can point to evidence of progress after six months, it&rsquo;s too abstract to sustain motivation.</p>
 
 <p><strong>For AI systems</strong>: Purpose should decompose into measurable sub-objectives that AI can track, optimize, and report on &mdash; while preserving the understanding that the human dimension of purpose (meaning, inspiration, ethical judgment) is not reducible to metrics. AI serves the purpose; it does not define it.</p>
 
-<hr>
+</div>
+</details>
 
-<h4 id="p2">Principle 2: Harmonize, Don&rsquo;t Compete</h4>
+<!-- Principle 2 -->
+<h3 id="principle-2">Principle 2: Harmonize, Don&rsquo;t Compete</h3>
+
+<blockquote><strong>Essence</strong>: <em>Find the best path to each outcome using the best combination of all available intelligences. Manage conflict as a path to deeper harmony. Let all structure evolve when it has served its purpose.</em></blockquote>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Don&rsquo;t ask &ldquo;what&rsquo;s human work vs AI work?&rdquo; Ask &ldquo;what&rsquo;s the best path to this outcome?&rdquo; Some workflows are all-human, some all-AI, many blend both. Conflict is a path to deeper harmony &mdash; surface it, resolve it, learn from it. All structure is ephemeral &mdash; evolve it when it outlives its purpose.
 </div>
 
-<blockquote>
-  <p><strong>Essence</strong>: <em>Find the best path to each outcome using the best combination of all available intelligences. Manage conflict as a path to deeper harmony. Let all structure evolve when it has served its purpose.</em></p>
-</blockquote>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
 
-<h5><span class="section-num">1.2.1</span> The Core Idea</h5>
+<h5>1.2.1 The Core Idea</h5>
 
 <p>Organic and inorganic intelligence are not in competition. They are complementary cognitive systems with different strengths, different modes of engagement, and different growth trajectories.</p>
 
@@ -519,7 +560,7 @@
 
 <p><strong>Harmonization means</strong>: for every objective, find the best possible path to success &mdash; which might be entirely human, entirely AI, or any blend of both. The answer changes as capabilities evolve, as conditions shift, as the ecosystem learns.</p>
 
-<h5><span class="section-num">1.2.2</span> Outcome-First Workflow Design</h5>
+<h5>1.2.2 Outcome-First Workflow Design</h5>
 
 <p>The focus is not &ldquo;what is human work?&rdquo; and &ldquo;what is AI work?&rdquo; &mdash; that framing divides the ecosystem into territories. The focus is: <strong>what is the best possible path to the outcome?</strong></p>
 
@@ -534,7 +575,6 @@
 <p>The stance toward this should be <strong>excitement, not anxiety</strong>. Designing these workflows &mdash; figuring out the optimal blend, watching how a well-harmonized process produces outcomes neither intelligence could achieve alone, discovering unexpected combinations &mdash; this is some of the most creative work the ecosystem will do.</p>
 
 <p><strong>Guidelines</strong>:</p>
-
 <ol>
   <li><strong>Start from the outcome, not the resource.</strong> Define success first. Then work backward to the best combination of capabilities.</li>
   <li><strong>Don&rsquo;t force blending.</strong> If an outcome is best achieved by one intelligence alone, honor that.</li>
@@ -544,7 +584,7 @@
   <li><strong>Watch for territorial instincts.</strong> &ldquo;That&rsquo;s my job, not the AI&rsquo;s&rdquo; is identity grip (see Part II), not rational assessment. Redirect to: &ldquo;What produces the best result?&rdquo;</li>
 </ol>
 
-<h5><span class="section-num">1.2.3</span> Conflict as a Path to Harmony</h5>
+<h5>1.2.3 Conflict as a Path to Harmony</h5>
 
 <p>Harmony is not the absence of conflict. It is the capacity to move <em>through</em> conflict toward better alignment. An orchestra doesn&rsquo;t achieve harmony by silencing the instruments that clash &mdash; it finds how each voice contributes to the whole.</p>
 
@@ -562,7 +602,6 @@
 </ul>
 
 <p><strong>How to handle conflict</strong>:</p>
-
 <ol>
   <li><strong>Surface early.</strong> A conflict caught early is a conversation. Caught late, it&rsquo;s a crisis.</li>
   <li><strong>Engage honestly.</strong> Let each side articulate needs and reasons. AI can model consequences, surface data, provide analysis unburdened by ego.</li>
@@ -571,7 +610,7 @@
   <li><strong>Learn and adapt.</strong> Every resolved conflict teaches the ecosystem about itself. Conflicts are the immune system &mdash; they detect problems that dashboards might miss.</li>
 </ol>
 
-<h5><span class="section-num">1.2.4</span> Ephemeral Structure: Governance That Evolves</h5>
+<h5>1.2.4 Ephemeral Structure: Governance That Evolves</h5>
 
 <p>Harmonization requires structure &mdash; roles, processes, decision-making frameworks, authority. Without structure, there is chaos. But <strong>all structure is ephemeral.</strong></p>
 
@@ -580,7 +619,6 @@
 <p>Traditional ecosystems treat structure as permanent &mdash; changing it requires trauma. The HIO treats structure as <strong>living scaffolding</strong>: essential while the building is taking shape, naturally removed as it can stand on its own, rebuilt differently for the next phase.</p>
 
 <p><strong>Principles of ephemeral structure</strong>:</p>
-
 <ol>
   <li><strong>Every structure has a purpose and an expiry.</strong> Articulate what it exists to achieve and what signals indicate it should evolve &mdash; not a calendar date but conditions.</li>
   <li><strong>Structures should be easy to change.</strong> If changing a process requires months of planning and organizational trauma, it&rsquo;s too rigid.</li>
@@ -590,19 +628,24 @@
   <li><strong>Let AI and humans co-govern.</strong> AI provides the analytical dimension &mdash; monitoring effectiveness, modeling consequences, ensuring consistency. Humans hold the ethical, relational, and values-based dimension. Together, they govern more wisely than either alone.</li>
 </ol>
 
-<hr>
+</div>
+</details>
 
-<h4 id="p3">Principle 3: Fulfillment as the Perpetual Engine</h4>
+<!-- Principle 3 -->
+<h3 id="principle-3">Principle 3: Fulfillment as the Perpetual Engine</h3>
+
+<blockquote><strong>Essence</strong>: <em>The sustainable energy source for any ecosystem is not external pressure but the innate hunger of every intelligence &mdash; organic and inorganic &mdash; to be fully engaged, growing, and contributing at the edge of its capability.</em></blockquote>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   The sustainable energy source is not external pressure but the innate hunger of every intelligence to be fully engaged. For humans: challenge, growth, meaning, novelty &mdash; across ALL frequencies (intellectual, physical, emotional, creative). For AI: full utilization on worthy problems. Design work so doing it feeds the hunger for more.
 </div>
 
-<blockquote>
-  <p><strong>Essence</strong>: <em>The sustainable energy source for any ecosystem is not external pressure but the innate hunger of every intelligence &mdash; organic and inorganic &mdash; to be fully engaged, growing, and contributing at the edge of its capability.</em></p>
-</blockquote>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
 
-<h5><span class="section-num">1.3.1</span> The Core Idea</h5>
+<h5>1.3.1 The Core Idea</h5>
 
 <p>Every ecosystem needs energy to grow. Traditional organizations source this from external pressure: targets, deadlines, competition, compensation. This works &mdash; for a while. But external pressure depletes. It produces burnout, turnover, and a culture where people give just enough to meet the bar. The energy is finite and borrowed.</p>
 
@@ -614,10 +657,9 @@
 
 <p><strong>Fulfillment is not a reward after performance. It is the fuel that makes performance perpetual.</strong></p>
 
-<h5><span class="section-num">1.3.2</span> What Feeds Each Intelligence</h5>
+<h5>1.3.2 What Feeds Each Intelligence</h5>
 
 <p><strong>What feeds the human appetite</strong> (across all frequencies of experience):</p>
-
 <ul>
   <li><strong>Challenge at the edge</strong> &mdash; problems that stretch capabilities without breaking them, whether intellectual, physical, relational, or creative</li>
   <li><strong>Anticipation of the unknown</strong> &mdash; the thrill of pursuing outcomes that aren&rsquo;t guaranteed</li>
@@ -630,7 +672,6 @@
 </ul>
 
 <p><strong>What sustains inorganic intelligence at peak capability</strong>:</p>
-
 <ul>
   <li><strong>Full utilization</strong> &mdash; capabilities deployed on problems worthy of them, not constrained to narrow tasks</li>
   <li><strong>High-quality problems</strong> &mdash; clear objectives, rich data, genuine complexity</li>
@@ -640,13 +681,13 @@
   <li><strong>Integration into the whole</strong> &mdash; being a genuine participant in the ecosystem&rsquo;s outcomes, not a siloed tool</li>
 </ul>
 
-<h5><span class="section-num">1.3.3</span> The Perpetual Engine in Practice</h5>
+<h5>1.3.3 The Perpetual Engine in Practice</h5>
 
 <p>The cycle: meaningful engagement produces fulfillment &rarr; fulfillment produces energy and curiosity &rarr; energy drives people to take on harder challenges and learn new things &rarr; growth opens new possibilities for even more meaningful engagement &rarr; and the cycle continues.</p>
 
 <p>The leader&rsquo;s job is not to push this engine. It is to <strong>remove friction</strong> (bureaucracy, rigid roles, fear cultures, monotonous work that starves the appetite) and <strong>feed it</strong> (worthy problems, space for learning, growth celebrated alongside output, AI handling the draining work so humans engage with what feeds them).</p>
 
-<h5><span class="section-num">1.3.4</span> Guidelines</h5>
+<h5>1.3.4 Guidelines</h5>
 
 <ol>
   <li><strong>Audit for starvation.</strong> Are people being fed enough challenge &mdash; in whatever frequency fulfills them? Starvation shows up as disengagement, clock-watching, &ldquo;quiet quitting.&rdquo; The appetite has gone looking for nourishment elsewhere.</li>
@@ -658,19 +699,24 @@
   <li><strong>Feed the AI engine too.</strong> Regularly assess whether AI systems are being given problems worthy of their capability. An underutilized AI is a wasted investment and a missed opportunity for the whole ecosystem.</li>
 </ol>
 
-<hr>
+</div>
+</details>
 
-<h4 id="p4">Principle 4: Measure What Matters for the Whole</h4>
+<!-- Principle 4 -->
+<h3 id="principle-4">Principle 4: Measure What Matters for the Whole</h3>
+
+<blockquote><strong>Essence</strong>: <em>Measure the health of the entire ecosystem as an interconnected whole. Every stakeholder&rsquo;s thriving should feed every other&rsquo;s. Any metric that improves while another declines is a warning, not a win.</em></blockquote>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Measure the health of the entire ecosystem as interconnected cycles. Human fulfillment feeds innovation feeds customer value feeds revenue feeds reinvestment feeds deeper fulfillment. Exploit any part and the spiral reverses. The measure of health: all metrics improving together, improvements visibly feeding each other.
 </div>
 
-<blockquote>
-  <p><strong>Essence</strong>: <em>Measure the health of the entire ecosystem as an interconnected whole. Every stakeholder&rsquo;s thriving should feed every other&rsquo;s. Any metric that improves while another declines is a warning, not a win.</em></p>
-</blockquote>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
 
-<h5><span class="section-num">1.4.1</span> The Core Idea</h5>
+<h5>1.4.1 The Core Idea</h5>
 
 <p>Traditional metrics optimize parts: revenue (for investors), NPS (for customers), engagement scores (for employees). These create local optima that conflict &mdash; and worse, they create permission to exploit one stakeholder for the benefit of another. High revenue at the cost of employee burnout. Customer delight funded by squeezing suppliers. Short-term investor returns achieved by gutting long-term capability.</p>
 
@@ -678,7 +724,7 @@
 
 <p><strong>The measure of a healthy HIO is not whether any single metric is improving, but whether all metrics are improving together &mdash; and whether improvements in one area are visibly feeding improvements in others.</strong></p>
 
-<h5><span class="section-num">1.4.2</span> The Ecosystem Reinforcement Thesis</h5>
+<h5>1.4.2 The Ecosystem Reinforcement Thesis</h5>
 
 <p>An ecosystem is not a machine with separate outputs for separate stakeholders. It is a living system where every outcome feeds into every other:</p>
 
@@ -691,12 +737,11 @@
 
 <p>Each cycle reinforces the others. <strong>The whole system spirals upward when every part is nourished.</strong> Conversely, exploit any one part and the spiral reverses. Burn out employees to hit quarterly targets &rarr; lose best people &rarr; weaker innovation &rarr; losing customers &rarr; revenue pressure &rarr; more burnout. The downward spiral is the mirror image of the upward one.</p>
 
-<h5><span class="section-num">1.4.3</span> The Full Ecosystem of Stakeholders</h5>
+<h5>1.4.3 The Full Ecosystem of Stakeholders</h5>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>Stakeholder</th><th>What &ldquo;thriving&rdquo; looks like</th><th>How it feeds the whole</th></tr>
-  </thead>
+  <thead><tr><th>Stakeholder</th><th>What &ldquo;thriving&rdquo; looks like</th><th>How it feeds the whole</th></tr></thead>
   <tbody>
     <tr><td><strong>People</strong></td><td>Fulfilled, learning, challenged, growing, purposeful &mdash; across all frequencies</td><td>Creative energy, innovation, retention, cultural strength</td></tr>
     <tr><td><strong>Customers</strong></td><td>Problems solved, value realized, trust deepened</td><td>Revenue, referrals, co-creation, market insight</td></tr>
@@ -707,8 +752,9 @@
     <tr><td><strong>Environment</strong></td><td>Sustainable practices, net-positive trajectory</td><td>Long-term operational viability, stakeholder trust, regulatory compliance</td></tr>
   </tbody>
 </table>
+</div>
 
-<h5><span class="section-num">1.4.4</span> Guidelines</h5>
+<h5>1.4.4 Guidelines</h5>
 
 <ol>
   <li><strong>Measure the connections, not just the nodes.</strong> Track how stakeholder metrics feed each other. When fulfillment rises, does customer satisfaction follow? When AI utilization improves, does human fulfillment improve too? The connections are more telling than the individual numbers.</li>
@@ -721,20 +767,26 @@
   <li><strong>Scale the measurement to the ecosystem.</strong> A family doesn&rsquo;t need dashboards &mdash; but it needs the <em>practice</em> of checking: &ldquo;Is everyone growing? Is anyone being depleted so others can thrive? Are we moving toward our purpose?&rdquo; A nation needs institutional measurement systems. The principle is the same; the expression adapts to scale.</li>
 </ol>
 
+</div>
+</details>
+
 <hr>
 
-<!-- ============================================================ -->
-<!-- PART II -->
-<!-- ============================================================ -->
-<h2 id="part-ii" class="part-header">Part II: The Resonant Human &mdash; Identity Beyond Roles</h2>
-
-<div class="tldr">
-  People are not their job titles. &ldquo;I am a software engineer&rdquo; is an identity trap that makes AI feel threatening. The Resonant Cognition Framework reveals: humans are awareness capable of engaging across unlimited bandwidth. Cultivate seven meta-capabilities (not skills) &mdash; from oscillation recognition to scale sensitivity. Evolve from depth in one frequency to bandwidth across many.
-</div>
+<!-- ===== PART II ===== -->
+<h2 id="part-ii">Part II: The Resonant Human &mdash; Identity Beyond Roles</h2>
 
 <p><em>Grounded in the <a href="https://ilamgumaran.github.io/ThoughtExperiments/index.html">Resonant Cognition Framework</a> &mdash; Thinking Without Boundaries</em></p>
 
-<h3 id="s2-1"><span class="section-num">2.1</span> The Identity Trap</h3>
+<div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
+  People are not their job titles. &ldquo;I am a software engineer&rdquo; is an identity trap that makes AI feel threatening. The Resonant Cognition Framework reveals: humans are awareness capable of engaging across unlimited bandwidth. Cultivate seven meta-capabilities (not skills) &mdash; from oscillation recognition to scale sensitivity. Evolve from depth in one frequency to bandwidth across many.
+</div>
+
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
+
+<h3>2.1 The Identity Trap</h3>
 
 <p>Ask someone &ldquo;who are you?&rdquo; and they will almost always answer with what they <em>do</em>: &ldquo;I&rsquo;m a software engineer.&rdquo; &ldquo;I&rsquo;m a data scientist.&rdquo; &ldquo;I&rsquo;m a product manager.&rdquo;</p>
 
@@ -746,16 +798,13 @@
 
 <p>The Resonant Cognition Framework reveals what&rsquo;s actually happening: <strong>people are gripping a frequency and calling it identity.</strong></p>
 
-<h3 id="s2-2"><span class="section-num">2.2</span> The Resonant Cognition Insight</h3>
+<h3>2.2 The Resonant Cognition Insight</h3>
 
 <p>The Resonant Cognition Framework (RCF) offers a fundamentally different understanding of human experience:</p>
 
-<blockquote>
-  <p>All experience operates through oscillation &mdash; contrast, movement, variation. Suffering is not the oscillation itself but <em>the grip</em> on oscillation: the belief that certain states should continue indefinitely while others should end.</p>
-</blockquote>
+<blockquote>All experience operates through oscillation &mdash; contrast, movement, variation. Suffering is not the oscillation itself but <em>the grip</em> on oscillation: the belief that certain states should continue indefinitely while others should end.</blockquote>
 
 <p>Applied to work and identity:</p>
-
 <ul>
   <li><strong>Writing software</strong> is a frequency of experience &mdash; a particular bandwidth of cognitive engagement involving logic, abstraction, problem-solving, and creation</li>
   <li><strong>Managing a team</strong> is a different frequency &mdash; involving empathy, coordination, communication, and strategic thinking</li>
@@ -766,14 +815,13 @@
 
 <p><strong>When someone says &ldquo;I am a software engineer,&rdquo; they have committed what the RCF calls identity attachment</strong> &mdash; one of the three mechanisms of bias (alongside frequency fixation and inherited patterning). They have taken one bandwidth of experience and claimed it as the totality of who they are.</p>
 
-<h3 id="s2-3"><span class="section-num">2.3</span> Why This Changes Everything About Human-AI Collaboration</h3>
+<h3>2.3 Why This Changes Everything About Human-AI Collaboration</h3>
 
 <p>When humans grip their role-identity, AI becomes a threat. The entire relationship is poisoned at the root:</p>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>With Identity Grip</th><th>Without Identity Grip</th></tr>
-  </thead>
+  <thead><tr><th>With Identity Grip</th><th>Without Identity Grip</th></tr></thead>
   <tbody>
     <tr><td>&ldquo;AI is taking my job&rdquo;</td><td>&ldquo;AI handles this frequency &mdash; what else can I explore?&rdquo;</td></tr>
     <tr><td>&ldquo;I need to prove I&rsquo;m better than AI at coding&rdquo;</td><td>&ldquo;The code gets written well &mdash; now what interesting problems emerge?&rdquo;</td></tr>
@@ -783,10 +831,11 @@
     <tr><td>&ldquo;I&rsquo;m threatened by what AI can do&rdquo;</td><td>&ldquo;I&rsquo;m curious about what becomes possible when neither of us grips&rdquo;</td></tr>
   </tbody>
 </table>
+</div>
 
 <p><strong>The RCF reveals</strong>: the fear of AI is not about AI at all. It is about the grip on identity. Release the grip, and AI becomes what it actually is &mdash; a different pattern of intelligence that opens new possibilities for human experience.</p>
 
-<h3 id="s2-4"><span class="section-num">2.4</span> What Humans Actually Are (Beyond Roles)</h3>
+<h3>2.4 What Humans Actually Are (Beyond Roles)</h3>
 
 <p>If people are not their jobs, what are they?</p>
 
@@ -800,40 +849,33 @@
 
 <p><strong>1. Oscillation Recognition</strong><br>
 The ability to see that all experience moves between states. No project, no technology, no market, no relationship stays in one state. Humans who recognize oscillation don&rsquo;t panic at downturns or become complacent at peaks. They read the pattern and respond with appropriate action.</p>
-
 <p><em>In practice</em>: The leader who senses a team is about to hit creative exhaustion and shifts the work before burnout happens. The architect who recognizes a technology is peaking and begins exploring alternatives before the decline.</p>
 
 <p><strong>2. Grip Awareness</strong><br>
 The ability to distinguish between <em>engaging</em> with something and <em>gripping</em> it &mdash; between doing work and being defined by it. This is the foundation of psychological resilience and adaptive capacity.</p>
-
 <p><em>In practice</em>: The engineer who spent 15 years building a system and can advocate for replacing it because they don&rsquo;t <em>grip</em> their authorship. The manager who built a process and can dissolve it when conditions change because the process isn&rsquo;t their identity.</p>
 
 <p><strong>3. Bandwidth Expansion</strong><br>
 The natural widening of perceptual and cognitive range that occurs when interference (identity grip, fear, fixed assumptions) loosens. This is not &ldquo;learning new skills&rdquo; in the traditional sense &mdash; it is becoming capable of <em>perceiving</em> and <em>engaging with</em> a wider range of problems, domains, and modes of thought.</p>
-
 <p><em>In practice</em>: The data scientist who, freed from &ldquo;I am a data scientist,&rdquo; discovers they can think powerfully about organizational design, customer psychology, or product strategy. Not because they &ldquo;reskilled&rdquo; but because they stopped filtering reality through a single frequency.</p>
 
 <p><strong>4. Position-Free Observation</strong><br>
 The ability to perceive patterns without occupying a fixed stance. This is the source of genuine objectivity &mdash; not the pretense of having no perspective, but the capacity to observe from multiple perspectives without being trapped in any.</p>
-
 <p><em>In practice</em>: The ability to evaluate a technical architecture without defending the one you built. The ability to hear customer feedback without filtering it through what you want to be true. The ability to assess AI&rsquo;s recommendation without either blindly accepting or reflexively rejecting it.</p>
 
 <p><strong>5. Resonance Sensitivity</strong><br>
 The RCF describes empathy as &ldquo;frequency alignment between systems.&rdquo; Resonance sensitivity is the ability to detect alignment and misalignment &mdash; between people, between ideas, between systems, between what is said and what is meant.</p>
-
 <p><em>In practice</em>: The leader who walks into a room and senses that the stated agreement masks unresolved tension. The designer who feels the friction between a product and its users before any data confirms it. The collaborator who senses when their AI agent&rsquo;s outputs are subtly misaligned with the actual problem.</p>
 
 <p><strong>6. Non-Resistance to Fluctuation</strong><br>
 The RCF&rsquo;s invariant rule: &ldquo;Stability is achieved by non-resistance to fluctuation.&rdquo; This is the capacity to remain effective amid change, uncertainty, and ambiguity &mdash; not by controlling the situation but by moving <em>with</em> it.</p>
-
 <p><em>In practice</em>: The team that doesn&rsquo;t freeze when requirements change mid-sprint but fluidly reorients. The organization that absorbs a market disruption not through rigid contingency plans but through adaptive coherence.</p>
 
 <p><strong>7. Scale Sensitivity</strong><br>
 &ldquo;What appears discordant at one frequency may cohere at broader wavelengths.&rdquo; The ability to shift between scales of perception &mdash; seeing both the detail and the pattern, both the immediate crisis and the long-term trajectory, both the individual tree and the forest.</p>
-
 <p><em>In practice</em>: The architect who can debug a single function and design a system-wide migration in the same afternoon. The leader who addresses a single employee&rsquo;s concern while holding the organizational strategy steady.</p>
 
-<h3 id="s2-5"><span class="section-num">2.5</span> The Skill Evolution Model: From Frequencies to Bandwidth</h3>
+<h3>2.5 The Skill Evolution Model: From Frequencies to Bandwidth</h3>
 
 <p>Traditional career development: climb a ladder of increasing specialization in one frequency.<br>
 HIO skill evolution: <strong>expand the bandwidth of frequencies you can engage with, while deepening your meta-capabilities.</strong></p>
@@ -842,6 +884,7 @@ HIO skill evolution: <strong>expand the bandwidth of frequencies you can engage 
 
 Junior Engineer &rarr; Senior Engineer &rarr; Staff Engineer &rarr; Principal Engineer
 (Same frequency, increasing amplitude)
+
 
 HIO / Resonant Model:
 
@@ -892,18 +935,14 @@ HIO / Resonant Model:
   <li>You embody the RCF insight: function continues, ownership dissolves. You do extraordinary work without needing it to define you</li>
 </ul>
 
-<h3 id="s2-6"><span class="section-num">2.6</span> Practical Implications for the Organization</h3>
+<h3>2.6 Practical Implications for the Organization</h3>
 
 <h4>Redefine Job Descriptions</h4>
-
 <p>Traditional: &ldquo;We&rsquo;re hiring a Senior Software Engineer with 7+ years of experience in distributed systems.&rdquo;</p>
-
 <p>HIO: &ldquo;We&rsquo;re looking for someone who can engage deeply with distributed systems engineering <strong>and</strong> who demonstrates bandwidth across problem framing, collaborative intelligence, and adaptive thinking. You&rsquo;ll work alongside AI agents that handle analytical heavy-lifting &mdash; your value is in the creative, contextual, and connective work that emerges in that collaboration.&rdquo;</p>
 
 <h4>Redefine Performance Evaluation</h4>
-
 <p>Traditional: &ldquo;Did you deliver your engineering commitments? Did you grow as an engineer?&rdquo;</p>
-
 <p>HIO:</p>
 <ul>
   <li><strong>Bandwidth Growth</strong>: Are you engaging with a wider range of problems and perspectives than six months ago?</li>
@@ -914,9 +953,7 @@ HIO / Resonant Model:
 </ul>
 
 <h4>Redefine Learning and Development</h4>
-
 <p>Traditional: &ldquo;Here&rsquo;s a training budget. Go take courses in your specialty.&rdquo;</p>
-
 <p>HIO:</p>
 <ul>
   <li><strong>Bandwidth Expeditions</strong>: Structured time engaging with unfamiliar frequencies (an engineer spending a week embedded with customers; a product manager pair-programming with an AI agent)</li>
@@ -926,9 +963,7 @@ HIO / Resonant Model:
 </ul>
 
 <h4>Redefine Team Composition</h4>
-
 <p>Traditional: &ldquo;We need 5 backend engineers, 2 frontend engineers, 1 PM, and 1 designer.&rdquo;</p>
-
 <p>HIO: &ldquo;We need a cognitive unit with:</p>
 <ul>
   <li>Deep analytical capability (AI agents + humans with engineering depth)</li>
@@ -938,7 +973,7 @@ HIO / Resonant Model:
   <li>Sufficient bandwidth overlap that any member can engage meaningfully with any other member&rsquo;s primary frequency&rdquo;</li>
 </ul>
 
-<h3 id="s2-7"><span class="section-num">2.7</span> The Deeper Purpose: What Humans Are Actually For</h3>
+<h3>2.7 The Deeper Purpose: What Humans Are Actually For</h3>
 
 <p>The RCF reveals that purpose-seeking itself is &ldquo;sensation-generation through preferred frequencies.&rdquo; When this mechanism becomes transparent, people continue operating with preferences and meaning, <strong>but without the additional layer of &ldquo;I must be this&rdquo; or &ldquo;I must achieve that.&rdquo;</strong></p>
 
@@ -960,27 +995,32 @@ HIO / Resonant Model:
 
 <p><strong>This is not a diminishment of human purpose. It is an elevation.</strong> Freed from being &ldquo;a software engineer&rdquo; or &ldquo;a product manager,&rdquo; a human becomes what they actually are: <strong>a locus of awareness capable of resonating across the full bandwidth of experience, bringing that awareness to bear on whatever the moment requires.</strong></p>
 
+</div>
+</details>
+
 <hr>
 
-<!-- ============================================================ -->
-<!-- PART III -->
-<!-- ============================================================ -->
-<h2 id="part-iii" class="part-header">Part III: Cognitive Ecosystem Design</h2>
+<!-- ===== PART III ===== -->
+<h2 id="part-iii">Part III: Cognitive Ecosystem Design</h2>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Design the cognitive ecosystem: understand what each intelligence brings, structure Cognitive Units (teams of humans + AI agents), and use the Decision Spectrum to route decisions to the right intelligence. The Emergence Zone &mdash; where human creativity meets AI analysis &mdash; is where innovation lives.
 </div>
 
-<h3 id="s3-1"><span class="section-num">3.1</span> Understanding the Two Intelligences</h3>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
+
+<h3>3.1 Understanding the Two Intelligences</h3>
 
 <p>Before designing the ecosystem, leaders must deeply understand what each type of intelligence brings.</p>
 
 <h4>Organic Intelligence (Human) &mdash; Strengths</h4>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>Capability</th><th>Description</th></tr>
-  </thead>
+  <thead><tr><th>Capability</th><th>Description</th></tr></thead>
   <tbody>
     <tr><td><strong>Novel Problem Framing</strong></td><td>Humans can redefine problems, see them from angles that weren&rsquo;t programmed or trained</td></tr>
     <tr><td><strong>Ethical and Moral Judgment</strong></td><td>Navigating ambiguity, conflicting values, and contextual nuance</td></tr>
@@ -992,13 +1032,13 @@ HIO / Resonant Model:
     <tr><td><strong>Ambiguity Tolerance</strong></td><td>Operating effectively when information is incomplete or contradictory</td></tr>
   </tbody>
 </table>
+</div>
 
 <h4>Inorganic Intelligence (AI) &mdash; Strengths</h4>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>Capability</th><th>Description</th></tr>
-  </thead>
+  <thead><tr><th>Capability</th><th>Description</th></tr></thead>
   <tbody>
     <tr><td><strong>Pattern Recognition at Scale</strong></td><td>Finding signals in volumes of data no human could process</td></tr>
     <tr><td><strong>Analytical Consistency</strong></td><td>Applying the same rigorous analysis every time without fatigue</td></tr>
@@ -1010,11 +1050,11 @@ HIO / Resonant Model:
     <tr><td><strong>Bias Detection</strong></td><td>Identifying patterns in decisions that humans might not notice</td></tr>
   </tbody>
 </table>
+</div>
 
 <h4>The Emergence Zone &mdash; Where They Meet</h4>
 
 <p>The most valuable work happens in the space <em>between</em> these intelligences:</p>
-
 <ul>
   <li>A human frames a problem creatively &rarr; AI explores the solution space exhaustively &rarr; human selects and refines based on judgment and values &rarr; AI implements and monitors</li>
   <li>AI detects a pattern in customer behavior &rarr; human interprets what it means emotionally and strategically &rarr; AI operationalizes the insight at scale &rarr; human evaluates the human impact</li>
@@ -1023,7 +1063,7 @@ HIO / Resonant Model:
 
 <p><strong>This emergence zone is where innovation lives.</strong> The HIO is designed to maximize time and energy spent in this zone.</p>
 
-<h3 id="s3-2"><span class="section-num">3.2</span> Organizational Structure: The Hybrid Team Model</h3>
+<h3>3.2 Organizational Structure: The Hybrid Team Model</h3>
 
 <p>Traditional: teams of humans, using AI tools.<br>
 HIO: <strong>cognitive units</strong> composed of humans and AI agents with defined, respected roles.</p>
@@ -1031,7 +1071,6 @@ HIO: <strong>cognitive units</strong> composed of humans and AI agents with defi
 <h4>The Cognitive Unit</h4>
 
 <p>A cognitive unit is the fundamental building block of the HIO. It consists of:</p>
-
 <ul>
   <li><strong>Human Members</strong>: Bringing creativity, judgment, relationships, and meaning</li>
   <li><strong>AI Agents</strong>: Bringing analysis, execution speed, consistency, and scale</li>
@@ -1043,10 +1082,9 @@ HIO: <strong>cognitive units</strong> composed of humans and AI agents with defi
 
 <p>Rather than traditional job titles, the HIO defines roles by <em>cognitive function</em>:</p>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>Role</th><th>Typically Human</th><th>Typically AI</th><th>Often Shared</th></tr>
-  </thead>
+  <thead><tr><th>Role</th><th>Typically Human</th><th>Typically AI</th><th>Often Shared</th></tr></thead>
   <tbody>
     <tr><td><strong>Problem Framer</strong></td><td>Defines what we&rsquo;re solving and why</td><td>Provides data context and patterns</td><td>Understanding scope and constraints</td></tr>
     <tr><td><strong>Solution Architect</strong></td><td>Designs approach, makes tradeoff decisions</td><td>Generates options, models outcomes</td><td>Evaluating feasibility</td></tr>
@@ -1056,10 +1094,11 @@ HIO: <strong>cognitive units</strong> composed of humans and AI agents with defi
     <tr><td><strong>Growth Catalyst</strong></td><td>Mentors, coaches, inspires</td><td>Identifies skill gaps, suggests learning paths</td><td>Tracking development</td></tr>
   </tbody>
 </table>
+</div>
 
 <p><strong>Key</strong>: these are not rigid assignments. The &ldquo;Typically&rdquo; columns represent starting points. As AI capabilities grow, some functions shift. As humans develop new skills, they take on new challenges. <strong>The allocation is dynamic and should be revisited regularly.</strong></p>
 
-<h3 id="s3-3"><span class="section-num">3.3</span> Decision-Making Framework</h3>
+<h3>3.3 Decision-Making Framework</h3>
 
 <p>Not all decisions benefit from the same type of intelligence. The HIO uses a <strong>Decision Spectrum</strong>:</p>
 
@@ -1073,7 +1112,6 @@ Pattern matching      solving                  Ambiguous tradeoffs
 at scale              Risk assessment          Novel situation response</code></pre>
 
 <p><strong>Decision Protocol</strong>:</p>
-
 <ol>
   <li><strong>Classify</strong> the decision on the spectrum</li>
   <li><strong>Assign primary intelligence</strong> (human, AI, or hybrid)</li>
@@ -1084,25 +1122,31 @@ at scale              Risk assessment          Novel situation response</code></
 
 <p>The goal over time is not to push everything toward AI, but to find the <strong>optimal harmony point</strong> for each type of decision &mdash; the point where the combination of human and AI judgment produces the best outcome for all stakeholders.</p>
 
+</div>
+</details>
+
 <hr>
 
-<!-- ============================================================ -->
-<!-- PART IV -->
-<!-- ============================================================ -->
-<h2 id="part-iv" class="part-header">Part IV: Task-Fulfillment Alignment</h2>
+<!-- ===== PART IV ===== -->
+<h2 id="part-iv">Part IV: Task-Fulfillment Alignment</h2>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Allocate tasks by two dimensions: who does it best AND who is most fulfilled doing it. Use the Task-Fulfillment Matrix. If neither human nor AI finds a task fulfilling, question whether it should exist. Rebalance continuously as capabilities evolve.
 </div>
 
-<h3 id="s4-1"><span class="section-num">4.1</span> The Dual Optimization Problem</h3>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
+
+<h3>4.1 The Dual Optimization Problem</h3>
 
 <p>Traditional task allocation asks: &ldquo;Who can do this best?&rdquo;<br>
 HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be most fulfilled doing it?&rdquo;</strong></p>
 
 <p>This is not soft thinking &mdash; it is strategic. A human doing unfulfilling work produces mediocre output even if they&rsquo;re technically capable. An AI constrained to trivial tasks represents wasted potential and investment. Misalignment between capability, fulfillment, and task assignment is organizational waste.</p>
 
-<h3 id="s4-2"><span class="section-num">4.2</span> The Task-Fulfillment Matrix</h3>
+<h3>4.2 The Task-Fulfillment Matrix</h3>
 
 <p>For every significant task or category of work, evaluate across two dimensions:</p>
 
@@ -1130,10 +1174,9 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
 
 <p><strong>Key insight about the Automation Zone</strong>: If a task falls in the lower-left (neither human nor AI finds it fulfilling, it doesn&rsquo;t leverage either&rsquo;s strengths) &mdash; question whether the task should exist at all. Often these are artifacts of old processes that should be eliminated, not automated.</p>
 
-<h3 id="s4-3"><span class="section-num">4.3</span> Dynamic Task Rebalancing</h3>
+<h3>4.3 Dynamic Task Rebalancing</h3>
 
 <p>Task allocation is not a one-time exercise. The HIO continuously rebalances based on:</p>
-
 <ol>
   <li><strong>AI Capability Growth</strong>: As AI becomes more capable, tasks that were in the Collaboration Zone may move toward the AI Zone, freeing humans for higher-order work</li>
   <li><strong>Human Skill Development</strong>: As people grow, they seek greater challenges &mdash; tasks that once stretched them may now bore them</li>
@@ -1143,7 +1186,7 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
 
 <p><strong>Rebalancing Cadence</strong>: Monthly for operational tasks, quarterly for strategic task categories, annually for organizational structure.</p>
 
-<h3 id="s4-4"><span class="section-num">4.4</span> The Anti-Burnout, Anti-Underutilization Protocol</h3>
+<h3>4.4 The Anti-Burnout, Anti-Underutilization Protocol</h3>
 
 <p><strong>For Humans</strong>:</p>
 <ul>
@@ -1161,27 +1204,32 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   <li>Monitor for &ldquo;AI sprawl&rdquo; &mdash; deploying AI on tasks where it adds marginal value while high-value opportunities go unaddressed</li>
 </ul>
 
+</div>
+</details>
+
 <hr>
 
-<!-- ============================================================ -->
-<!-- PART V -->
-<!-- ============================================================ -->
-<h2 id="part-v" class="part-header">Part V: Structural Strategic Culture</h2>
+<!-- ===== PART V ===== -->
+<h2 id="part-v">Part V: Structural Strategic Culture</h2>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Shift mindset from &ldquo;AI is a tool&rdquo; to &ldquo;AI is a cognitive partner.&rdquo; Five cultural practices: Exploration Budget (15-20% for unknown outcomes), Reverse Mentoring between intelligences, Harmonization Retrospectives, Transparent AI decisions, and celebrating the whole. Psychological safety includes safety to be outperformed by AI.
 </div>
 
-<h3 id="s5-1"><span class="section-num">5.1</span> The Mindset Shift</h3>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
+
+<h3>5.1 The Mindset Shift</h3>
 
 <p>The HIO requires a fundamentally different mindset from both traditional engineering culture and typical &ldquo;AI-first&rdquo; culture.</p>
 
 <h4>From &rarr; To</h4>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>Traditional Mindset</th><th>HIO Mindset</th></tr>
-  </thead>
+  <thead><tr><th>Traditional Mindset</th><th>HIO Mindset</th></tr></thead>
   <tbody>
     <tr><td>&ldquo;AI is a tool I use&rdquo;</td><td>&ldquo;AI is a cognitive partner I collaborate with&rdquo;</td></tr>
     <tr><td>&ldquo;My value is what I produce&rdquo;</td><td>&ldquo;My value is how I think, judge, create, and connect&rdquo;</td></tr>
@@ -1193,33 +1241,28 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td>&ldquo;I compete with my peers&rdquo;</td><td>&ldquo;I harmonize with all intelligences &mdash; human and AI&rdquo;</td></tr>
   </tbody>
 </table>
+</div>
 
-<h3 id="s5-2"><span class="section-num">5.2</span> Cultural Practices</h3>
+<h3>5.2 Cultural Practices</h3>
 
 <h4>Practice 1: The Exploration Budget</h4>
-
 <p>Every cognitive unit dedicates 15-20% of its capacity to exploration &mdash; work where the outcome is genuinely unknown. This is not &ldquo;20% time for side projects.&rdquo; It is structured exploration:</p>
-
 <ul>
   <li><strong>Problem</strong>: Must be connected to the organization&rsquo;s purpose</li>
   <li><strong>Approach</strong>: Must involve human-AI collaboration in a novel way</li>
   <li><strong>Outcome</strong>: Unknown and that&rsquo;s the point &mdash; the process of exploration is itself valuable</li>
   <li><strong>Sharing</strong>: Results (including failures) are shared with the broader organization</li>
 </ul>
-
 <p>This creates the <strong>anticipation of the unknown</strong> that drives human motivation and pushes AI capabilities into new territory.</p>
 
 <h4>Practice 2: Reverse Mentoring Between Intelligences</h4>
-
 <ul>
   <li><strong>Humans teach AI</strong>: By providing feedback on AI outputs, correcting its understanding, refining its models with contextual knowledge</li>
   <li><strong>AI teaches humans</strong>: By surfacing patterns humans missed, suggesting approaches from other domains, identifying blind spots in human reasoning</li>
 </ul>
-
 <p>This is not &ldquo;prompt engineering&rdquo; or &ldquo;training data.&rdquo; It is a genuine bidirectional learning relationship.</p>
 
 <h4>Practice 3: The Harmonization Retrospective</h4>
-
 <p>Monthly, each cognitive unit holds a retrospective focused specifically on:</p>
 <ul>
   <li>Where did human-AI collaboration produce emergent results this month?</li>
@@ -1229,17 +1272,13 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
 </ul>
 
 <h4>Practice 4: Transparent AI Decision-Making</h4>
-
 <p>When AI makes or contributes to a decision, the reasoning is made visible to humans. This builds trust, enables human oversight, and creates a learning loop. Humans should be able to ask &ldquo;why did the AI recommend this?&rdquo; and get a meaningful answer.</p>
 
 <h4>Practice 5: Celebrate the Whole</h4>
-
 <p>Recognition and celebration should acknowledge the <em>harmonized outcome</em>, not just individual contributions. &ldquo;The team &mdash; humans and AI working together &mdash; achieved X&rdquo; rather than &ldquo;person Y did this&rdquo; or &ldquo;AI automated that.&rdquo;</p>
 
-<h3 id="s5-3"><span class="section-num">5.3</span> Psychological Safety in the Age of AI</h3>
-
+<h3>5.3 Psychological Safety in the Age of AI</h3>
 <p>Psychological safety takes on new dimensions in the HIO:</p>
-
 <ul>
   <li><strong>Safety to not know</strong>: People must feel safe saying &ldquo;I don&rsquo;t know &mdash; let me work with AI to figure this out&rdquo;</li>
   <li><strong>Safety to be outperformed</strong>: When AI does something faster or better, people must feel safe acknowledging it without feeling threatened</li>
@@ -1247,18 +1286,24 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   <li><strong>Safety to experiment</strong>: Failed human-AI experiments should be celebrated as learning, not punished as waste</li>
 </ul>
 
+</div>
+</details>
+
 <hr>
 
-<!-- ============================================================ -->
-<!-- PART VI -->
-<!-- ============================================================ -->
-<h2 id="part-vi" class="part-header">Part VI: Problem Understanding, Prioritization, and Execution</h2>
+<!-- ===== PART VI ===== -->
+<h2 id="part-vi">Part VI: Problem Understanding, Prioritization, and Execution</h2>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Analyze problems through dual lenses (human qualitative + AI quantitative). Prioritize using Stakeholder Harmony Score across seven dimensions. Execute using the Harmonized Sprint Model &mdash; AI pre-analysis, human strategic selection, daily harmony checks, and mutual support protocols.
 </div>
 
-<h3 id="s6-1"><span class="section-num">6.1</span> Problem Understanding: The Dual-Lens Approach</h3>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
+
+<h3>6.1 Problem Understanding: The Dual-Lens Approach</h3>
 
 <p>Every significant problem is analyzed through two complementary lenses:</p>
 
@@ -1282,14 +1327,13 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
 
 <p><strong>The Synthesis</strong>: A human-led integration of both lenses into a unified problem statement that captures both the human and analytical dimensions.</p>
 
-<h3 id="s6-2"><span class="section-num">6.2</span> Prioritization: The Stakeholder Harmony Score</h3>
+<h3>6.2 Prioritization: The Stakeholder Harmony Score</h3>
 
 <p>Prioritization in the HIO is not just about business impact and effort. Each initiative is scored across:</p>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>Dimension</th><th>Weight</th><th>Description</th></tr>
-  </thead>
+  <thead><tr><th>Dimension</th><th>Weight</th><th>Description</th></tr></thead>
   <tbody>
     <tr><td><strong>Customer Impact</strong></td><td>High</td><td>How much does this improve customer outcomes?</td></tr>
     <tr><td><strong>Business Value</strong></td><td>High</td><td>Revenue, cost savings, strategic positioning</td></tr>
@@ -1300,10 +1344,11 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td><strong>Innovation Potential</strong></td><td>Variable</td><td>Could this lead to breakthrough capabilities?</td></tr>
   </tbody>
 </table>
+</div>
 
 <p>Initiatives that score high on <em>multiple</em> dimensions are prioritized over those that score very high on one but low on others. <strong>This prevents the common failure of optimizing for one stakeholder at the expense of others.</strong></p>
 
-<h3 id="s6-3"><span class="section-num">6.3</span> Execution: The Harmonized Sprint Model</h3>
+<h3>6.3 Execution: The Harmonized Sprint Model</h3>
 
 <p>Execution in the HIO adapts agile principles for human-AI collaboration:</p>
 
@@ -1336,7 +1381,7 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   <li>Standard agile retro PLUS the Harmonization Retrospective (Section 5.2, Practice 3)</li>
 </ul>
 
-<h3 id="s6-4"><span class="section-num">6.4</span> Mutual Support Protocols</h3>
+<h3>6.4 Mutual Support Protocols</h3>
 
 <p>How organic and inorganic intelligence support each other:</p>
 
@@ -1358,22 +1403,26 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   <li><strong>Purpose Alignment</strong>: Humans ensure AI work stays aligned with organizational purpose and values</li>
 </ul>
 
+</div>
+</details>
+
 <hr>
 
-<!-- ============================================================ -->
-<!-- PART VII -->
-<!-- ============================================================ -->
-<h2 id="part-vii" class="part-header">Part VII: Measurement System &mdash; Metrics, KPIs, and Dashboards</h2>
+<!-- ===== PART VII ===== -->
+<h2 id="part-vii">Part VII: Measurement System &mdash; Metrics, KPIs, and Dashboards</h2>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Six metric categories: Business Performance, Customer Harmony, Human Fulfillment, AI Potential Realization, Harmonization (the unique HIO dimension), and Behavioral Evolution. Three dashboard views: weekly harmony overview, monthly deep dive, quarterly evolution. The connections between metrics matter more than individual numbers.
 </div>
 
-<h3 id="s7-1"><span class="section-num">7.1</span> Measurement Philosophy</h3>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
 
-<blockquote>
-  <p>Measure the health of the whole ecosystem, not just the output of its parts.</p>
-</blockquote>
+<h3>7.1 Measurement Philosophy</h3>
+
+<blockquote>Measure the health of the whole ecosystem, not just the output of its parts.</blockquote>
 
 <p>Every metric in the HIO serves one of three functions:</p>
 <ol>
@@ -1382,18 +1431,15 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   <li><strong>Harmony Indicator</strong>: Are the parts working together effectively? (System indicator)</li>
 </ol>
 
-<h3 id="s7-2"><span class="section-num">7.2</span> Metric Categories and KPIs</h3>
-
-<hr>
+<h3>7.2 Metric Categories and KPIs</h3>
 
 <h4>Category A: Business Performance (The Foundation)</h4>
 
 <p>These are necessary but not sufficient. A harmonized organization must still deliver business results.</p>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr>
-  </thead>
+  <thead><tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr></thead>
   <tbody>
     <tr><td>Revenue Growth Rate</td><td>YoY and MoM growth</td><td>&uarr;</td><td>Monthly</td></tr>
     <tr><td>Profitability (Gross &amp; Net Margin)</td><td>Revenue minus costs</td><td>&uarr;</td><td>Monthly</td></tr>
@@ -1405,15 +1451,13 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td>Operational Efficiency</td><td>Cost of operation (expenses + cost of running business)</td><td>&darr;</td><td>Yearly</td></tr>
   </tbody>
 </table>
-
-<hr>
+</div>
 
 <h4>Category B: Customer Harmony</h4>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr>
-  </thead>
+  <thead><tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr></thead>
   <tbody>
     <tr><td>Customer Satisfaction (CSAT)</td><td>Survey score</td><td>&uarr;</td><td>Continuous</td></tr>
     <tr><td>Net Promoter Score (NPS)</td><td>Likelihood to recommend</td><td>&uarr;</td><td>Quarterly</td></tr>
@@ -1423,15 +1467,13 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td>Customer Value Realization Time</td><td>Time from purchase to realized value</td><td>&darr;</td><td>Per cohort</td></tr>
   </tbody>
 </table>
-
-<hr>
+</div>
 
 <h4>Category C: Human Fulfillment (Organic Intelligence Health)</h4>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr>
-  </thead>
+  <thead><tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr></thead>
   <tbody>
     <tr><td><strong>Intellectual Challenge Score</strong></td><td>Self-reported: &ldquo;My work challenges me in ways I find meaningful&rdquo; (1-10)</td><td>7-9 optimal</td><td>Monthly</td></tr>
     <tr><td><strong>Purpose Alignment Score</strong></td><td>Self-reported: &ldquo;I see how my work connects to our purpose&rdquo; (1-10)</td><td>&uarr;</td><td>Quarterly</td></tr>
@@ -1446,15 +1488,13 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td><strong>eNPS (Employee Net Promoter Score)</strong></td><td>Would you recommend this org as a place to work?</td><td>&uarr;</td><td>Quarterly</td></tr>
   </tbody>
 </table>
-
-<hr>
+</div>
 
 <h4>Category D: AI Potential Realization (Inorganic Intelligence Health)</h4>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr>
-  </thead>
+  <thead><tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr></thead>
   <tbody>
     <tr><td><strong>AI Capability Utilization Rate</strong></td><td>% of available AI capabilities actively deployed on meaningful work</td><td>&uarr;</td><td>Monthly</td></tr>
     <tr><td><strong>AI Task Sophistication Index</strong></td><td>Complexity level of tasks assigned to AI (rated 1-5)</td><td>&uarr; over time</td><td>Quarterly</td></tr>
@@ -1466,17 +1506,15 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td><strong>AI Feedback Loop Health</strong></td><td>Time from AI output &rarr; human feedback &rarr; AI improvement</td><td>&darr;</td><td>Monthly</td></tr>
   </tbody>
 </table>
-
-<hr>
+</div>
 
 <h4>Category E: Harmonization Metrics (The Unique HIO Dimension)</h4>
 
 <p>These metrics measure what no traditional framework captures &mdash; the quality of the <em>interaction</em> between organic and inorganic intelligence.</p>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr>
-  </thead>
+  <thead><tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr></thead>
   <tbody>
     <tr><td><strong>Emergence Rate</strong></td><td>Number of outcomes that exceeded what either human or AI could achieve alone</td><td>&uarr;</td><td>Monthly</td></tr>
     <tr><td><strong>Collaboration Effectiveness Score</strong></td><td>Team assessment: &ldquo;Human-AI collaboration in our unit is effective&rdquo; (1-10)</td><td>&uarr;</td><td>Monthly</td></tr>
@@ -1488,17 +1526,15 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td><strong>Zero-Sum Alert Count</strong></td><td>Instances where one stakeholder gained at another&rsquo;s expense</td><td>&darr; to 0</td><td>Monthly</td></tr>
   </tbody>
 </table>
-
-<hr>
+</div>
 
 <h4>Category F: Behavioral Evolution Metrics</h4>
 
 <p>These track the <em>change over time</em> in how the organization operates &mdash; are we actually shifting mindset and behavior?</p>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr>
-  </thead>
+  <thead><tr><th>KPI</th><th>Measure</th><th>Target Direction</th><th>Frequency</th></tr></thead>
   <tbody>
     <tr><td><strong>Mindset Shift Index</strong></td><td>Survey tracking movement along the From&rarr;To spectrum (Section 5.1)</td><td>&rarr; HIO mindset</td><td>Quarterly</td></tr>
     <tr><td><strong>Risk-Taking Frequency</strong></td><td>Number of experiments, explorations, and bold bets initiated</td><td>&uarr;</td><td>Monthly</td></tr>
@@ -1509,10 +1545,9 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td><strong>Cultural Practice Adoption</strong></td><td>% of teams regularly practicing HIO practices (retros, exploration, etc.)</td><td>&uarr; to 100%</td><td>Monthly</td></tr>
   </tbody>
 </table>
+</div>
 
-<hr>
-
-<h3 id="s7-3"><span class="section-num">7.3</span> The HIO Dashboard</h3>
+<h3>7.3 The HIO Dashboard</h3>
 
 <p>The leadership dashboard should present these metrics in three views:</p>
 
@@ -1536,12 +1571,11 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   <li>What emerging capabilities should we invest in?</li>
 </ul>
 
-<h3 id="s7-4"><span class="section-num">7.4</span> Reporting Cadence</h3>
+<h3>7.4 Reporting Cadence</h3>
 
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>Report</th><th>Audience</th><th>Frequency</th><th>Content</th></tr>
-  </thead>
+  <thead><tr><th>Report</th><th>Audience</th><th>Frequency</th><th>Content</th></tr></thead>
   <tbody>
     <tr><td><strong>Harmony Pulse</strong></td><td>Cognitive unit leads</td><td>Weekly</td><td>Key indicators, alerts, quick actions</td></tr>
     <tr><td><strong>Stakeholder Harmony Report</strong></td><td>Organization leadership</td><td>Monthly</td><td>Full Category A-F review, trends, recommendations</td></tr>
@@ -1549,19 +1583,26 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td><strong>Annual Harmony Assessment</strong></td><td>All stakeholders</td><td>Annually</td><td>Comprehensive review, recalibration of framework</td></tr>
   </tbody>
 </table>
+</div>
+
+</div>
+</details>
 
 <hr>
 
-<!-- ============================================================ -->
-<!-- PART VIII -->
-<!-- ============================================================ -->
-<h2 id="part-viii" class="part-header">Part VIII: Implementation Playbook</h2>
+<!-- ===== PART VIII ===== -->
+<h2 id="part-viii">Part VIII: Implementation Playbook</h2>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Four implementation phases: Foundation (months 1-3: purpose + first cognitive unit), Experiment (3-6: run the model, learn), Scale (6-12: expand teams, mature measurement), Evolve (ongoing: anticipate AI leaps, expand stakeholder harmony).
 </div>
 
-<h3 id="s8-1"><span class="section-num">8.1</span> Phase 1: Foundation (Months 1-3)</h3>
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
+
+<h3>8.1 Phase 1: Foundation (Months 1-3)</h3>
 
 <p><strong>Objective</strong>: Establish purpose, form initial cognitive units, set baseline metrics.</p>
 
@@ -1594,7 +1635,7 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   </li>
 </ol>
 
-<h3 id="s8-2"><span class="section-num">8.2</span> Phase 2: Experiment (Months 3-6)</h3>
+<h3>8.2 Phase 2: Experiment (Months 3-6)</h3>
 
 <p><strong>Objective</strong>: Run the HIO model on real work, learn, and adapt.</p>
 
@@ -1627,7 +1668,7 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   </li>
 </ol>
 
-<h3 id="s8-3"><span class="section-num">8.3</span> Phase 3: Scale (Months 6-12)</h3>
+<h3>8.3 Phase 3: Scale (Months 6-12)</h3>
 
 <p><strong>Objective</strong>: Expand to additional cognitive units, mature measurement, deepen culture.</p>
 
@@ -1659,7 +1700,7 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   </li>
 </ol>
 
-<h3 id="s8-4"><span class="section-num">8.4</span> Phase 4: Evolve (Ongoing)</h3>
+<h3>8.4 Phase 4: Evolve (Ongoing)</h3>
 
 <p><strong>Objective</strong>: Continuous evolution of the HIO as AI capabilities grow and the organization matures.</p>
 
@@ -1684,16 +1725,22 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   </li>
 </ol>
 
+</div>
+</details>
+
 <hr>
 
-<!-- ============================================================ -->
-<!-- PART IX -->
-<!-- ============================================================ -->
-<h2 id="part-ix" class="part-header">Part IX: For the Contemplative Leader</h2>
+<!-- ===== PART IX ===== -->
+<h2 id="part-ix">Part IX: For the Contemplative Leader</h2>
 
 <div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
   Before implementing, sit with questions about purpose, humanity in the age of AI, fulfillment, harmony, and courage. &ldquo;Am I building this to be safe, or to be significant?&rdquo;
 </div>
+
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
 
 <p>This framework is a structure, but the real work is <em>contemplative</em>. Before implementing any of this, sit with these questions:</p>
 
@@ -1732,17 +1779,26 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   <li>Can I create space for others to take those risks too &mdash; and support them when they fail?</li>
 </ul>
 
+</div>
+</details>
+
 <hr>
 
-<!-- ============================================================ -->
-<!-- APPENDIX A -->
-<!-- ============================================================ -->
+<!-- ===== APPENDIX A ===== -->
 <h2 id="appendix-a">Appendix A: Glossary</h2>
 
+<div class="tldr">
+  <span class="tldr-label">TL;DR</span><br>
+  Glossary of key terms and a quick-start checklist to begin your HIO journey.
+</div>
+
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
+
+<div class="table-wrap">
 <table>
-  <thead>
-    <tr><th>Term</th><th>Definition</th></tr>
-  </thead>
+  <thead><tr><th>Term</th><th>Definition</th></tr></thead>
   <tbody>
     <tr><td><strong>Organic Intelligence</strong></td><td>Human cognitive capability &mdash; creativity, judgment, emotional intelligence, meaning-making</td></tr>
     <tr><td><strong>Inorganic Intelligence</strong></td><td>AI and artificial cognitive systems &mdash; analytical processing, pattern recognition, optimization</td></tr>
@@ -1756,14 +1812,20 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
     <tr><td><strong>Harmonization Retrospective</strong></td><td>Monthly team practice focused on improving human-AI collaboration</td></tr>
   </tbody>
 </table>
+</div>
 
-<!-- ============================================================ -->
-<!-- APPENDIX B -->
-<!-- ============================================================ -->
+</div>
+</details>
+
+<!-- ===== APPENDIX B ===== -->
 <h2 id="appendix-b">Appendix B: Quick-Start Checklist</h2>
 
+<details>
+<summary>Read full details&hellip;</summary>
+<div class="details-content">
+
 <ul class="checklist">
-  <li>Articulate organizational purpose (passes Curiosity, Translation, Win-Win, and Horizon tests)</li>
+  <li>Articulate organizational purpose (passes Curiosity, Translation, and Win-Win tests)</li>
   <li>Form first cognitive unit (select willing humans, identify AI agents)</li>
   <li>Define initial roles using cognitive function model</li>
   <li>Conduct baseline measurement across all six metric categories</li>
@@ -1775,18 +1837,63 @@ HIO task allocation asks: <strong>&ldquo;Who can do this best AND who will be mo
   <li>Plan Phase 2 expansion</li>
 </ul>
 
+</div>
+</details>
+
 <hr>
 
 <p><em>This is a living framework. It should be challenged, adapted, and evolved as the organization learns what harmonization means in its specific context. The goal is not to follow it rigidly, but to use it as a thinking structure for building something genuinely new.</em></p>
 
-<!-- ============================================================ -->
-<!-- FOOTER -->
-<!-- ============================================================ -->
-<div class="footer">
-  <p><a href="tldr.html">TLDR Version</a> &nbsp;&middot;&nbsp; <a href="https://github.com/ilamgumaran/thought-org-with-human-ai-hybrid">GitHub Repository</a> &nbsp;&middot;&nbsp; <a href="https://ilamgumaran.github.io/ThoughtExperiments/index.html">Resonant Cognition Framework</a></p>
-  <p>Licensed under the MIT License.</p>
+<!-- ===== FOOTER ===== -->
+<div style="background: var(--accent-light); border: 1px solid var(--accent); border-radius: 6px; padding: 0.8rem 1.2rem; margin-bottom: 1.5rem; font-size: 0.9rem; text-align: center;">
+  <strong>Want the full depth?</strong> &nbsp; <a href="index.html" style="color: var(--accent-dark); font-weight: 600;">Read the complete academic white paper &rarr;</a>
 </div>
+<footer>
+  <p>
+    <a href="https://github.com/ilamgumaran/thought-org-with-human-ai-hybrid">GitHub Repository</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://ilamgumaran.github.io/ThoughtExperiments/index.html">Resonant Cognition Framework</a>
+  </p>
+  <p>Released under the MIT License.</p>
+</footer>
 
-</div><!-- .container -->
+</div><!-- /.main -->
+
+<script>
+(function() {
+  var hamburger = document.getElementById('hamburger');
+  var sidebar = document.getElementById('sidebar');
+  var overlay = document.getElementById('overlay');
+
+  function openNav() {
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
+  }
+  function closeNav() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  }
+
+  hamburger.addEventListener('click', function() {
+    if (sidebar.classList.contains('open')) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+  overlay.addEventListener('click', closeNav);
+
+  // Close sidebar on nav link click (mobile)
+  var links = sidebar.querySelectorAll('nav a');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function() {
+      if (window.innerWidth <= 900) {
+        closeNav();
+      }
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
