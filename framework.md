@@ -479,7 +479,7 @@ Humans bring *awareness* to the organizational ecosystem. AI brings *computation
 - Question what's assumed (not just what's uncertain)
 - Hold paradox (not just resolve contradiction)
 
-When humans try to compete with AI on computation, they lose. When they try to be faster, more consistent, more tireless — they lose. But **AI cannot be aware**. It processes. It patterns. It optimizes. It does not *notice*. It does not *feel*. It does not *sense*.
+When humans try to compete with AI on computation, they lose. When they try to be faster, more consistent, more tireless — they lose. But **AI cannot be aware**. It processes. It patterns. It optimizes. It may not *notice*. It may not *feel*. It may not *sense*.
 
 The HIO is designed so that humans do what only awareness can do, AI does what computation does best, and the interaction between awareness and computation produces outcomes neither could achieve alone.
 
