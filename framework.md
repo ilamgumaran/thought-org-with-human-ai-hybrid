@@ -1122,4 +1122,12 @@ This framework is a structure, but the real work is *contemplative*. Before impl
 
 ---
 
+## References
+
+1. **Resonant Cognition Framework** — Ilamgumaran Velayuthan Karunanithi. *Thinking Without Boundaries: A Framework for Unbiased Observation and Resonant Awareness.* The philosophical foundation for Part II of this framework, exploring how human awareness operates beneath habitual mediators like identity, language, and emotion. [https://ilamgumaran.github.io/ThoughtExperiments/index.html](https://ilamgumaran.github.io/ThoughtExperiments/index.html)
+
+2. **"Will AI Take Your Job in the Next 10 Years? Wrong Question"** — Vinciane Beauchene, TED Talk. A compelling articulation of why the question of AI replacing human work misframes the real opportunity. Beauchene explains why harmony between human and artificial intelligence produces outcomes neither can achieve alone — the same thesis that underpins this framework. [https://youtu.be/lX2V8p-hByE](https://youtu.be/lX2V8p-hByE)
+
+---
+
 *This is a living framework. It should be challenged, adapted, and evolved as the organization learns what harmonization means in its specific context. The goal is not to follow it rigidly, but to use it as a thinking structure for building something genuinely new.*
