@@ -37,13 +37,14 @@ This is not idealism. It is a strategic recognition that:
 
 Purpose is not a mission statement on a wall. It is the *gravitational center* that orients every decision — by humans and AI alike.
 
-A well-crafted HIO purpose must pass three tests:
+A well-crafted HIO purpose must pass four tests:
 
 1. **The Curiosity Test**: Does it make people want to explore the unknown? Does it create anticipation about what might be discovered or built?
 2. **The Translation Test**: Can it be translated into clear objectives for AI systems without losing its human meaning? (If purpose is "delight customers," AI needs to understand what delight means in measurable, actionable terms while humans hold the qualitative, empathetic dimension.)
 3. **The Win-Win Test**: Does pursuing this purpose create authentic value for all stakeholders simultaneously, or does it require tradeoffs that harm some for the benefit of others?
+4. **The Horizon Test**: Is the purpose simultaneously tangible and intangible? Like sailing toward the horizon, the destination must feel real enough to chart a course — you can see it, measure your progress toward it, feel the wind of momentum. But it must also recede as you advance, revealing new terrain, new possibilities, new horizons beyond the one you were chasing. A purpose you can fully achieve is a project, not a purpose. A purpose with no tangible markers of progress is a daydream. The right purpose gives people the *sensation of advancing* — milestones reached, problems solved, impact felt — while ensuring they never arrive at a point where there is nothing left to pursue. Each summit reveals the next mountain range. This is what sustains motivation across years and decades: not the arrival, but the *quality of the journey* and the ever-expanding view.
 
-**For leaders**: Your purpose should be specific enough to guide decisions but open-ended enough to invite exploration. "Build the most reliable infrastructure for healthcare data" is better than "be the best" — it tells both humans and AI what to optimize for, while leaving room for creative approaches.
+**For leaders**: Your purpose should be specific enough to guide decisions but open-ended enough to invite exploration. "Build the most reliable infrastructure for healthcare data" is better than "be the best" — it tells both humans and AI what to optimize for, while leaving room for creative approaches. Apply the Horizon Test: can your team celebrate real wins along the way while knowing that the ultimate vision keeps expanding? If the purpose could be "done" in two years, it's a goal, not a purpose. If no one can point to evidence of progress after six months, it's too abstract to sustain motivation.
 
 #### Principle 2: Harmonize, Don't Compete
 
@@ -749,7 +750,7 @@ Shows trajectories over time:
 **Objective**: Establish purpose, form initial cognitive units, set baseline metrics.
 
 1. **Articulate the Harmonized Purpose**
-   - Workshop with founding team to craft purpose that passes the three tests (Section 1.2, Principle 1)
+   - Workshop with founding team to craft purpose that passes the four tests (Section 1.2, Principle 1)
    - Translate purpose into objectives meaningful to both humans and AI
 
 2. **Form the First Cognitive Unit**
