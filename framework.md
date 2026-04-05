@@ -2,6 +2,12 @@
 
 ## A Framework for Orchestrating Human and Artificial Intelligence Into Thriving, Purpose-Driven Ecosystems — At Any Scale
 
+**Authors**: Ilamgumaran Velayuthan Karunanithi & Claude AI
+
+*This framework was developed in harmony between human and artificial intelligence — a living demonstration of the principles it describes. The collaboration produced in under 8 hours what would have taken approximately 40 hours for the human author working alone, and would not have reached this depth or completeness if produced by AI alone. Neither intelligence was sufficient; the orchestration of both was.*
+
+*April 2026*
+
 ---
 
 ## Preface: Why This Framework Exists
