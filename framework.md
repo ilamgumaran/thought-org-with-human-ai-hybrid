@@ -828,6 +828,7 @@ These are necessary but not sufficient. A harmonized organization must still del
 | Time-to-Market | Idea to customer delivery | ↓ | Per release |
 | Delivery Velocity | Story points or units of work delivered | → (stable) | Per sprint |
 | Operational Efficiency | Revenue per employee (human + AI cost) | ↑ | Quarterly |
+| Operational Efficiency | Cost of operation (expenses + cost of running business) | ↓ | Yearly |
 
 ---
 
