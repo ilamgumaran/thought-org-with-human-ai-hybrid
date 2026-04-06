@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIO Transformation Action Plan — Option 2: 6-Month Accelerated</title>
+    <style>
+        :root {
+            --navy: #1a2744;
+            --navy-light: #2a3d5f;
+            --accent: #2d8a6e;
+            --accent-light: #e8f5f0;
+            --warm: #c4723a;
+            --warm-light: #fdf3ec;
+            --bg: #fafaf8;
+            --text: #2c2c2c;
+            --text-light: #5a5a5a;
+            --border: #d4d0c8;
+            --card-bg: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            border-bottom: 3px double var(--navy);
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 { font-size: 2rem; color: var(--navy); line-height: 1.3; margin-bottom: 0.5rem; }
+        .header .subtitle { font-size: 1.2rem; color: var(--text-light); font-style: italic; margin-bottom: 0.5rem; }
+        .header .badge { display: inline-block; background: var(--accent); color: white; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; margin-bottom: 1rem; font-family: sans-serif; }
+        .header .context { font-size: 0.95rem; color: var(--text-light); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+        .framework-link { display: inline-block; margin-top: 1rem; font-size: 0.9rem; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 0.4rem 1rem; border-radius: 4px; margin-right: 0.5rem; }
+        .framework-link:hover { background: var(--accent-light); }
+
+        .toc { background: var(--card-bg); border: 1px solid var(--border); padding: 1.5rem 2rem; margin-bottom: 2.5rem; border-radius: 6px; }
+        .toc h2 { font-size: 1.1rem; color: var(--navy); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .toc ol { padding-left: 1.5rem; }
+        .toc li { margin-bottom: 0.3rem; font-size: 0.95rem; }
+        .toc a { color: var(--navy-light); text-decoration: none; }
+        .toc a:hover { color: var(--accent); text-decoration: underline; }
+
+        section { margin-bottom: 3rem; }
+        h2 { font-size: 1.5rem; color: var(--navy); margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--navy); }
+        h3 { font-size: 1.2rem; color: var(--navy-light); margin: 1.5rem 0 0.8rem; }
+        h4 { font-size: 1.05rem; color: var(--text); margin: 1.2rem 0 0.6rem; }
+        p { margin-bottom: 1rem; }
+
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.9rem; }
+        th { background: var(--navy); color: white; padding: 0.6rem 0.8rem; text-align: left; font-weight: 600; font-size: 0.85rem; }
+        td { padding: 0.5rem 0.8rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+        tr:nth-child(even) td { background: #f8f7f5; }
+
+        .tldr { background: var(--accent-light); border-left: 4px solid var(--accent); padding: 1rem 1.2rem; margin: 1rem 0 1.5rem; border-radius: 0 6px 6px 0; font-size: 0.95rem; }
+        .tldr strong { color: var(--accent); display: block; margin-bottom: 0.3rem; }
+
+        .phase-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .phase-card h3 { margin-top: 0; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+
+        .callout { background: var(--warm-light); border-left: 4px solid var(--warm); padding: 1rem 1.2rem; margin: 1rem 0 1.5rem; border-radius: 0 6px 6px 0; }
+        .callout strong { color: var(--warm); }
+        .callout-blue { background: #eef3f9; border-left: 4px solid var(--navy-light); padding: 1rem 1.2rem; margin: 1rem 0 1.5rem; border-radius: 0 6px 6px 0; }
+
+        .checklist { list-style: none; padding-left: 0; }
+        .checklist li { padding: 0.3rem 0 0.3rem 1.8rem; position: relative; font-size: 0.95rem; }
+        .checklist li::before { content: '\2610'; position: absolute; left: 0; color: var(--accent); font-size: 1.1rem; }
+
+        .timeline { background: var(--navy); color: white; padding: 1.5rem 2rem; border-radius: 8px; margin: 2rem 0; font-family: 'Courier New', monospace; font-size: 0.82rem; line-height: 1.6; overflow-x: auto; white-space: pre; }
+
+        ul, ol { margin: 0.5rem 0 1rem; padding-left: 1.5rem; }
+        li { margin-bottom: 0.4rem; }
+
+        blockquote { border-left: 3px solid var(--accent); padding: 0.8rem 1.2rem; margin: 1rem 0; font-style: italic; color: var(--navy-light); background: #f9fafb; border-radius: 0 4px 4px 0; }
+
+        .risk-table td:first-child { font-weight: 600; color: var(--warm); width: 35%; }
+
+        .template { background: #f5f4f0; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem; margin: 1rem 0 1.5rem; font-family: 'Courier New', monospace; font-size: 0.82rem; line-height: 1.5; overflow-x: auto; white-space: pre-wrap; }
+
+        details { margin: 1rem 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+        summary { padding: 0.8rem 1.2rem; background: #f5f4f0; cursor: pointer; font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+        summary:hover { background: #eeedea; }
+        details > div { padding: 1rem 1.2rem; }
+
+        .metric-up { color: var(--accent); font-weight: 600; }
+
+        .compare-table { margin: 2rem 0; }
+        .compare-table td:first-child { font-weight: 600; width: 30%; }
+
+        .back-top { text-align: right; margin-top: 1.5rem; }
+        .back-top a { font-size: 0.85rem; color: var(--text-light); text-decoration: none; }
+        .back-top a:hover { color: var(--accent); }
+
+        footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border); margin-top: 3rem; color: var(--text-light); font-size: 0.9rem; font-style: italic; }
+        footer a { color: var(--accent); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        @media print {
+            .container { max-width: 100%; padding: 0; }
+            .phase-card { box-shadow: none; break-inside: avoid; }
+            .timeline { background: #f0f0f0; color: black; }
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .container { padding: 1rem; }
+            .header h1 { font-size: 1.5rem; }
+            table { font-size: 0.82rem; }
+            th, td { padding: 0.4rem; }
+            .timeline { font-size: 0.72rem; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="top">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>HIO Transformation Action Plan</h1>
+        <div class="subtitle">30-Person Platform Engineering Organization</div>
+        <div class="badge">Option 2: 6-Month Accelerated Transition</div>
+        <div class="context">
+            A compressed 26-week transformation from traditional scrum/agile to Harmonized Intelligence Orchestration.
+            Enriched with outcome metrics from Google, Meta, Netflix, Spotify, Stripe, Amazon, Shopify, and Microsoft —
+            including DORA, SPACE, platform-specific, code health, and innovation metrics tracked from Day 1.
+        </div>
+        <div style="margin-top:1rem;">
+            <a href="../../index.html" class="framework-link">&larr; HIO Framework</a>
+            <a href="action-plan-option-1.html" class="framework-link">Option 1: 12-Month</a>
+        </div>
+    </div>
+
+    <!-- Diff Box -->
+    <div class="callout-blue">
+        <strong>How Option 2 differs from Option 1:</strong> Option 1 is 52 weeks with gradual rollout and measurement infrastructure starting at Week 21.
+        Option 2 compresses to 26 weeks, starts all three metric layers (current + outcome + HIO) from Day 1, builds measurement infrastructure in Week 3,
+        adds DORA, SPACE, platform-specific, code health, and innovation metrics informed by top tech companies, and overlaps proving with expansion in Phase 2.
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">WEEK  1 ── 3 ── 5 ── 7 ── 10 ── 13 ── 15 ── 18 ── 22 ── 26
+      |       |              |         |              |      |
+      v       v              v         v              v      v
+   PHASE 0  PHASE 1       Sprints    PHASE 2       PHASE 3  FULL
+   Baseline Formation     Running    Prove+Expand  Full Org ORCH
+   Mindset  + AI Agents   3 sprints  3 units       Transform
+   Pioneer  + Roles                  Coaches       Ecosystem
+   Metrics                Playbook   Comparison    Metrics
+   Infra                  v1         Board         Enterprise
+
+   6-8 people ─────────────► ~20 people ──────────► 30 people
+   Metrics: All 3 layers from Day 1 ──────────────► Full HIO Dashboard
+   DORA:    Baseline ──► Tracked ─────────────────► Elite target</div>
+
+    <!-- TOC -->
+    <nav class="toc" id="toc">
+        <h2>Contents</h2>
+        <ol>
+            <li><a href="#current-state">Current State Assessment</a></li>
+            <li><a href="#purpose">The Transformation Purpose</a></li>
+            <li><a href="#baseline">Baseline Metrics — Current + Outcome + HIO</a></li>
+            <li><a href="#phase0">Phase 0: Seed (Weeks 1–3)</a></li>
+            <li><a href="#phase1">Phase 1: First Cognitive Unit (Weeks 4–10)</a></li>
+            <li><a href="#phase2">Phase 2: Prove &amp; Expand (Weeks 11–18)</a></li>
+            <li><a href="#phase3">Phase 3: Full Orchestration (Weeks 19–26)</a></li>
+            <li><a href="#evaluation">Continuous Evaluation Framework</a></li>
+            <li><a href="#risks">Risk Management</a></li>
+            <li><a href="#templates">Appendix: Templates</a></li>
+            <li><a href="#comparison">Option 1 vs Option 2 Comparison</a></li>
+        </ol>
+    </nav>
+
+    <!-- Section 1: Current State -->
+    <section id="current-state">
+        <h2>1. Current State Assessment</h2>
+        <table>
+            <tr><th style="width:30%">Dimension</th><th>Current State</th></tr>
+            <tr><td><strong>Structure</strong></td><td>Traditional scrum teams with defined roles</td></tr>
+            <tr><td><strong>Planning</strong></td><td>Sprint planning &rarr; execution &rarr; review &rarr; retro. Quarterly OKRs</td></tr>
+            <tr><td><strong>AI Usage</strong></td><td>GitHub Copilot, some vibe coding, exploring spec-driven dev</td></tr>
+            <tr><td><strong>Collaboration</strong></td><td>Human-first, AI-assisted</td></tr>
+            <tr><td><strong>Metrics</strong></td><td>Story completion, velocity, backlog readiness, priority alignment, merge/release rate</td></tr>
+        </table>
+
+        <h3>What's limiting the team</h3>
+        <ul>
+            <li><strong>Metrics measure output, not outcomes</strong> — no DORA, no developer experience, no platform-specific outcomes</li>
+            <li><strong>AI is a productivity booster, not a thinking partner</strong></li>
+            <li><strong>Role identity creates silos</strong></li>
+            <li><strong>Velocity targets create perverse incentives</strong></li>
+            <li><strong>No fulfillment measurement</strong> — burnout invisible until people leave</li>
+            <li><strong>No emergence zone</strong> — no space for human-AI combined innovation</li>
+        </ul>
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Section 2: Purpose -->
+    <section id="purpose">
+        <h2>2. The Transformation Purpose</h2>
+        <blockquote>"Build the platform that makes impossible customer experiences possible — reinventing how humans and AI build software together along the way."</blockquote>
+        <table>
+            <tr><th>Test</th><th></th><th>Why</th></tr>
+            <tr><td><strong>Curiosity</strong></td><td class="metric-up">&check;</td><td>"Impossible experiences" and "reinventing how we build" invite exploration</td></tr>
+            <tr><td><strong>Translation</strong></td><td class="metric-up">&check;</td><td>AI optimizes: scalability, speed, success rate. Humans hold: what's worth building</td></tr>
+            <tr><td><strong>Win-Win</strong></td><td class="metric-up">&check;</td><td>Customers, team, company, AI all gain</td></tr>
+            <tr><td><strong>Horizon</strong></td><td class="metric-up">&check;</td><td>Each breakthrough reveals the next. Never finished</td></tr>
+        </table>
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Section 3: Baseline -->
+    <section id="baseline">
+        <h2>3. Baseline Metrics — Current + Outcome + HIO</h2>
+
+        <div class="tldr">
+            <strong>Three layers, from Day 1:</strong>
+            Current metrics (preserve for trust) + Outcome metrics (DORA, platform, code health, DX, innovation — what actually matters) + HIO metrics (fulfillment, AI utilization, harmonization — the new dimensions).
+        </div>
+
+        <h3>3A. Current Metrics — Preserve</h3>
+        <table>
+            <tr><th>Metric</th><th>Baseline Action</th></tr>
+            <tr><td>Stories completed/sprint</td><td>Last 6 sprints average</td></tr>
+            <tr><td>Sprint velocity</td><td>6-sprint trend</td></tr>
+            <tr><td>Backlog readiness</td><td>Ready items at sprint start</td></tr>
+            <tr><td>Priority alignment</td><td>% tied to top-3 priorities</td></tr>
+            <tr><td>Merge/release rate</td><td>PRs/week, releases/sprint, lead time</td></tr>
+        </table>
+
+        <h3>3B. Outcome Metrics — The Missing Layer</h3>
+
+        <h4>DORA Metrics (Google, Microsoft, Amazon, Netflix, Spotify)</h4>
+        <table>
+            <tr><th>Metric</th><th>What</th><th>Elite Target</th></tr>
+            <tr><td><strong>Deployment Frequency</strong></td><td>How often code reaches production</td><td>Multiple/day</td></tr>
+            <tr><td><strong>Lead Time for Changes</strong></td><td>Commit &rarr; production</td><td>&lt; 1 day</td></tr>
+            <tr><td><strong>Change Failure Rate</strong></td><td>% deploys causing incidents/rollbacks</td><td>&lt; 5%</td></tr>
+            <tr><td><strong>MTTR</strong></td><td>Incident detection &rarr; recovery</td><td>&lt; 1 hour</td></tr>
+        </table>
+
+        <h4>Developer Experience — SPACE Framework (Microsoft, Stripe, Shopify)</h4>
+        <table>
+            <tr><th>Metric</th><th>What</th><th>Target</th></tr>
+            <tr><td><strong>Focus Time</strong></td><td>Days/week with 2+ hrs uninterrupted</td><td>3+ days</td></tr>
+            <tr><td><strong>Context Switching</strong></td><td>Unrelated task switches/day</td><td>&darr;</td></tr>
+            <tr><td><strong>Friction Events</strong></td><td>Blockers per week</td><td>&darr;</td></tr>
+            <tr><td><strong>DX Satisfaction</strong></td><td>Tools &amp; process satisfaction (1-10)</td><td>&uarr;</td></tr>
+            <tr><td><strong>Code Review Turnaround</strong></td><td>PR opened &rarr; first review</td><td>&lt; 4 hrs (80%+)</td></tr>
+        </table>
+
+        <h4>Platform-Specific Outcomes (Spotify, Stripe, Netflix, Amazon)</h4>
+        <table>
+            <tr><th>Metric</th><th>What</th><th>Target</th></tr>
+            <tr><td><strong>Time: Ask &rarr; Experiment</strong></td><td>End-to-end request to experiment</td><td>&darr;</td></tr>
+            <tr><td><strong>Self-Service Rate</strong></td><td>% requests without team intervention</td><td>&gt; 80%</td></tr>
+            <tr><td><strong>Time to First Deploy</strong></td><td>New team access &rarr; first prod deploy</td><td>&lt; 1 day</td></tr>
+            <tr><td><strong>Platform Adoption</strong></td><td>% eligible teams building on platform</td><td>&uarr;</td></tr>
+            <tr><td><strong>Experiment Success Rate</strong></td><td>% experiments shipping to users</td><td>&uarr;</td></tr>
+            <tr><td><strong>Downstream NPS</strong></td><td>Other teams' satisfaction</td><td>&gt; 30</td></tr>
+        </table>
+
+        <h4>Code Health (Google, Meta, Amazon)</h4>
+        <table>
+            <tr><th>Metric</th><th>What</th><th>Target</th></tr>
+            <tr><td>Rework Rate</td><td>% stories returning within 30 days</td><td>&darr;</td></tr>
+            <tr><td>Defect Escape Rate</td><td>Bugs reaching prod vs. caught</td><td>&darr;</td></tr>
+            <tr><td>Technical Debt Ratio</td><td>% capacity on known debt</td><td>&lt; 10%</td></tr>
+            <tr><td>Test Coverage Trend</td><td>Direction of coverage</td><td>&uarr;</td></tr>
+            <tr><td>Build/Pipeline Duration</td><td>CI/CD run time</td><td>&darr;</td></tr>
+            <tr><td>Dependency Health</td><td>Stale/vulnerable deps</td><td>&darr;</td></tr>
+        </table>
+
+        <h4>Innovation (Google, Spotify, Shopify, Amazon)</h4>
+        <table>
+            <tr><th>Metric</th><th>What</th><th>Target</th></tr>
+            <tr><td>Innovation Rate</td><td>New capabilities vs. incremental</td><td>&uarr;</td></tr>
+            <tr><td>New vs. Maintenance Ratio</td><td>% effort on new features</td><td>70%+ new</td></tr>
+            <tr><td>Exploration-to-Production</td><td>% experiments reaching prod</td><td>&uarr;</td></tr>
+            <tr><td>Ideas Generated</td><td>Proposals per quarter</td><td>&uarr;</td></tr>
+        </table>
+
+        <h3>3C. HIO Metrics — Fulfillment, AI, Harmonization</h3>
+        <table>
+            <tr><th>Category</th><th>Key Metrics</th></tr>
+            <tr><td><strong>Human Fulfillment</strong></td><td>Challenge (1-10), Purpose (1-10), Growth (1-10), Anticipation (1-10), Autonomy (1-10), Psych Safety (1-10), eNPS, Burnout (R/Y/G)</td></tr>
+            <tr><td><strong>AI Utilization</strong></td><td>Usage depth, task sophistication (L1-5), time savings, acceptance rate, novel applications</td></tr>
+            <tr><td><strong>Harmonization</strong></td><td>Emergence rate, cross-role contribution, workflow experimentation, bandwidth expansion</td></tr>
+        </table>
+
+        <h3>3D. Baseline Capture Plan</h3>
+        <table>
+            <tr><th>Action</th><th>When</th><th>Method</th></tr>
+            <tr><td>Sprint metrics (6 sprints)</td><td>Day 1-3</td><td>Pull from Jira/Linear</td></tr>
+            <tr><td>DORA metrics (90 days)</td><td>Day 1-3</td><td>CI/CD pipeline data</td></tr>
+            <tr><td>Code health audit</td><td>Day 1-3</td><td>GitHub/tooling analysis</td></tr>
+            <tr><td>Platform metrics</td><td>Day 1-3</td><td>Self-service vs. ticket count, adoption</td></tr>
+            <tr><td>HIO Baseline Survey</td><td>Day 3-7</td><td>Anonymous, 20 min (fulfillment + DX + AI + identity)</td></tr>
+            <tr><td>Downstream Team Survey</td><td>Day 3-7</td><td>5 min, NPS + pain points</td></tr>
+            <tr><td>Interviews (5-8 people)</td><td>Day 5-10</td><td>30 min each, open-ended</td></tr>
+            <tr><td>Platform request mapping</td><td>Day 5-10</td><td>5 recent end-to-end flows</td></tr>
+            <tr><td>Innovation audit</td><td>Day 5-10</td><td>New capabilities last 6 months</td></tr>
+            <tr><td><strong>Unified Baseline Report</strong></td><td>Day 10-14</td><td>All three layers, published to team</td></tr>
+        </table>
+
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Phase 0 -->
+    <section id="phase0">
+        <h2>4. Phase 0: Seed (Weeks 1–3)</h2>
+        <div class="tldr"><strong>Goal:</strong> Full baseline across all 3 layers, leadership alignment, pioneer selection, measurement infrastructure started.</div>
+
+        <div class="phase-card">
+            <h3>Week 1: Baseline + Leadership</h3>
+            <p><strong>Baseline capture</strong> — execute all 3D actions in parallel</p>
+            <p><strong>Leadership session (2 hrs)</strong> — HIO as experiment, three-layer measurement model ("adding outcomes and fulfillment, not replacing what we track"), 6-month timeline with phase gates, success/stop criteria</p>
+        </div>
+
+        <div class="phase-card">
+            <h3>Week 2: All-Hands + Pioneer Selection</h3>
+            <p><strong>All-hands (1 hr)</strong> — purpose, transparency, baseline data shared. Even non-pioneer teams benefit from better metrics.</p>
+            <p><strong>Pioneer selection (6-8 volunteers)</strong> — curious about AI (7+ readiness), low identity grip, mixed roles/experience, one constructive skeptic.</p>
+        </div>
+
+        <div class="phase-card">
+            <h3>Week 3: Kickoff + Measurement Infra</h3>
+            <p><strong>Purpose workshop (half-day)</strong> — refine mission, map fulfillment, set bandwidth goals.</p>
+            <p><strong>Measurement infrastructure (parallel)</strong> — DORA dashboard, platform metrics tracking, fulfillment pulse automation, comparison board template.</p>
+            <div class="callout">
+                <strong>Key difference from Option 1:</strong> Measurement infrastructure starts Week 3, not Week 21.
+                You can't prove anything you can't measure.
+            </div>
+        </div>
+
+        <h3>Exit Criteria</h3>
+        <ul class="checklist">
+            <li>Complete baseline report — all three layers</li>
+            <li>DORA dashboard operational</li>
+            <li>Leadership aligned with phase gates</li>
+            <li>6-8 volunteers selected</li>
+            <li>Measurement infrastructure started</li>
+        </ul>
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Phase 1 -->
+    <section id="phase1">
+        <h2>5. Phase 1: First Cognitive Unit (Weeks 4–10)</h2>
+        <div class="tldr"><strong>Goal:</strong> Stand up the cognitive unit. 3 harmonized sprints. Prove better outcomes across all metric layers.</div>
+
+        <div class="phase-card">
+            <h3>Weeks 4-5: Formation</h3>
+
+            <h4>Role Redefinition</h4>
+            <table>
+                <tr><th>Old Role</th><th>New Cognitive Functions</th></tr>
+                <tr><td>Senior Backend Engineer</td><td>Solution Architect + Builder + Pattern Integrator</td></tr>
+                <tr><td>Frontend Engineer</td><td>Builder + Resonance Sensor (UX intuition)</td></tr>
+                <tr><td>QA Engineer</td><td>Quality Guardian + Problem Framer</td></tr>
+                <tr><td>Product Manager</td><td>Problem Framer + Growth Catalyst + Stakeholder Harmonizer</td></tr>
+                <tr><td>Junior Engineer</td><td>Builder + Learner + Fresh-Eyes Observer</td></tr>
+            </table>
+
+            <h4>AI Agent Rollout (2 per week, not all at once)</h4>
+            <table>
+                <tr><th>Agent</th><th>Week</th></tr>
+                <tr><td>Analysis Partner + Code Co-Creator</td><td>Week 4</td></tr>
+                <tr><td>Architecture Explorer + Quality Analyst</td><td>Week 5</td></tr>
+                <tr><td>Metrics Monitor + Documentation</td><td>Week 6</td></tr>
+            </table>
+        </div>
+
+        <div class="phase-card">
+            <h3>Weeks 5-10: Harmonized Sprints</h3>
+
+            <h4>Sprint Kickoff</h4>
+            <table>
+                <tr><th>Step</th><th>Who</th><th>Time</th></tr>
+                <tr><td>AI Pre-Analysis</td><td>AI (async)</td><td>&mdash;</td></tr>
+                <tr><td>Problem Framing</td><td>Full unit</td><td>1 hr</td></tr>
+                <tr><td>Outcome Definition</td><td>Full unit</td><td>30 min</td></tr>
+                <tr><td>Workflow Design</td><td>Full unit</td><td>30 min</td></tr>
+                <tr><td>Fulfillment Check</td><td>Individual</td><td>10 min</td></tr>
+            </table>
+
+            <h4>During Sprint</h4>
+            <table>
+                <tr><th>Practice</th><th>Cadence</th></tr>
+                <tr><td>Daily Harmony Check</td><td>15 min/day</td></tr>
+                <tr><td>Deep Work Blocks</td><td>4 hrs/day protected</td></tr>
+                <tr><td>Collaboration Windows</td><td>2 hrs/day</td></tr>
+                <tr><td>Exploration Time</td><td>3-4 hrs/week</td></tr>
+            </table>
+        </div>
+
+        <h3>Phase 1 Tracking — All Three Layers Every Sprint</h3>
+        <table>
+            <tr><th>Layer</th><th>Metrics</th><th>Looking For</th></tr>
+            <tr><td><strong>Current</strong></td><td>Stories, velocity, merge rate</td><td>No collapse (&le; 15% dip OK)</td></tr>
+            <tr><td><strong>DORA</strong></td><td>Deploy freq, lead time, CFR, MTTR</td><td>Improve or hold</td></tr>
+            <tr><td><strong>Platform</strong></td><td>Ask&rarr;experiment, self-service, NPS</td><td>Improve</td></tr>
+            <tr><td><strong>Code Health</strong></td><td>Rework, defect escape, coverage, build time</td><td>Improve</td></tr>
+            <tr><td><strong>Dev Experience</strong></td><td>Focus time, friction, DX score, review turnaround</td><td>Improve</td></tr>
+            <tr><td><strong>Fulfillment</strong></td><td>Challenge, growth, purpose, eNPS</td><td>7+ average</td></tr>
+            <tr><td><strong>AI</strong></td><td>Sophistication, time savings, novel apps</td><td>Level up</td></tr>
+            <tr><td><strong>Harmonization</strong></td><td>Emergence, collaboration, bandwidth</td><td>Appear &amp; grow</td></tr>
+        </table>
+
+        <h3>Exit Criteria</h3>
+        <ul class="checklist">
+            <li>3 harmonized sprints completed</li>
+            <li>3+ documented emergence events</li>
+            <li>Current metrics &le; 15% dip</li>
+            <li>DORA stable or improved</li>
+            <li>2+ platform outcomes improved</li>
+            <li>Developer experience improved</li>
+            <li>Fulfillment avg 7+</li>
+            <li>AI sophistication up one level</li>
+            <li>Measurement infrastructure fully operational</li>
+        </ul>
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Phase 2 -->
+    <section id="phase2">
+        <h2>6. Phase 2: Prove &amp; Expand (Weeks 11–18)</h2>
+        <div class="tldr"><strong>Goal:</strong> Prove with data. Form 2 more units. Train coaches. Proving and expanding happen simultaneously.</div>
+
+        <div class="phase-card">
+            <h3>Week 11: Deep Retrospective</h3>
+            <p>Full-day: review ALL metrics across all three layers. Codify Playbook v1. Capture growth stories. Build the Comparison Board.</p>
+        </div>
+
+        <div class="phase-card">
+            <h3>Weeks 11-14: Expand to 3 Units</h3>
+            <p><strong>Unit 2:</strong> Volunteers + 2 embedded pioneer coaches (3-week rotation)</p>
+            <p><strong>Unit 3:</strong> Include constructive skeptics — tests model robustness</p>
+            <p><strong>Remaining teams:</strong> Gradient adoption — harmony check, AI pre-analysis, fulfillment pulse, DORA tracking (good practice for everyone)</p>
+        </div>
+
+        <div class="phase-card">
+            <h3>Weeks 14-18: The Comparison Board</h3>
+            <p>Visible to the entire org. Full comparison across all metric layers:</p>
+            <table>
+                <tr><th>Layer</th><th>Key Metrics Compared</th></tr>
+                <tr><td>Current</td><td>Stories, velocity, merge rate</td></tr>
+                <tr><td>DORA</td><td>Deploy frequency, lead time, CFR, MTTR, classification</td></tr>
+                <tr><td>Platform</td><td>Ask&rarr;experiment, self-service, downstream NPS, adoption</td></tr>
+                <tr><td>Code Health</td><td>Rework, defect escape, coverage, build time, tech debt</td></tr>
+                <tr><td>Dev Experience</td><td>Focus time, friction, DX score, review turnaround</td></tr>
+                <tr><td>Fulfillment</td><td>Challenge, purpose, growth, eNPS</td></tr>
+                <tr><td>Innovation</td><td>New capabilities, new/maintenance ratio, ideas</td></tr>
+                <tr><td>Harmonization</td><td>Emergence, AI sophistication, bandwidth</td></tr>
+            </table>
+            <div class="callout"><strong>Show everything. Don't cherry-pick.</strong> Credibility comes from honesty.</div>
+        </div>
+
+        <h3>Exit Criteria</h3>
+        <ul class="checklist">
+            <li>3 cognitive units operating</li>
+            <li>5+ outcome metrics improved, no current metric degradation</li>
+            <li>DORA improved across the board</li>
+            <li>3+ downstream teams report better experience</li>
+            <li>Fulfillment sustained at 7+</li>
+            <li>3-4 trained HIO coaches</li>
+            <li>Leadership approves full transformation</li>
+        </ul>
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Phase 3 -->
+    <section id="phase3">
+        <h2>7. Phase 3: Full Orchestration (Weeks 19–26)</h2>
+        <div class="tldr"><strong>Goal:</strong> All 30 people in cognitive units. Full ecosystem dashboard. Enterprise influence.</div>
+
+        <div class="phase-card">
+            <h3>4-5 Cognitive Units by Outcome</h3>
+            <table>
+                <tr><th>Unit</th><th>Focus</th></tr>
+                <tr><td>Experiment Velocity</td><td>Making experiments faster to launch</td></tr>
+                <tr><td>Scale &amp; Reliability</td><td>Platform handles anything</td></tr>
+                <tr><td>Developer Experience</td><td>Joy to build on</td></tr>
+                <tr><td>Intelligence Layer</td><td>AI-native platform capabilities</td></tr>
+                <tr><td>Frontier</td><td>Next-generation exploration</td></tr>
+            </table>
+        </div>
+
+        <div class="phase-card">
+            <h3>Full HIO Dashboard — Three Views</h3>
+            <h4>Weekly: Harmony Overview</h4>
+            <p>Single screen — stakeholder radar, harmonization score, alerts, DORA traffic light</p>
+            <h4>Monthly: Deep Dive</h4>
+            <p>All 11 metric categories by cognitive unit: Business, DORA, Platform, Code Health, DX, Customer, Fulfillment, AI Potential, Harmonization, Innovation, Behavioral Evolution</p>
+            <h4>Quarterly: Evolution View</h4>
+            <p>Full 6-month trajectory. Mindset shifts. Human-AI maturation. Investment priorities</p>
+        </div>
+
+        <h3>End of Month 6 — Exit Criteria</h3>
+        <ul class="checklist">
+            <li>All 30 people in cognitive units</li>
+            <li>Full HIO dashboard operational</li>
+            <li>Fulfillment 7+ avg, no unit below 6</li>
+            <li>DORA at "High" or "Elite" tier</li>
+            <li>Ask&rarr;experiment reduced 40%+</li>
+            <li>Self-service rate &gt; 70%</li>
+            <li>Downstream NPS improved 15+ points</li>
+            <li>Rework rate reduced 25%+</li>
+            <li>Defect escape rate reduced 20%+</li>
+            <li>Developer focus time 3+ days/week</li>
+            <li>AI sophistication Level 3+ avg</li>
+            <li>8+ emergence events/quarter</li>
+            <li>Current delivery metrics stable or improved</li>
+            <li>Innovation ratio improved toward 70/30+</li>
+            <li>Another org exploring HIO</li>
+        </ul>
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Evaluation -->
+    <section id="evaluation">
+        <h2>8. Continuous Evaluation Framework</h2>
+
+        <h3>Weekly: Harmony Pulse</h3>
+        <table>
+            <tr><th>Question</th><th>Action if Red</th></tr>
+            <tr><td>Delivering outcomes?</td><td>Reframe around outcomes</td></tr>
+            <tr><td>Human-AI flowing?</td><td>Redesign workflow</td></tr>
+            <tr><td>Fulfillment below 6?</td><td>Immediate 1:1, rebalance</td></tr>
+            <tr><td>DORA holding?</td><td>Investigate delivery bottlenecks</td></tr>
+            <tr><td>Emergence this week?</td><td>3+ weeks without = work too routine</td></tr>
+        </table>
+
+        <h3>Monthly: Deep Dive</h3>
+        <ul>
+            <li>Full metric review — all layers</li>
+            <li>Trend analysis and baseline comparison</li>
+            <li>DORA classification check</li>
+            <li>Playbook update</li>
+        </ul>
+
+        <h3>Quarterly: Evolution Review (Week 13 &amp; 26)</h3>
+        <ul>
+            <li>Purpose still passing four tests?</li>
+            <li>Right unit composition?</li>
+            <li>New AI capabilities shifting balance?</li>
+            <li><strong>Revise the action plan itself</strong></li>
+        </ul>
+
+        <div class="template">Observe &rarr; What's actually happening? (all 3 metric layers + felt experience)
+    &darr;
+Orient &rarr; What does it mean?
+    &darr;
+Decide &rarr; What should change? (small bet, not big reorg)
+    &darr;
+Act &rarr; Try it for one sprint
+    &darr;
+Observe &rarr; Did it work?</div>
+
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Risks -->
+    <section id="risks">
+        <h2>9. Risk Management</h2>
+
+        <h3>Leadership Patience</h3>
+        <table class="risk-table">
+            <tr><td>Metrics dip early</td><td>Set expectations: 15% dip OK. DORA improvements show in 4-6 weeks — lead with those</td></tr>
+            <tr><td>"When ROI?"</td><td>Monthly comparison board. DORA and DX improvements are immediate proof</td></tr>
+        </table>
+
+        <h3>Pioneer Burnout</h3>
+        <table class="risk-table">
+            <tr><td>Too much change</td><td>AI agents 2/week, practices incremental</td></tr>
+            <tr><td>Performance pressure</td><td>Frame as learning. Reduce sprint 1-2 scope</td></tr>
+        </table>
+
+        <h3>6-Month Timeline Too Aggressive</h3>
+        <table class="risk-table">
+            <tr><td>Phase needs more time</td><td>Exit criteria &gt; dates. Extend phase, don't force</td></tr>
+            <tr><td>Too many units at once</td><td>Stagger Unit 2 and 3 by 2 weeks</td></tr>
+            <tr><td>Phase 3 rushed</td><td>Can extend beyond Week 26 — targets aspirational, criteria mandatory</td></tr>
+        </table>
+
+        <h3>Identity Grip</h3>
+        <table class="risk-table">
+            <tr><td>Role resistance</td><td>Invitational, not forced. Small expansions first</td></tr>
+            <tr><td>AI anxiety</td><td>Identity conversation using HIO Part II</td></tr>
+            <tr><td>Expertise devalued</td><td>"Your judgment is MORE valuable — you evaluate AI's suggestions"</td></tr>
+        </table>
+
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Templates -->
+    <section id="templates">
+        <h2>10. Appendix: Templates</h2>
+
+        <details>
+            <summary>Template A: HIO Baseline Survey (Enhanced — 7 sections, 30 questions)</summary>
+            <div>
+                <p>Covers: Work Experience + Developer Experience + AI Collaboration + Identity &amp; Growth + Team Collaboration + Energy + Platform Effectiveness. Includes eNPS, SPACE-aligned DX questions, and platform outcome questions. See full template in <a href="action-plan-option-2.md">markdown version</a>.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Template B: DORA Metrics Tracking</summary>
+            <div>
+                <p>Tracks deployment frequency, lead time, change failure rate, MTTR with Elite/High/Medium/Low classification and trend direction. See full template in <a href="action-plan-option-2.md">markdown version</a>.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Template C: Full Comparison Board (All 3 Layers)</summary>
+            <div>
+                <p>Baseline vs. Traditional vs. Cognitive Units across Current, DORA, Platform, Code Health, DX, Fulfillment, Innovation, and Harmonization layers. Includes Narrative, Reinforcing Loops, Warnings, and Actions. See full template in <a href="action-plan-option-2.md">markdown version</a>.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Template D: Sprint Kickoff with DORA Impact</summary>
+            <div>
+                <p>Outcome definition + AI pre-analysis + DORA impact assessment + workflow design + fulfillment check. See full template in <a href="action-plan-option-2.md">markdown version</a>.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Template E: Weekly Harmony Pulse (with DX)</summary>
+            <div>
+                <p>Delivery + DORA + Harmonization + Fulfillment + AI Health + Developer Experience sections. See full template in <a href="action-plan-option-2.md">markdown version</a>.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Template F: Harmonization Retrospective (with Metrics Review)</summary>
+            <div>
+                <p>Emergence + Old Patterns + Identity Check + full DORA/Platform/Fulfillment/AI metrics review + Growth tracking + Next experiment. See full template in <a href="action-plan-option-2.md">markdown version</a>.</p>
+            </div>
+        </details>
+
+        <div class="back-top"><a href="#toc">&uarr; Contents</a></div>
+    </section>
+
+    <!-- Comparison -->
+    <section id="comparison">
+        <h2>11. Option 1 vs Option 2</h2>
+        <table class="compare-table">
+            <tr><th>Dimension</th><th>Option 1 (52 weeks)</th><th>Option 2 (26 weeks)</th></tr>
+            <tr><td><strong>Timeline</strong></td><td>4 phases, 12 months</td><td>4 phases, 6 months</td></tr>
+            <tr><td><strong>Baseline</strong></td><td>Current + some outcomes</td><td>Current + DORA + Platform + Code Health + DX + Innovation + Fulfillment + AI + Harmonization</td></tr>
+            <tr><td><strong>Measurement infra</strong></td><td>Starts Week 21</td><td>Starts Week 3</td></tr>
+            <tr><td><strong>DORA</strong></td><td>Not explicit</td><td>From Day 1, Elite/High/Medium/Low classification</td></tr>
+            <tr><td><strong>Developer experience</strong></td><td>Not explicit</td><td>SPACE: focus time, friction, DX score, review turnaround, context switching</td></tr>
+            <tr><td><strong>Platform outcomes</strong></td><td>5 metrics</td><td>6 metrics incl. self-service, time-to-first-deploy</td></tr>
+            <tr><td><strong>Code health</strong></td><td>Rework rate only</td><td>6 metrics: rework, defect escape, tech debt, coverage, build time, deps</td></tr>
+            <tr><td><strong>Innovation</strong></td><td>1 metric</td><td>4 metrics: rate, ratio, exploration-to-prod, ideas</td></tr>
+            <tr><td><strong>Phase overlap</strong></td><td>Sequential</td><td>Prove + expand simultaneous</td></tr>
+            <tr><td><strong>Timeline risk</strong></td><td>Low</td><td>Managed via exit criteria &gt; dates</td></tr>
+            <tr><td><strong>Evidence quality</strong></td><td>Strong (longer timeline)</td><td>Strong (richer metrics, faster feedback)</td></tr>
+        </table>
+    </section>
+
+    <footer>
+        <p>Phase gates are defined by exit criteria, not calendar dates.<br>
+        If a phase needs more time, take it. Targets are aspirational — criteria are mandatory.</p>
+        <p style="margin-top: 1rem;">
+            <a href="../../index.html">HIO Framework</a> &nbsp;|&nbsp;
+            <a href="../../tldr.html">TLDR Version</a> &nbsp;|&nbsp;
+            <a href="action-plan-option-1.html">Option 1: 12-Month Plan</a>
+        </p>
+    </footer>
+
+</div>
+
+</body>
+</html>

@@ -102,15 +102,65 @@ These are the metrics the org already tracks. Keep tracking them throughout the 
 
 These don't exist today. Capture them before Phase 0 begins so you have a true starting point.
 
-#### Outcome Metrics (what current metrics miss)
+#### DORA Metrics — Software Delivery Performance
 
-| New Metric | How to Capture Baseline | Why It Matters |
+*The industry standard for engineering team health, used by Google, Microsoft, Amazon, Netflix, Spotify.*
+
+| Metric | What It Measures | How to Capture Baseline | Target Direction |
+|---|---|---|---|
+| **Deployment Frequency** | How often code reaches production | Count deployments over last 30 days | ↑ (daily or more = elite) |
+| **Lead Time for Changes** | Time from code commit to production | Sample 20-30 recent changes, measure commit→deploy | ↓ (< 1 day = elite) |
+| **Change Failure Rate** | % of deployments causing incidents, rollbacks, or hotfixes | Failed deploys / total deploys, last 90 days | ↓ (< 5% = elite) |
+| **Mean Time to Recovery (MTTR)** | Time from incident detection to full recovery | Average recovery time for last 10 production incidents | ↓ (< 1 hour = elite) |
+
+#### Developer Experience Metrics (SPACE Framework)
+
+*Developed by Microsoft Research. Used across Microsoft, adapted at Stripe, Shopify, Google.*
+
+| Metric | What It Measures | How to Capture Baseline | Target Direction |
+|---|---|---|---|
+| **Days with Sufficient Focus Time** | Days/week with 2+ hours uninterrupted deep work | Developer survey + calendar analysis | ↑ (target: 3+ days/week) |
+| **Context Switching Frequency** | How often engineers switch between unrelated tasks/day | Developer survey (self-report) | ↓ |
+| **Friction Events** | Blockers, tool failures, process impediments per week | Track for 2 weeks: count blockers | ↓ |
+| **Developer Satisfaction (DX Score)** | Overall satisfaction with tools, processes, environment | Survey: "How satisfied with your dev experience?" (1-10) | ↑ |
+| **Code Review Turnaround** | Time from PR opened to first meaningful review | Sample last 50 PRs across teams | ↓ (target: < 4 hours for 80%+) |
+
+#### Platform-Specific Outcome Metrics
+
+*Informed by Spotify (internal platform), Stripe (dev tools), Netflix (reliability), Amazon (self-service infra).*
+
+| Metric | How to Capture Baseline | Why It Matters |
 |---|---|---|
 | **Customer experiment success rate** | How many platform-enabled experiments by downstream teams actually shipped to users in last quarter? | Stories completed means nothing if the platform isn't enabling customer value |
 | **Time from idea to experiment** | Track 5-10 recent examples: when did a downstream team request a capability → when could they experiment? | This is the real speed-to-market metric, not story completion |
+| **Platform self-service rate** | % of infrastructure/capability requests fulfilled without platform team intervention (last 30 days) | A platform that requires tickets for everything is a bottleneck, not an accelerator. Target: > 80% |
+| **Time to first deploy** | Hours/days from a new team getting access → their first production deploy on the platform | Platform usability signal. If onboarding takes weeks, the platform isn't serving its purpose. Target: < 1 day |
 | **Platform adoption rate** | How many teams are actively using the platform vs. building their own? | A scalable platform that nobody uses isn't scalable — it's unused |
+| **Downstream team NPS** | Survey downstream teams: "How likely to recommend this platform?" (0-10) | The platform's real customers are other engineering teams. Target: > 30 NPS |
+
+#### Code Health & Quality Metrics
+
+*Informed by Google (code health), Meta (diff authoring time), Amazon (cost to serve).*
+
+| Metric | How to Capture Baseline | Why It Matters |
+|---|---|---|
 | **Rework rate** | % of stories that come back as bugs, follow-ups, or rethinks within 30 days | High velocity + high rework = wasted motion |
+| **Defect escape rate** | Bugs reaching production vs. caught in review/test (last 90 days) | Quality of the development and review process |
+| **Technical debt ratio** | What % of sprint capacity goes to known tech debt? | Target: < 10%. Higher means innovation is being crowded out |
+| **Test coverage trend** | Current coverage % and 6-month direction | Leading indicator of quality trajectory |
+| **Build/pipeline duration** | Time for CI/CD pipeline to run | Slow pipelines slow feedback loops and deployment frequency |
+| **Dependency health** | Critical dependencies with known vulnerabilities or > 2 major versions behind | Security and maintenance risk |
+
+#### Innovation Metrics
+
+*Informed by Google (20% time), Spotify (hack weeks), Shopify (shipped demos), Amazon (working backwards).*
+
+| Metric | How to Capture Baseline | Why It Matters |
+|---|---|---|
 | **Innovation rate** | In last 6 months, how many genuinely new capabilities (not incremental features) shipped? | Output ≠ innovation |
+| **New vs. maintenance ratio** | % of engineering effort on new capabilities vs. keeping lights on | Target: 70%+ new. If maintenance dominates, the team can't innovate |
+| **Exploration-to-production rate** | % of experimental/hackathon work that reaches production | Measures whether exploration actually creates value |
+| **Ideas generated** | Number of new technical or product ideas proposed per quarter (by anyone) | Leading indicator of creative energy |
 
 #### Human Fulfillment Metrics (the missing dimension)
 
@@ -146,12 +196,24 @@ These don't exist today. Capture them before Phase 0 begins so you have a true s
 
 **Week 1 Actions:**
 
-1. **Pull existing metrics** from your scrum tooling (Jira, Linear, etc.) — last 6 sprints for all current metrics
-2. **Run the HIO Baseline Survey** (template in Appendix) — anonymous, 15 minutes, covers fulfillment + AI readiness + identity
-3. **Interview 5-8 team members** (mix of roles, tenures) — 30 min each, open-ended on fulfillment, frustrations, excitement, AI comfort
-4. **Audit AI usage** — what tools, how deep, what tasks, what's blocked
-5. **Map 3-5 recent platform requests end-to-end** — from downstream team ask → delivered capability → experiment → result
-6. **Document in a single baseline report** — this becomes your reference for all future comparison
+Automated pulls (Day 1-3):
+1. **Pull sprint metrics** from Jira/Linear — last 6 sprints for all current metrics
+2. **Pull DORA metrics** from CI/CD pipeline — deployment frequency, lead time, CFR, MTTR over 90 days
+3. **Pull code health data** from GitHub/tooling — PR turnaround, test coverage, build times, dependency audit
+
+Surveys (Day 3-7):
+4. **Run the HIO Baseline Survey** (template in Appendix) — anonymous, 20 minutes, covers fulfillment + developer experience + AI readiness + identity
+5. **Run Downstream Team Survey** — 5 minutes, platform NPS and pain points
+
+Qualitative (Day 5-10):
+6. **Interview 5-8 team members** (mix of roles, tenures) — 30 min each, open-ended on fulfillment, frustrations, excitement, AI comfort
+7. **Audit AI usage** — what tools, how deep, what tasks, what's blocked
+8. **Map 5 recent platform requests end-to-end** — from downstream team ask → delivered capability → experiment → result
+9. **Audit platform metrics** — self-service vs. ticket requests, adoption count, time-to-first-deploy for recent onboardings
+10. **Innovation audit** — count genuinely new capabilities shipped in last 6 months
+
+Output:
+11. **Unified Baseline Report** — all layers (current + outcome + HIO) in a single document, published to the team
 
 ---
 
