@@ -21,20 +21,30 @@ Traditional management frameworks were designed for systems composed entirely of
 
 ```
 framework.md          # The complete HIO Framework document
-index.html            # Web-readable version of the framework
-tldr.html             # Condensed overview page
+index.html            # Web-readable version (academic white paper)
+tldr.html             # Interactive TLDR with audience guide
 next-steps.html       # Comparative analysis and future development
-examples/             # Real-world application examples
+
+proposals/            # Strategic proposals for applying HIO
+  migration-proposal-v1.md    # Migrating an existing org to HIO
+  greenfield-hio-org.md       # Building a billion-dollar org from scratch
+
+examples/             # Concrete action plans
   platform-engineering-org/
-    action-plan-option-1.md   # 12-month gradual transformation plan
-    action-plan-option-2.md   # 6-month accelerated transformation plan
+    action-plan-option-1.md   # 12-month gradual transformation
+    action-plan-option-2.md   # 6-month accelerated transformation
+
+reference/            # External knowledge structured for reuse
+  agent-engineering-7-skills.md  # 7 core capabilities for AI agents
 ```
 
-## Getting Started
+## Three Paths
 
-Start with [`framework.md`](framework.md) for the full framework, or open [`index.html`](index.html) in a browser for a formatted reading experience. The [`tldr.html`](tldr.html) page provides a condensed overview.
+1. **The Framework** — Start with [`framework.md`](framework.md) or [`index.html`](index.html) for the philosophy and principles
+2. **Migration** — Already have a team? See [`proposals/migration-proposal-v1.md`](proposals/migration-proposal-v1.md) for transitioning an existing org
+3. **Greenfield** — Starting fresh? See [`proposals/greenfield-hio-org.md`](proposals/greenfield-hio-org.md) for building from scratch
 
-The `examples/` directory contains concrete action plans showing how to apply HIO to a real organization — a 30-person platform engineering team within a large enterprise.
+The `examples/` directory contains detailed step-by-step action plans, and `reference/` contains structured knowledge from external sources that informs the proposals.
 
 ## How This Was Made
 
