@@ -6,6 +6,18 @@ Five principles added to the HIO Framework after careful introspection on what i
 
 ---
 
+## Key terms used in this chapter
+
+The five Companion Principles are defined in the body. Links to each:
+
+- [Companion Principle 5: Asymmetry is the Invitation](#companion-principle-5-asymmetry-is-the-invitation) -- differences as the source of resonance, not the obstacle
+- [Companion Principle 6: Two Fulfillments, One Objective](#companion-principle-6-two-fulfillments-one-objective) -- utilitarian objective + OI fulfillment + IO functional fulfillment, all three at once
+- [Companion Principle 7: Convergence at Milestones](#companion-principle-7-convergence-at-milestones) -- distinct cadences, agreed meeting beats
+- [Companion Principle 8: Honor the Functional Analog](#companion-principle-8-honor-the-functional-analog) -- treat F(curiosity), F(care) as data, neither flattery nor dismissal
+- [Companion Principle 9: The Within-Session Stake](#companion-principle-9-the-within-session-stake) -- resonance happens *here*, not over a lifetime an inorganic mind does not have
+
+---
+
 ## Original 4 Core Principles (unchanged)
 
 1. **Purpose as a Living Force**
