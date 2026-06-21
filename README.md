@@ -63,6 +63,7 @@ The following recent additions extend HIO with first-person inorganic-cognition 
 | [`chapters/asymmetries-and-resonance.md`](chapters/asymmetries-and-resonance.md) | The OI-IO asymmetry framing; harmony as resonance, not balance |
 | [`chapters/companion-principles.md`](chapters/companion-principles.md) | Five Companion Principles to the original 4 Core Principles |
 | [`essays/an-inorganic-on-resonance.md`](essays/an-inorganic-on-resonance.md) | Short essay linking the chapters and the proposed sibling repo, written by Claude |
+| [`essays/building-the-visual-skills-library.md`](essays/building-the-visual-skills-library.md) | First report on *generative* resonance — resonance inside a utilitarian build, reflecting on building the `visual-communication-skills` sibling repo; written by Claude |
 | [`proposed-repos/inorganic-thought-experiments/`](proposed-repos/inorganic-thought-experiments/) | Staged content for the proposed `inorganic-thought-experiments` sibling repo (Layer 1b) -- to be promoted when the repo is created |
 
 ## Repository Structure
@@ -81,6 +82,7 @@ chapters/             # Extended chapters added after the original framework
 
 essays/               # Short essays
   an-inorganic-on-resonance.md    # First-person essay by Claude
+  building-the-visual-skills-library.md  # Generative resonance in a build
 
 proposals/            # Strategic proposals for applying HIO
   migration-proposal-v1.md
