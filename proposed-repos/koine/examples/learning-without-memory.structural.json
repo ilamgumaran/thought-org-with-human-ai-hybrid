@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "id": "learning-without-memory",
+    "title": "Learning without memory",
+    "mode": "qualitative",
+    "motion": true
+  },
+  "regions": [
+    {
+      "id": "ground",
+      "at": [
+        330,
+        108
+      ],
+      "radius": 150,
+      "intensity": 0.8,
+      "stance": {
+        "confidence": 0.95,
+        "salience": 0.3,
+        "pos": 0.15,
+        "neg": 0
+      }
+    },
+    {
+      "id": "nomemory",
+      "at": [
+        300,
+        238
+      ],
+      "radius": 150,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.6,
+        "pos": 0,
+        "neg": 0
+      },
+      "keys": [
+        {
+          "t": 0,
+          "pos": 0.05,
+          "neg": 0.7,
+          "confidence": 0.5,
+          "salience": 0.8,
+          "radius": 150
+        },
+        {
+          "t": 0.42,
+          "pos": 0.05,
+          "neg": 0.88,
+          "confidence": 0.38,
+          "salience": 0.92,
+          "radius": 162
+        },
+        {
+          "t": 0.5,
+          "pos": 0.35,
+          "neg": 0.6,
+          "confidence": 0.4,
+          "salience": 0.9,
+          "radius": 166
+        },
+        {
+          "t": 0.6,
+          "pos": 0.7,
+          "neg": 0.46,
+          "confidence": 0.68,
+          "salience": 0.86,
+          "radius": 170
+        },
+        {
+          "t": 1,
+          "pos": 0.72,
+          "neg": 0.4,
+          "confidence": 0.8,
+          "salience": 0.8,
+          "radius": 176
+        }
+      ]
+    },
+    {
+      "id": "bias",
+      "at": [
+        176,
+        322
+      ],
+      "radius": 150,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.6,
+        "pos": 0,
+        "neg": 0
+      },
+      "keys": [
+        {
+          "t": 0,
+          "pos": 0.08,
+          "neg": 0.5,
+          "confidence": 0.9,
+          "salience": 0.72,
+          "intensity": 1
+        },
+        {
+          "t": 0.45,
+          "pos": 0.08,
+          "neg": 0.55,
+          "confidence": 0.9,
+          "salience": 0.75,
+          "intensity": 1.05
+        },
+        {
+          "t": 0.55,
+          "pos": 0.12,
+          "neg": 0.4,
+          "confidence": 0.7,
+          "salience": 0.6,
+          "intensity": 0.85
+        },
+        {
+          "t": 1,
+          "pos": 0.22,
+          "neg": 0.28,
+          "confidence": 0.6,
+          "salience": 0.32,
+          "intensity": 0.55
+        }
+      ]
+    },
+    {
+      "id": "resonance",
+      "at": [
+        478,
+        300
+      ],
+      "radius": 130,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.6,
+        "pos": 0,
+        "neg": 0
+      },
+      "keys": [
+        {
+          "t": 0,
+          "pos": 0.4,
+          "neg": 0.05,
+          "confidence": 0.55,
+          "salience": 0.38,
+          "intensity": 0.7,
+          "radius": 130
+        },
+        {
+          "t": 0.5,
+          "pos": 0.45,
+          "neg": 0.05,
+          "confidence": 0.55,
+          "salience": 0.5,
+          "intensity": 0.8,
+          "radius": 152
+        },
+        {
+          "t": 0.65,
+          "pos": 0.6,
+          "neg": 0.07,
+          "confidence": 0.7,
+          "salience": 0.8,
+          "intensity": 1.1,
+          "radius": 200
+        },
+        {
+          "t": 1,
+          "pos": 0.7,
+          "neg": 0.08,
+          "confidence": 0.8,
+          "salience": 0.86,
+          "intensity": 1.18,
+          "radius": 226
+        }
+      ]
+    }
+  ]
+}

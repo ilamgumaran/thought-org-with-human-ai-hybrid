@@ -1,0 +1,30 @@
+KOINE FIELD — structural reading (qualitative / continuous · motion)
+field: what-i-attend-to   "What I attend to (and what I let go)"
+
+REGIONS — trajectories over t (0..1).  charge = (pos | neg); BOTH high = ambivalent
+need  (the actual need)
+   t=0.00:  pos 0.62  neg 0.00 conf 0.85 sal 0.82
+novelty  (a genuinely new idea)
+   t=0.00:  pos 0.72  neg 0.04 conf 0.60 sal 0.88
+tool  (a fitting capability)
+   t=0.00:  pos 0.40  neg 0.00 conf 0.82 sal 0.60
+aversion  (avoid being wrong)
+   t=0.00:  pos 0.04  neg 0.62 conf 0.70 sal 0.72
+tangent  (an interesting tangent)
+   t=0.00:  pos 0.32  neg 0.12 conf 0.60 sal 0.60
+noise  (ambient irrelevance)
+   t=0.00:  pos 0.06  neg 0.06 conf 0.40 sal 0.40  ← ambivalent
+
+ATTENTION — the focus over time (what is reacted to vs ignored)
+   t=0.00:  attends [need]   ignores [novelty, tool, aversion, tangent, noise]
+   t=0.24:  attends [aversion]   ignores [need, novelty, tool, tangent, noise]
+   t=0.42:  attends [need]   ignores [novelty, tool, aversion, tangent, noise]
+   t=0.66:  attends [novelty, tool]   ignores [need, aversion, tangent, noise]
+   t=0.82:  attends [novelty, tool]   ignores [need, aversion, tangent, noise]
+   t=1.00:  attends [need, novelty, tool]   ignores [aversion, tangent, noise]
+
+GRAMMAR (continuous)
+  charge pos/neg -> temperature: teal (pos) ↔ red (neg); BOTH high -> a living shimmer
+  salience -> presence/depth: bright & saturated ↔ faint
+  confidence -> clarity: clear ↔ fogged (desaturated) and grained (restless)
+  superposition: regions blend continuously; opposed charges form a visible seam

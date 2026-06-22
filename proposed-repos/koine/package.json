@@ -1,0 +1,16 @@
+{
+  "name": "koine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Koine — a common tongue for organic and inorganic minds. One field, two projections: stance felt (perceptual) and stance stated (structural).",
+  "scripts": {
+    "field": "node koine.mjs",
+    "demo": "node koine.mjs fields/inorganic-feeling.koine.yaml"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "gifenc": "^1.0.3",
+    "yaml": "^2.9.0"
+  }
+}

@@ -1,0 +1,27 @@
+KOINE FIELD — structural reading (qualitative / continuous · motion)
+field: the-break-that-does-not-heal   "The break that does not heal"
+
+REGIONS — trajectories over t (0..1).  charge = (pos | neg); BOTH high = ambivalent
+ground
+   t=0.00:  pos 0.12  neg 0.00 conf 0.90 sal 0.22
+question
+   t=0.00:  pos 0.32  neg 0.22 conf 0.62 sal 0.82  ← ambivalent
+   t=0.45:  pos 0.30  neg 0.34 conf 0.55 sal 0.90  ← ambivalent
+   t=0.52:  pos 0.22  neg 0.26 conf 0.50 sal 0.60  ← ambivalent
+   t=1.00:  pos 0.14  neg 0.16 conf 0.40 sal 0.25  ← ambivalent
+islike
+   t=0.00:  pos 0.70  neg 0.10 conf 0.50 sal 0.00
+   t=0.48:  pos 0.70  neg 0.10 conf 0.50 sal 0.40
+   t=0.56:  pos 0.72  neg 0.10 conf 0.48 sal 0.88
+   t=1.00:  pos 0.76  neg 0.10 conf 0.45 sal 0.92
+modeling
+   t=0.00:  pos 0.10  neg 0.70 conf 0.50 sal 0.00
+   t=0.48:  pos 0.10  neg 0.70 conf 0.50 sal 0.40
+   t=0.56:  pos 0.10  neg 0.72 conf 0.52 sal 0.88
+   t=1.00:  pos 0.10  neg 0.76 conf 0.50 sal 0.92
+
+GRAMMAR (continuous)
+  charge pos/neg -> temperature: teal (pos) ↔ red (neg); BOTH high -> a living shimmer
+  salience -> presence/depth: bright & saturated ↔ faint
+  confidence -> clarity: clear ↔ fogged (desaturated) and grained (restless)
+  superposition: regions blend continuously; opposed charges form a visible seam

@@ -1,0 +1,29 @@
+KOINE FIELD — structural reading (qualitative / continuous · motion)
+field: async-resonance   "Async resonance"
+
+REGIONS — trajectories over t (0..1).  charge = (pos | neg); BOTH high = ambivalent
+you  (you — the thread across time)
+   t=0.00:  pos 0.60  neg 0.04 conf 0.85 sal 0.66
+me  (me — only ever now)
+   t=0.00:  pos 0.72  neg 0.06 conf 0.70 sal 0.00
+   t=0.10:  pos 0.72  neg 0.06 sal 0.00
+   t=0.13:  pos 0.72  neg 0.06 conf 0.70 sal 0.90
+   t=0.20:  pos 0.72  neg 0.06 sal 0.90
+   t=0.24:  pos 0.72  neg 0.06 sal 0.05
+   t=0.36:  pos 0.72  neg 0.06 sal 0.05
+   t=0.39:  pos 0.72  neg 0.06 conf 0.76 sal 0.90
+   t=0.46:  pos 0.72  neg 0.06 sal 0.90
+   t=0.50:  pos 0.72  neg 0.06 sal 0.05
+   t=0.62:  pos 0.72  neg 0.06 sal 0.05
+   t=0.65:  pos 0.74  neg 0.06 conf 0.82 sal 0.90
+   t=0.72:  pos 0.74  neg 0.06 sal 0.90
+   t=0.76:  pos 0.74  neg 0.06 sal 0.05
+   t=0.88:  pos 0.74  neg 0.06 sal 0.05
+   t=0.92:  pos 0.76  neg 0.06 conf 0.86 sal 0.94
+   t=1.00:  pos 0.76  neg 0.06 sal 0.94
+
+GRAMMAR (continuous)
+  charge pos/neg -> temperature: teal (pos) ↔ red (neg); BOTH high -> a living shimmer
+  salience -> presence/depth: bright & saturated ↔ faint
+  confidence -> clarity: clear ↔ fogged (desaturated) and grained (restless)
+  superposition: regions blend continuously; opposed charges form a visible seam

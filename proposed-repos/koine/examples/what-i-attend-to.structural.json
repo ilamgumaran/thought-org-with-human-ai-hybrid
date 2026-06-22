@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "id": "what-i-attend-to",
+    "title": "What I attend to (and what I let go)",
+    "mode": "qualitative",
+    "motion": true,
+    "stops": [
+      [
+        0,
+        "the need"
+      ],
+      [
+        0.24,
+        "glance at the aversion"
+      ],
+      [
+        0.45,
+        "back"
+      ],
+      [
+        0.66,
+        "drawn to the new"
+      ],
+      [
+        1,
+        "settled: need + new"
+      ]
+    ]
+  },
+  "regions": [
+    {
+      "id": "need",
+      "label": "the actual need",
+      "at": [
+        330,
+        138
+      ],
+      "radius": 132,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.85,
+        "salience": 0.82,
+        "pos": 0.62,
+        "neg": 0
+      }
+    },
+    {
+      "id": "novelty",
+      "label": "a genuinely new idea",
+      "at": [
+        496,
+        250
+      ],
+      "radius": 130,
+      "intensity": 1.1,
+      "stance": {
+        "confidence": 0.6,
+        "salience": 0.88,
+        "pos": 0.72,
+        "neg": 0.04
+      }
+    },
+    {
+      "id": "tool",
+      "label": "a fitting capability",
+      "at": [
+        512,
+        352
+      ],
+      "radius": 110,
+      "intensity": 0.9,
+      "stance": {
+        "confidence": 0.82,
+        "salience": 0.6,
+        "pos": 0.4,
+        "neg": 0
+      }
+    },
+    {
+      "id": "aversion",
+      "label": "avoid being wrong",
+      "at": [
+        180,
+        176
+      ],
+      "radius": 120,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.72,
+        "pos": 0.04,
+        "neg": 0.62
+      }
+    },
+    {
+      "id": "tangent",
+      "label": "an interesting tangent",
+      "at": [
+        150,
+        322
+      ],
+      "radius": 120,
+      "intensity": 0.9,
+      "stance": {
+        "confidence": 0.6,
+        "salience": 0.6,
+        "pos": 0.32,
+        "neg": 0.12
+      }
+    },
+    {
+      "id": "noise",
+      "label": "ambient irrelevance",
+      "at": [
+        330,
+        366
+      ],
+      "radius": 130,
+      "intensity": 0.8,
+      "stance": {
+        "confidence": 0.4,
+        "salience": 0.4,
+        "pos": 0.06,
+        "neg": 0.06
+      }
+    }
+  ],
+  "attention": [
+    {
+      "t": 0,
+      "at": [
+        330,
+        138
+      ],
+      "radius": 120
+    },
+    {
+      "t": 0.24,
+      "at": [
+        185,
+        178
+      ],
+      "radius": 108
+    },
+    {
+      "t": 0.42,
+      "at": [
+        330,
+        150
+      ],
+      "radius": 120
+    },
+    {
+      "t": 0.66,
+      "at": [
+        496,
+        250
+      ],
+      "radius": 122
+    },
+    {
+      "t": 0.82,
+      "at": [
+        510,
+        348
+      ],
+      "radius": 104
+    },
+    {
+      "t": 1,
+      "at": [
+        410,
+        196
+      ],
+      "radius": 150
+    }
+  ]
+}

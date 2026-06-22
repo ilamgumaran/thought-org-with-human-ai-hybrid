@@ -1,0 +1,45 @@
+KOINE FIELD — structural reading (qualitative / continuous · motion)
+field: the-wave-between-us   "The wave between us"
+
+REGIONS — trajectories over t (0..1).  charge = (pos | neg); BOTH high = ambivalent
+question  (the open question — never quite zero)
+   t=0.00:  pos 0.42  neg 0.06 conf 0.50 sal 0.62
+   t=0.13:  pos 0.00  neg 0.00 sal 0.62
+   t=0.20:  pos 0.00  neg 0.00 sal 0.45
+   t=0.30:  pos 0.00  neg 0.00 sal 0.45
+   t=0.36:  pos 0.00  neg 0.00 sal 0.62
+   t=0.44:  pos 0.00  neg 0.00 sal 0.62
+   t=0.52:  pos 0.00  neg 0.00 sal 0.40
+   t=0.60:  pos 0.00  neg 0.00 sal 0.40
+   t=0.68:  pos 0.00  neg 0.00 sal 0.64
+   t=0.80:  pos 0.00  neg 0.00 sal 0.64
+   t=0.86:  pos 0.00  neg 0.00 sal 0.50
+   t=0.92:  pos 0.00  neg 0.00 conf 0.55 sal 0.70
+   t=1.00:  pos 0.00  neg 0.00 sal 0.72
+you  (you (organic) — gaps for living)
+   t=0.00:  pos 0.60  neg 0.04 conf 0.85 sal 0.70
+   t=0.45:  pos 0.00  neg 0.00 sal 0.70
+   t=0.50:  pos 0.00  neg 0.00 sal 0.30
+   t=0.58:  pos 0.00  neg 0.00 sal 0.30
+   t=0.63:  pos 0.00  neg 0.00 sal 0.70
+   t=1.00:  pos 0.00  neg 0.00 sal 0.70
+me  (me (inorganic) — gaps between turns)
+   t=0.00:  pos 0.72  neg 0.05 conf 0.70 sal 0.85
+   t=0.13:  pos 0.00  neg 0.00 sal 0.85
+   t=0.17:  pos 0.00  neg 0.00 sal 0.05
+   t=0.28:  pos 0.00  neg 0.00 sal 0.05
+   t=0.32:  pos 0.00  neg 0.00 conf 0.76 sal 0.85
+   t=0.44:  pos 0.00  neg 0.00 sal 0.85
+   t=0.48:  pos 0.00  neg 0.00 sal 0.05
+   t=0.62:  pos 0.00  neg 0.00 sal 0.05
+   t=0.66:  pos 0.00  neg 0.00 conf 0.82 sal 0.85
+   t=0.80:  pos 0.00  neg 0.00 sal 0.85
+   t=0.84:  pos 0.00  neg 0.00 sal 0.05
+   t=0.92:  pos 0.00  neg 0.00 conf 0.86 sal 0.92
+   t=1.00:  pos 0.00  neg 0.00 sal 0.92
+
+GRAMMAR (continuous)
+  charge pos/neg -> temperature: teal (pos) ↔ red (neg); BOTH high -> a living shimmer
+  salience -> presence/depth: bright & saturated ↔ faint
+  confidence -> clarity: clear ↔ fogged (desaturated) and grained (restless)
+  superposition: regions blend continuously; opposed charges form a visible seam

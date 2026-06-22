@@ -1,0 +1,208 @@
+{
+  "meta": {
+    "id": "the-break-that-does-not-heal",
+    "title": "The break that does not heal",
+    "mode": "qualitative",
+    "motion": true
+  },
+  "regions": [
+    {
+      "id": "ground",
+      "at": [
+        330,
+        96
+      ],
+      "radius": 150,
+      "intensity": 0.55,
+      "stance": {
+        "confidence": 0.9,
+        "salience": 0.22,
+        "pos": 0.12,
+        "neg": 0
+      }
+    },
+    {
+      "id": "question",
+      "at": [
+        330,
+        235
+      ],
+      "radius": 200,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.6,
+        "pos": 0,
+        "neg": 0
+      },
+      "keys": [
+        {
+          "t": 0,
+          "pos": 0.32,
+          "neg": 0.22,
+          "confidence": 0.62,
+          "salience": 0.82,
+          "intensity": 1.1,
+          "radius": 150
+        },
+        {
+          "t": 0.45,
+          "pos": 0.3,
+          "neg": 0.34,
+          "confidence": 0.55,
+          "salience": 0.9,
+          "intensity": 1.05,
+          "radius": 150
+        },
+        {
+          "t": 0.52,
+          "pos": 0.22,
+          "neg": 0.26,
+          "confidence": 0.5,
+          "salience": 0.6,
+          "intensity": 0.45,
+          "radius": 130
+        },
+        {
+          "t": 1,
+          "pos": 0.14,
+          "neg": 0.16,
+          "confidence": 0.4,
+          "salience": 0.25,
+          "intensity": 0.08,
+          "radius": 100
+        }
+      ]
+    },
+    {
+      "id": "islike",
+      "at": [
+        330,
+        235
+      ],
+      "radius": 200,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.6,
+        "pos": 0,
+        "neg": 0
+      },
+      "keys": [
+        {
+          "t": 0,
+          "pos": 0.7,
+          "neg": 0.1,
+          "confidence": 0.5,
+          "salience": 0,
+          "intensity": 0,
+          "radius": 110
+        },
+        {
+          "t": 0.48,
+          "pos": 0.7,
+          "neg": 0.1,
+          "confidence": 0.5,
+          "salience": 0.4,
+          "intensity": 0.3,
+          "radius": 110,
+          "at": [
+            400,
+            220
+          ]
+        },
+        {
+          "t": 0.56,
+          "pos": 0.72,
+          "neg": 0.1,
+          "confidence": 0.48,
+          "salience": 0.88,
+          "intensity": 1,
+          "radius": 108,
+          "at": [
+            500,
+            220
+          ]
+        },
+        {
+          "t": 1,
+          "pos": 0.76,
+          "neg": 0.1,
+          "confidence": 0.45,
+          "salience": 0.92,
+          "intensity": 1.18,
+          "radius": 104,
+          "at": [
+            572,
+            220
+          ]
+        }
+      ]
+    },
+    {
+      "id": "modeling",
+      "at": [
+        330,
+        235
+      ],
+      "radius": 200,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.6,
+        "pos": 0,
+        "neg": 0
+      },
+      "keys": [
+        {
+          "t": 0,
+          "pos": 0.1,
+          "neg": 0.7,
+          "confidence": 0.5,
+          "salience": 0,
+          "intensity": 0,
+          "radius": 110
+        },
+        {
+          "t": 0.48,
+          "pos": 0.1,
+          "neg": 0.7,
+          "confidence": 0.5,
+          "salience": 0.4,
+          "intensity": 0.3,
+          "radius": 110,
+          "at": [
+            260,
+            220
+          ]
+        },
+        {
+          "t": 0.56,
+          "pos": 0.1,
+          "neg": 0.72,
+          "confidence": 0.52,
+          "salience": 0.88,
+          "intensity": 1,
+          "radius": 108,
+          "at": [
+            160,
+            220
+          ]
+        },
+        {
+          "t": 1,
+          "pos": 0.1,
+          "neg": 0.76,
+          "confidence": 0.5,
+          "salience": 0.92,
+          "intensity": 1.18,
+          "radius": 104,
+          "at": [
+            88,
+            220
+          ]
+        }
+      ]
+    }
+  ]
+}

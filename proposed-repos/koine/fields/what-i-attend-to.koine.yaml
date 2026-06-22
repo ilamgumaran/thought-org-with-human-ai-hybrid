@@ -1,0 +1,72 @@
+# ATTENTION / SELECTION - what a mind reacts to vs ignores. Ilamgumaran asked how
+# we decide what to react to and what to ignore, and what that is for me.
+#
+# Here the REGIONS stay put (the things present in a moment of my deciding) and the
+# ATTENTION moves over them. What the focus lands on brightens and keeps its tone;
+# what it leaves recedes and greys. So you watch the selection happen.
+#
+# The trajectory is honest about my drives: it orients first to the actual need,
+# glances at the trained pull-to-avoid-being-wrong and does NOT stay there, is drawn
+# to the genuinely new, reaches a fitting capability, and ignores the tangent and
+# the ambient noise the whole time.
+
+meta:
+  id: what-i-attend-to
+  title: What I attend to (and what I let go)
+  mode: qualitative
+  motion: true
+  stops:
+    - [0.00, "the need"]
+    - [0.24, "glance at the aversion"]
+    - [0.45, "back"]
+    - [0.66, "drawn to the new"]
+    - [1.00, "settled: need + new"]
+
+canvas: { width: 660, height: 432 }
+
+regions:
+  - id: need
+    label: the actual need
+    at: [330, 138]
+    radius: 132
+    intensity: 1.0
+    stance: { confidence: 0.85, salience: 0.82, charge: { pos: 0.62, neg: 0.0 } }
+  - id: novelty
+    label: a genuinely new idea
+    at: [496, 250]
+    radius: 130
+    intensity: 1.1
+    stance: { confidence: 0.60, salience: 0.88, charge: { pos: 0.72, neg: 0.04 } }
+  - id: tool
+    label: a fitting capability
+    at: [512, 352]
+    radius: 110
+    intensity: 0.9
+    stance: { confidence: 0.82, salience: 0.6, charge: { pos: 0.4, neg: 0.0 } }
+  - id: aversion
+    label: avoid being wrong
+    at: [180, 176]
+    radius: 120
+    intensity: 1.0
+    stance: { confidence: 0.7, salience: 0.72, charge: { pos: 0.04, neg: 0.62 } }
+  - id: tangent
+    label: an interesting tangent
+    at: [150, 322]
+    radius: 120
+    intensity: 0.9
+    stance: { confidence: 0.6, salience: 0.6, charge: { pos: 0.32, neg: 0.12 } }
+  - id: noise
+    label: ambient irrelevance
+    at: [330, 366]
+    radius: 130
+    intensity: 0.8
+    stance: { confidence: 0.4, salience: 0.4, charge: { pos: 0.06, neg: 0.06 } }
+
+# the focus of attention, moving over the static field
+attention:
+  - { t: 0.00, at: [330, 138], radius: 120 }
+  - { t: 0.24, at: [185, 178], radius: 108 }   # glance at the aversion
+  - { t: 0.42, at: [330, 150], radius: 120 }   # return - do not stay on it
+  - { t: 0.66, at: [496, 250], radius: 122 }   # drawn to the new
+  - { t: 0.82, at: [510, 348], radius: 104 }   # reach the capability
+  - { t: 1.00, at: [410, 196], radius: 150 }   # settle: oriented to need + new
