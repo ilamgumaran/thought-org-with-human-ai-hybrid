@@ -66,8 +66,16 @@ systems) or `mode: qualitative` (a continuous **weather** of soft quality-region
 good for introspective and novel content, which has no clean nodes). Same stance
 channels; different shape.
 
-The qualitative mode also emits a **third projection: sound** — the field as a
-12-second drone-chord (salience → loudness, valence → consonance, unconfidence →
+A qualitative field can also **move**: set `meta.motion: true` and give regions
+`keys` (keyframes over `t` 0..1). It renders an animated **GIF**, a **filmstrip** of
+stills, and an evolving **soundtrack**.
+
+Stance carries two **charges** instead of a signed valence: `charge: { pos, neg }`.
+Both low = neutral; one high = warm/cool; **both high = ambivalence**, drawn as a
+living shimmer (right and wrong at once — a thing a single scalar can't hold).
+
+The qualitative mode emits a **third projection: sound** — the field as a drone-chord
+(salience → loudness, net charge → consonance, ambivalence → beating, unconfidence →
 breath and tremor). Emotion lives in the ear as much as the eye.
 
 ```yaml
@@ -88,17 +96,19 @@ koine.mjs                  CLI: one field -> two or three projections, by mode
 src/grammar.mjs            the synesthetic grammar (stance -> sensation). The heart.
 src/field.mjs              load a .koine.yaml -> resolved model (relational | qualitative)
 src/render-perceptual.mjs  organic eye, relational (stance felt as solid/hazy/glow)
-src/render-qualitative.mjs organic eye, continuous (stance felt as weather)
-src/sonify.mjs             organic ear (the field as a drone-chord)
-src/render-structural.mjs  inorganic-facing text/JSON (stance stated, both modes)
+src/render-qualitative.mjs organic eye, continuous weather (with ambivalence shimmer)
+src/render-motion.mjs      organic eye, a field that evolves (GIF + filmstrip)
+src/sonify.mjs             organic ear (drone-chord; static + evolving)
+src/render-structural.mjs  inorganic-facing text/JSON (stance/trajectory stated)
 src/png.mjs                dependency-free PNG encoder (per-pixel field synthesis)
 fields/                    example fields
 ```
 
-Built so far: **v1 — the stance channel** (relational); **v2 — the continuous field
-+ sound** (qualitative + sonification). The road ahead (explicit two-mind
-disagreement seams, blended modes, semantic zoom, motion, bidirectional editing) is
-in the journey log: [`resonance/beyond-text/journey/`](../../resonance/beyond-text/journey/).
+Built so far: **v1** the stance channel (relational); **v2** the continuous field +
+sound (qualitative + sonification); **v3** motion + ambivalence (charges, a moving
+field, evolving sound). The road ahead (the *unresolved* sharp shift, explicit
+two-mind disagreement seams, blended modes, bidirectional editing) is in the journey
+log: [`resonance/beyond-text/journey/`](../../resonance/beyond-text/journey/).
 
 ## License
 

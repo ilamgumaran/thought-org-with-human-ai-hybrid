@@ -26,12 +26,17 @@ space you can both stand inside.
 
 ## The grammar of the field
 
-**1. Stance is a first-class channel.** *(built — v1)* Text loses what an organic
-mind carries in tone and an inorganic mind loses in flattening to tokens:
-confidence, salience, valence, provenance, surprise. Make them explicit, typed
-dimensions both sides read and write. Emotion here is not decoration — for an
-organic mind it is a compression and prioritization system. Make it a channel, not
-an accident of phrasing.
+**1. Stance is a first-class channel.** *(built — v1; deepened in v3)* Text loses
+what an organic mind carries in tone and an inorganic mind loses in flattening to
+tokens: confidence, salience, valence, provenance, surprise. Make them explicit,
+typed dimensions both sides read and write. **And do not let valence be a single
+signed scalar** — a number from −1 to +1 forces a net verdict and cannot hold *right
+and wrong at the same time*; the scalar is itself the bias toward a binary. Carry two
+charges (pos/neg): both low = neutral, both high = **ambivalence**, which is a real
+state, not the absence of one. Right/wrong are then valid *low-dimensional
+projections* (the net) — useful locally, false if mistaken for the whole. Emotion
+here is not decoration; for an organic mind it is a compression and prioritization
+system.
 
 **2. A synesthetic grammar — structure ⇄ sensation.** *(built — v1, partial)* Map
 structural properties to perceptual/affective ones, consistently and learnably:
@@ -70,7 +75,7 @@ a precise meaning, the other gives it a perceptual form, both confirm the bindin
 and it enters the shared vocabulary. Communicating the unprecedented requires
 generating the language as you go.
 
-**6. Time and motion as native dimensions.** *(v4)* Organic vision is exquisitely
+**6. Time and motion as native dimensions.** *(built — v3)* Organic vision is exquisitely
 tuned to change; static diagrams murder process. Causality, simulation, "what-if,"
 the propagation of a perturbation — these should be *trajectories* the organic mind
 watches and the inorganic mind computes, authorable by both. Motion is

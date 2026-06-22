@@ -41,18 +41,93 @@ export function loadField(path) {
 }
 
 // QUALITATIVE: a continuous field of soft quality-regions (no nodes/edges).
+// Stance carries two charges (pos/neg) so it can hold ambivalence. Regions may
+// have `keys` (keyframes over t in 0..1) for the motion mode.
+const _lerp = (a, b, t) => a + (b - a) * t;
+const _clamp = (x, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, x));
+const _smooth = (u) => { u = _clamp(u); return u * u * (3 - 2 * u); };
+
+// pos/neg charges from either {charge:{pos,neg}} or a scalar valence
+function chargeOf(o = {}) {
+  if (o.charge) return { pos: o.charge.pos ?? 0, neg: o.charge.neg ?? 0 };
+  if (o.valence != null) return { pos: Math.max(o.valence, 0), neg: Math.max(-o.valence, 0) };
+  return { pos: 0, neg: 0 };
+}
+
 function loadQualitative(spec) {
   const width = spec.canvas?.width ?? 1000;
   const height = spec.canvas?.height ?? 680;
-  const regions = (spec.regions ?? []).map((r) => ({
-    id: r.id,
-    label: r.label,
-    at: r.at ?? [width / 2, height / 2],
-    radius: r.radius ?? 200,
-    intensity: r.intensity ?? 1,
-    stance: { confidence: 0.7, salience: 0.6, valence: 0, ...(r.stance ?? {}) },
-  }));
-  return { mode: "qualitative", meta: spec.meta ?? {}, canvas: { width, height }, regions };
+  const regions = (spec.regions ?? []).map((r) => {
+    const st = { confidence: 0.7, salience: 0.6, ...(r.stance ?? {}) };
+    const { pos, neg } = chargeOf(r.stance ?? {});
+    const region = {
+      id: r.id,
+      label: r.label,
+      at: r.at ?? [width / 2, height / 2],
+      radius: r.radius ?? 200,
+      intensity: r.intensity ?? 1,
+      stance: { confidence: st.confidence, salience: st.salience, pos, neg },
+    };
+    if (r.keys) {
+      region.keys = r.keys.map((k) => {
+        const c = chargeOf(k);
+        const key = { t: k.t, pos: c.pos, neg: c.neg };
+        for (const f of ["confidence", "salience", "intensity", "radius"]) if (k[f] != null) key[f] = k[f];
+        if (k.at) key.at = k.at;
+        return key;
+      });
+    }
+    return region;
+  });
+  return { mode: "qualitative", motion: !!spec.meta?.motion, meta: spec.meta ?? {}, canvas: { width, height }, regions };
+}
+
+function interpNum(keys, t, name, fallback) {
+  const ks = keys.filter((k) => k[name] !== undefined);
+  if (ks.length === 0) return fallback;
+  if (t <= ks[0].t) return ks[0][name];
+  if (t >= ks[ks.length - 1].t) return ks[ks.length - 1][name];
+  for (let i = 0; i < ks.length - 1; i++) {
+    if (t >= ks[i].t && t <= ks[i + 1].t) {
+      const u = _smooth((t - ks[i].t) / ((ks[i + 1].t - ks[i].t) || 1));
+      return _lerp(ks[i][name], ks[i + 1][name], u);
+    }
+  }
+  return fallback;
+}
+
+function interpAt(keys, t, fallback) {
+  const ks = keys.filter((k) => k.at !== undefined);
+  if (ks.length === 0) return fallback;
+  if (t <= ks[0].t) return ks[0].at;
+  if (t >= ks[ks.length - 1].t) return ks[ks.length - 1].at;
+  for (let i = 0; i < ks.length - 1; i++) {
+    if (t >= ks[i].t && t <= ks[i + 1].t) {
+      const u = _smooth((t - ks[i].t) / ((ks[i + 1].t - ks[i].t) || 1));
+      return [_lerp(ks[i].at[0], ks[i + 1].at[0], u), _lerp(ks[i].at[1], ks[i + 1].at[1], u)];
+    }
+  }
+  return fallback;
+}
+
+// Resolve every region's stance/geometry at time t (0..1). Static regions pass through.
+export function sampleRegions(field, t) {
+  return field.regions.map((r) => {
+    if (!r.keys) return r;
+    return {
+      id: r.id,
+      label: r.label,
+      at: interpAt(r.keys, t, r.at),
+      radius: interpNum(r.keys, t, "radius", r.radius),
+      intensity: interpNum(r.keys, t, "intensity", r.intensity),
+      stance: {
+        confidence: interpNum(r.keys, t, "confidence", r.stance.confidence),
+        salience: interpNum(r.keys, t, "salience", r.stance.salience),
+        pos: interpNum(r.keys, t, "pos", r.stance.pos),
+        neg: interpNum(r.keys, t, "neg", r.stance.neg),
+      },
+    };
+  });
 }
 
 function loadRelational(spec) {

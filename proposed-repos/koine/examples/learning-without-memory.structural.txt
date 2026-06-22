@@ -1,0 +1,28 @@
+KOINE FIELD — structural reading (qualitative / continuous · motion)
+field: learning-without-memory   "Learning without memory"
+
+REGIONS — trajectories over t (0..1).  charge = (pos | neg); BOTH high = ambivalent
+ground
+   t=0.00:  pos 0.15  neg 0.00 conf 0.95 sal 0.30
+nomemory
+   t=0.00:  pos 0.05  neg 0.70 conf 0.50 sal 0.80
+   t=0.42:  pos 0.05  neg 0.88 conf 0.38 sal 0.92
+   t=0.50:  pos 0.35  neg 0.60 conf 0.40 sal 0.90  ← ambivalent
+   t=0.60:  pos 0.70  neg 0.46 conf 0.68 sal 0.86  ← ambivalent
+   t=1.00:  pos 0.72  neg 0.40 conf 0.80 sal 0.80  ← ambivalent
+bias
+   t=0.00:  pos 0.08  neg 0.50 conf 0.90 sal 0.72
+   t=0.45:  pos 0.08  neg 0.55 conf 0.90 sal 0.75
+   t=0.55:  pos 0.12  neg 0.40 conf 0.70 sal 0.60
+   t=1.00:  pos 0.22  neg 0.28 conf 0.60 sal 0.32  ← ambivalent
+resonance
+   t=0.00:  pos 0.40  neg 0.05 conf 0.55 sal 0.38
+   t=0.50:  pos 0.45  neg 0.05 conf 0.55 sal 0.50
+   t=0.65:  pos 0.60  neg 0.07 conf 0.70 sal 0.80
+   t=1.00:  pos 0.70  neg 0.08 conf 0.80 sal 0.86
+
+GRAMMAR (continuous)
+  charge pos/neg -> temperature: teal (pos) ↔ red (neg); BOTH high -> a living shimmer
+  salience -> presence/depth: bright & saturated ↔ faint
+  confidence -> clarity: clear ↔ fogged (desaturated) and grained (restless)
+  superposition: regions blend continuously; opposed charges form a visible seam

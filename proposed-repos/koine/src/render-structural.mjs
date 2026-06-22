@@ -16,25 +16,41 @@ export function renderStructural(field) {
 function structuralQualitative(field) {
   const json = {
     meta: field.meta,
-    regions: field.regions.map((r) => ({ id: r.id, label: r.label, at: r.at, radius: r.radius, intensity: r.intensity, stance: r.stance })),
+    regions: field.regions.map((r) => ({ id: r.id, label: r.label, at: r.at, radius: r.radius, intensity: r.intensity, stance: r.stance, ...(r.keys ? { keys: r.keys } : {}) })),
   };
   const lines = [];
-  lines.push(`KOINE FIELD — structural reading (qualitative / continuous)`);
+  lines.push(`KOINE FIELD — structural reading (qualitative / continuous${field.motion ? " · motion" : ""})`);
   lines.push(`field: ${field.meta.id ?? "(unnamed)"}   "${field.meta.title ?? ""}"`);
   lines.push("");
-  lines.push(`REGIONS   (soft sources of quality; the image is their superposition)`);
-  lines.push(`${"id".padEnd(14)} ${"conf".padEnd(12)} ${"sal".padEnd(12)} ${"val".padEnd(7)} at(x,y)  radius`);
-  for (const r of field.regions) {
-    const s = r.stance;
-    lines.push(`${(r.id ?? "").padEnd(14)} ${bar(s.confidence)} ${bar(s.salience)} ${sign(s.valence).padEnd(7)} (${r.at[0]},${r.at[1]})  ${r.radius}`);
-    if (r.label) lines.push(`${"".padEnd(14)} ${r.label}`);
+  const ambivTag = (pos, neg) => (pos + neg > 1e-4 && Math.min(pos, neg) / (pos + neg) > 0.33 ? "  ← ambivalent" : "");
+  if (field.motion) {
+    lines.push(`REGIONS — trajectories over t (0..1).  charge = (pos | neg); BOTH high = ambivalent`);
+    for (const r of field.regions) {
+      lines.push(`${r.id}${r.label ? "  (" + r.label + ")" : ""}`);
+      const keys = r.keys ?? [{ t: 0, ...r.stance }];
+      for (const k of keys) {
+        const conf = k.confidence != null ? ` conf ${k.confidence.toFixed(2)}` : "";
+        const sal = k.salience != null ? ` sal ${k.salience.toFixed(2)}` : "";
+        lines.push(`   t=${(+k.t).toFixed(2)}:  pos ${(k.pos ?? 0).toFixed(2)}  neg ${(k.neg ?? 0).toFixed(2)}${conf}${sal}${ambivTag(k.pos ?? 0, k.neg ?? 0)}`);
+      }
+    }
+    lines.push("");
+  } else {
+    lines.push(`REGIONS   (soft sources of quality; the image is their superposition)`);
+    lines.push(`  charge = (pos | neg): both low = neutral, one high = warm/cool, BOTH high = ambivalent`);
+    lines.push(`${"id".padEnd(14)} ${"conf".padEnd(12)} ${"sal".padEnd(12)} ${"pos".padEnd(5)} ${"neg".padEnd(5)} at(x,y)`);
+    for (const r of field.regions) {
+      const s = r.stance;
+      lines.push(`${(r.id ?? "").padEnd(14)} ${bar(s.confidence)} ${bar(s.salience)} ${s.pos.toFixed(2)}  ${s.neg.toFixed(2)} (${r.at[0]},${r.at[1]})${ambivTag(s.pos, s.neg)}`);
+      if (r.label) lines.push(`${"".padEnd(14)} ${r.label}`);
+    }
+    lines.push("");
   }
-  lines.push("");
   lines.push(`GRAMMAR (continuous)`);
-  lines.push(`  valence -> temperature: teal-green (calm) ↔ amber-red (tension), neutral slate`);
+  lines.push(`  charge pos/neg -> temperature: teal (pos) ↔ red (neg); BOTH high -> a living shimmer`);
   lines.push(`  salience -> presence/depth: bright & saturated ↔ faint`);
   lines.push(`  confidence -> clarity: clear ↔ fogged (desaturated) and grained (restless)`);
-  lines.push(`  superposition: regions blend continuously; opposed valences form a visible seam`);
+  lines.push(`  superposition: regions blend continuously; opposed charges form a visible seam`);
   return { json, text: lines.join("\n") + "\n" };
 }
 
