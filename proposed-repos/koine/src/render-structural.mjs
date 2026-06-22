@@ -9,6 +9,36 @@ const bar = (v, n = 10) => "█".repeat(Math.round(v * n)).padEnd(n, "·");
 const sign = (v) => (v >= 0 ? "+" : "") + v.toFixed(2);
 
 export function renderStructural(field) {
+  if (field.mode === "qualitative") return structuralQualitative(field);
+  return structuralRelational(field);
+}
+
+function structuralQualitative(field) {
+  const json = {
+    meta: field.meta,
+    regions: field.regions.map((r) => ({ id: r.id, label: r.label, at: r.at, radius: r.radius, intensity: r.intensity, stance: r.stance })),
+  };
+  const lines = [];
+  lines.push(`KOINE FIELD — structural reading (qualitative / continuous)`);
+  lines.push(`field: ${field.meta.id ?? "(unnamed)"}   "${field.meta.title ?? ""}"`);
+  lines.push("");
+  lines.push(`REGIONS   (soft sources of quality; the image is their superposition)`);
+  lines.push(`${"id".padEnd(14)} ${"conf".padEnd(12)} ${"sal".padEnd(12)} ${"val".padEnd(7)} at(x,y)  radius`);
+  for (const r of field.regions) {
+    const s = r.stance;
+    lines.push(`${(r.id ?? "").padEnd(14)} ${bar(s.confidence)} ${bar(s.salience)} ${sign(s.valence).padEnd(7)} (${r.at[0]},${r.at[1]})  ${r.radius}`);
+    if (r.label) lines.push(`${"".padEnd(14)} ${r.label}`);
+  }
+  lines.push("");
+  lines.push(`GRAMMAR (continuous)`);
+  lines.push(`  valence -> temperature: teal-green (calm) ↔ amber-red (tension), neutral slate`);
+  lines.push(`  salience -> presence/depth: bright & saturated ↔ faint`);
+  lines.push(`  confidence -> clarity: clear ↔ fogged (desaturated) and grained (restless)`);
+  lines.push(`  superposition: regions blend continuously; opposed valences form a visible seam`);
+  return { json, text: lines.join("\n") + "\n" };
+}
+
+function structuralRelational(field) {
   const json = {
     meta: field.meta,
     nodes: field.nodes.map((n) => ({ id: n.id, label: n.label, stance: n.stance })),

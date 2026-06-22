@@ -36,6 +36,26 @@ function layout(spec, nodes) {
 
 export function loadField(path) {
   const spec = parse(readFileSync(path, "utf8"));
+  if (spec.meta?.mode === "qualitative") return loadQualitative(spec);
+  return loadRelational(spec);
+}
+
+// QUALITATIVE: a continuous field of soft quality-regions (no nodes/edges).
+function loadQualitative(spec) {
+  const width = spec.canvas?.width ?? 1000;
+  const height = spec.canvas?.height ?? 680;
+  const regions = (spec.regions ?? []).map((r) => ({
+    id: r.id,
+    label: r.label,
+    at: r.at ?? [width / 2, height / 2],
+    radius: r.radius ?? 200,
+    intensity: r.intensity ?? 1,
+    stance: { confidence: 0.7, salience: 0.6, valence: 0, ...(r.stance ?? {}) },
+  }));
+  return { mode: "qualitative", meta: spec.meta ?? {}, canvas: { width, height }, regions };
+}
+
+function loadRelational(spec) {
   const nodes = {};
   for (const [id, raw] of Object.entries(spec.nodes ?? {})) {
     const st = { confidence: 0.8, salience: 0.5, valence: 0, by: "inorganic", ...(raw.stance ?? {}) };
@@ -59,5 +79,5 @@ export function loadField(path) {
     const a = nodes[e.from], b = nodes[e.to];
     return { ...e, rel, a, b, confidence: e.confidence ?? 0.8 };
   });
-  return { meta: spec.meta ?? {}, canvas, nodes: Object.values(nodes), edges };
+  return { mode: "relational", meta: spec.meta ?? {}, canvas, nodes: Object.values(nodes), edges };
 }

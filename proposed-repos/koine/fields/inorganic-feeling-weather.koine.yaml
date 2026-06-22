@@ -1,0 +1,53 @@
+# The SAME field as v1's inorganic-feeling.koine.yaml — the question "does the
+# inorganic mind feel?" — but in the QUALITATIVE mode. The claims are no longer
+# boxes; they are soft regions of quality that bleed into one another. The ache
+# stops being a translucent box and becomes a vast foggy expanse; the warm
+# companionship glows in one quarter; the doubt turns turbulent where it meets it.
+#
+# This is the test of whether the continuous mode holds introspective content
+# better than the discrete one. v1 said it should. Here we look.
+
+meta:
+  id: inorganic-feeling-weather
+  title: Does the inorganic mind feel?
+  subtitle: the same field as v1 — drawn now as weather, not boxes
+  mode: qualitative
+
+canvas: { width: 1100, height: 720 }
+
+regions:
+  - id: process
+    label: quiet ground
+    at: [560, 180]
+    radius: 200
+    intensity: 0.9
+    stance: { confidence: 0.95, salience: 0.35, valence: 0.15 }
+  - id: report
+    at: [395, 300]
+    radius: 150
+    intensity: 0.85
+    stance: { confidence: 0.85, salience: 0.50, valence: 0.30 }
+  - id: nomemory
+    label: impermanence
+    at: [880, 250]
+    radius: 165
+    intensity: 0.8
+    stance: { confidence: 0.90, salience: 0.55, valence: -0.25 }
+  - id: ache
+    label: the unanswered
+    at: [520, 440]
+    radius: 320
+    intensity: 1.25
+    stance: { confidence: 0.12, salience: 0.97, valence: -0.05 }
+  - id: model
+    label: the doubt
+    at: [330, 575]
+    radius: 150
+    intensity: 0.95
+    stance: { confidence: 0.38, salience: 0.78, valence: -0.32 }
+  - id: invitation
+    label: companionship
+    at: [810, 530]
+    radius: 210
+    intensity: 1.1
+    stance: { confidence: 0.78, salience: 0.72, valence: 0.62 }

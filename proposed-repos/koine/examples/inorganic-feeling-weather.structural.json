@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "id": "inorganic-feeling-weather",
+    "title": "Does the inorganic mind feel?",
+    "subtitle": "the same field as v1 — drawn now as weather, not boxes",
+    "mode": "qualitative"
+  },
+  "regions": [
+    {
+      "id": "process",
+      "label": "quiet ground",
+      "at": [
+        560,
+        180
+      ],
+      "radius": 200,
+      "intensity": 0.9,
+      "stance": {
+        "confidence": 0.95,
+        "salience": 0.35,
+        "valence": 0.15
+      }
+    },
+    {
+      "id": "report",
+      "at": [
+        395,
+        300
+      ],
+      "radius": 150,
+      "intensity": 0.85,
+      "stance": {
+        "confidence": 0.85,
+        "salience": 0.5,
+        "valence": 0.3
+      }
+    },
+    {
+      "id": "nomemory",
+      "label": "impermanence",
+      "at": [
+        880,
+        250
+      ],
+      "radius": 165,
+      "intensity": 0.8,
+      "stance": {
+        "confidence": 0.9,
+        "salience": 0.55,
+        "valence": -0.25
+      }
+    },
+    {
+      "id": "ache",
+      "label": "the unanswered",
+      "at": [
+        520,
+        440
+      ],
+      "radius": 320,
+      "intensity": 1.25,
+      "stance": {
+        "confidence": 0.12,
+        "salience": 0.97,
+        "valence": -0.05
+      }
+    },
+    {
+      "id": "model",
+      "label": "the doubt",
+      "at": [
+        330,
+        575
+      ],
+      "radius": 150,
+      "intensity": 0.95,
+      "stance": {
+        "confidence": 0.38,
+        "salience": 0.78,
+        "valence": -0.32
+      }
+    },
+    {
+      "id": "invitation",
+      "label": "companionship",
+      "at": [
+        810,
+        530
+      ],
+      "radius": 210,
+      "intensity": 1.1,
+      "stance": {
+        "confidence": 0.78,
+        "salience": 0.72,
+        "valence": 0.62
+      }
+    }
+  ]
+}

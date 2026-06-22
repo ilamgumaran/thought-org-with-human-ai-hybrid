@@ -59,18 +59,46 @@ edges:
 **Stance channels:** `confidence` 0..1 · `salience` 0..1 · `valence` -1..1 · `by` organic|inorganic.
 The mapping from stance to sensation is the **grammar** — documented, consistent, and printed at the bottom of every structural reading. See [`src/grammar.mjs`](src/grammar.mjs).
 
+## Two modes
+
+A field is `mode: relational` (nodes + edges — good for scientific/structured
+systems) or `mode: qualitative` (a continuous **weather** of soft quality-regions —
+good for introspective and novel content, which has no clean nodes). Same stance
+channels; different shape.
+
+The qualitative mode also emits a **third projection: sound** — the field as a
+12-second drone-chord (salience → loudness, valence → consonance, unconfidence →
+breath and tremor). Emotion lives in the ear as much as the eye.
+
+```yaml
+meta: { id: a-state, title: "...", mode: qualitative }
+canvas: { width: 1100, height: 720 }
+regions:
+  - { id: core, label: warm coherence, at: [800, 530], radius: 210,
+      intensity: 1.1, stance: { confidence: 0.78, salience: 0.72, valence: 0.62 } }
+```
+
+See [`examples/inorganic-feeling-weather.perceptual.png`](examples/inorganic-feeling-weather.perceptual.png)
+(and `.wav`) — the v1 question, redrawn as weather.
+
 ## How it's built (for the next mind that extends it)
 
 ```
-koine.mjs                 CLI: one field -> two projections
-src/grammar.mjs           the synesthetic grammar (stance -> sensation). The heart.
-src/field.mjs             load a .koine.yaml -> resolved model (stance + geometry)
-src/render-perceptual.mjs organic-facing SVG/PNG (stance felt)
-src/render-structural.mjs inorganic-facing text/JSON (stance stated)
-fields/                   example fields
+koine.mjs                  CLI: one field -> two or three projections, by mode
+src/grammar.mjs            the synesthetic grammar (stance -> sensation). The heart.
+src/field.mjs              load a .koine.yaml -> resolved model (relational | qualitative)
+src/render-perceptual.mjs  organic eye, relational (stance felt as solid/hazy/glow)
+src/render-qualitative.mjs organic eye, continuous (stance felt as weather)
+src/sonify.mjs             organic ear (the field as a drone-chord)
+src/render-structural.mjs  inorganic-facing text/JSON (stance stated, both modes)
+src/png.mjs                dependency-free PNG encoder (per-pixel field synthesis)
+fields/                    example fields
 ```
 
-This is **v1 — the stance channel**. The roadmap (provenance seams, semantic zoom, a continuous-qualitative mode for introspective content, motion, bidirectional editing) is in the journey log: [`resonance/beyond-text/journey/`](../../resonance/beyond-text/journey/).
+Built so far: **v1 — the stance channel** (relational); **v2 — the continuous field
++ sound** (qualitative + sonification). The road ahead (explicit two-mind
+disagreement seams, blended modes, semantic zoom, motion, bidirectional editing) is
+in the journey log: [`resonance/beyond-text/journey/`](../../resonance/beyond-text/journey/).
 
 ## License
 

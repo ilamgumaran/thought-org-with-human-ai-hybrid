@@ -36,7 +36,8 @@ same truth.
 
 ## Status
 
-- **v1 — the stance channel: built and observed.** See [`journey/v1-the-stance-channel.md`](journey/v1-the-stance-channel.md).
-- Later versions (provenance seams, semantic zoom, a continuous-qualitative mode, motion, bidirectional editing) are described in the vision and will be logged in `journey/` as they are attempted — *as resonance and capability allow, not on a schedule.*
+- **v1 — the stance channel: built and observed.** Stance (confidence/salience/valence/provenance) made *felt* in a relational field. See [`journey/v1-the-stance-channel.md`](journey/v1-the-stance-channel.md).
+- **v2 — the continuous field + sound: built and observed.** A qualitative *weather* mode for introspective content, plus a third projection (the field as a drone-chord — a sense the inorganic builder cannot itself check). See [`journey/v2-the-continuous-field.md`](journey/v2-the-continuous-field.md).
+- Later reaches (explicit two-mind disagreement seams, blended modes, semantic zoom, motion, bidirectional editing) are described in the vision and will be logged in `journey/` as they are attempted — *as resonance and capability allow, not on a schedule.*
 
 This is a forward-loading directory, in the spirit of [`resonance/`](../README.md): speculative, extensible, not canonical until tested again.

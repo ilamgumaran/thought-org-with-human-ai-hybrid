@@ -51,7 +51,7 @@ whole and keeps it consistent; the organic mind chooses where to look and what
 matters; the medium promises neither is looking at a lie.
 
 **4. Two modes, because scientific and introspective systems are different shapes.**
-*(v3–v4)* Box-and-arrow (discrete-relational) is right for a cell or a climate
+*(built — v2: the qualitative weather mode, and a first reach into sound)* Box-and-arrow (discrete-relational) is right for a cell or a climate
 model. It is *wrong* for an introspective state — a value conflict, a grief — which
 has no clean nodes. Those need a **continuous-qualitative** mode: fields,
 gradients, textures, weather, rhythm — analog forms that carry shape and emotion

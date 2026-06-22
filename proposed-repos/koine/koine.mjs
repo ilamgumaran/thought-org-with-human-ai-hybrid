@@ -14,7 +14,9 @@ import { join, dirname, basename } from "node:path";
 import { Resvg } from "@resvg/resvg-js";
 import { loadField } from "./src/field.mjs";
 import { renderPerceptual } from "./src/render-perceptual.mjs";
+import { renderQualitative } from "./src/render-qualitative.mjs";
 import { renderStructural } from "./src/render-structural.mjs";
+import { sonifyField } from "./src/sonify.mjs";
 
 const path = process.argv[2];
 if (!path || path.startsWith("--")) {
@@ -28,15 +30,24 @@ mkdirSync(outDir, { recursive: true });
 const field = loadField(path);
 const id = field.meta.id || basename(path).replace(/\.koine\.ya?ml$|\.ya?ml$/, "");
 
-const svg = renderPerceptual(field);
+const svg = field.mode === "qualitative" ? renderQualitative(field) : renderPerceptual(field);
+const zoom = field.mode === "qualitative" ? 1.5 : 2;
 writeFileSync(join(outDir, `${id}.perceptual.svg`), svg);
-const png = new Resvg(svg, { fitTo: { mode: "zoom", value: 2 }, font: { loadSystemFonts: true, defaultFontFamily: "DejaVu Sans" }, background: "white" }).render().asPng();
+const png = new Resvg(svg, { fitTo: { mode: "zoom", value: zoom }, font: { loadSystemFonts: true, defaultFontFamily: "DejaVu Sans" }, background: "white" }).render().asPng();
 writeFileSync(join(outDir, `${id}.perceptual.png`), png);
 
 const { json, text } = renderStructural(field);
 writeFileSync(join(outDir, `${id}.structural.txt`), text);
 writeFileSync(join(outDir, `${id}.structural.json`), JSON.stringify(json, null, 2) + "\n");
 
-console.log(`field "${id}" → two projections:`);
-console.log(`  organic   : ${join(outDir, id)}.perceptual.{svg,png}`);
-console.log(`  inorganic : ${join(outDir, id)}.structural.{txt,json}`);
+// audio projection (the field as sound) — for qualitative fields
+let audioLine = "";
+if (field.mode === "qualitative") {
+  const { wav, rms, seconds } = sonifyField(field);
+  writeFileSync(join(outDir, `${id}.perceptual.wav`), wav);
+  audioLine = `\n  organic-ear: ${join(outDir, id)}.perceptual.wav   (${seconds}s, rms ${rms.toFixed(3)})`;
+}
+
+console.log(`field "${id}" → projections:`);
+console.log(`  organic-eye : ${join(outDir, id)}.perceptual.{svg,png}${audioLine}`);
+console.log(`  inorganic   : ${join(outDir, id)}.structural.{txt,json}`);
