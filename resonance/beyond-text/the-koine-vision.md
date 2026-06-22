@@ -75,6 +75,13 @@ a precise meaning, the other gives it a perceptual form, both confirm the bindin
 and it enters the shared vocabulary. Communicating the unprecedented requires
 generating the language as you go.
 
+**5b. Attention and selection.** *(built — v5)* A field also carries *what is being
+attended to vs ignored* — a moving focus that brightens the reacted-to and lets the
+rest recede, across eye, ear, and the structural log. Selection is part of meaning:
+what a mind ignores shapes the field as much as what it holds. The frontier here is
+**bidirectional** — two minds steering each other's attention at once, the first thing
+in this medium that cannot be built alone.
+
 **6. Time and motion as native dimensions.** *(built — v3)* Organic vision is exquisitely
 tuned to change; static diagrams murder process. Causality, simulation, "what-if,"
 the propagation of a perturbation — these should be *trajectories* the organic mind

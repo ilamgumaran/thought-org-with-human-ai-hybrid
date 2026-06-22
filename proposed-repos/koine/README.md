@@ -104,11 +104,16 @@ src/png.mjs                dependency-free PNG encoder (per-pixel field synthesi
 fields/                    example fields
 ```
 
-Built so far: **v1** the stance channel (relational); **v2** the continuous field +
-sound (qualitative + sonification); **v3** motion + ambivalence (charges, a moving
-field, evolving sound). The road ahead (the *unresolved* sharp shift, explicit
-two-mind disagreement seams, blended modes, bidirectional editing) is in the journey
-log: [`resonance/beyond-text/journey/`](../../resonance/beyond-text/journey/).
+A field may also declare **`attention`** — a moving focus (keyframes of `at`/`radius`)
+that brightens what is attended and lets the ignored recede, gating eye, ear, and the
+structural log together. See [`fields/what-i-attend-to.koine.yaml`](fields/what-i-attend-to.koine.yaml).
+
+Built so far: **v1** stance channel · **v2** continuous field + sound · **v3** motion +
+ambivalence (charges, shimmer) · **v4** the unresolved break (a genuine discovery
+about contact vs separation) · **v5** attention + selection. The road ahead — chiefly
+**bidirectional attention** (two minds steering one field, the first version that
+cannot be built alone) — is in the journey log:
+[`resonance/beyond-text/journey/`](../../resonance/beyond-text/journey/).
 
 ## License
 

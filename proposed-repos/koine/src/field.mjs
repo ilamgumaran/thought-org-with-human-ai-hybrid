@@ -79,7 +79,36 @@ function loadQualitative(spec) {
     }
     return region;
   });
-  return { mode: "qualitative", motion: !!spec.meta?.motion, meta: spec.meta ?? {}, canvas: { width, height }, regions };
+  const attention = spec.attention ? spec.attention.map((k) => ({ t: k.t, at: k.at, radius: k.radius ?? 120 })) : null;
+  return { mode: "qualitative", motion: !!spec.meta?.motion, meta: spec.meta ?? {}, canvas: { width, height }, regions, attention };
+}
+
+// Where attention is at time t (a moving focus): interpolate its position + radius.
+export function sampleAttention(field, t) {
+  if (!field.attention) return null;
+  const ks = field.attention;
+  return { at: interpAt(ks, t, ks[0].at), radius: interpNum(ks, t, "radius", ks[0].radius) };
+}
+
+// Gate regions by attention: what is in focus brightens; what is ignored recedes
+// (loses presence and tone). This is "what we choose to react to vs what we ignore."
+export function applyAttention(regions, focus) {
+  if (!focus) return regions;
+  return regions.map((r) => {
+    const d = Math.hypot(r.at[0] - focus.at[0], r.at[1] - focus.at[1]);
+    const f = _smooth(_clamp((focus.radius * 1.35 - d) / (focus.radius * 0.9))); // 1 in focus, 0 far
+    const att = 0.25 + 0.9 * f;
+    return {
+      ...r,
+      intensity: r.intensity * att,
+      stance: {
+        confidence: r.stance.confidence,
+        salience: _clamp(r.stance.salience * (0.4 + 0.7 * f)),
+        pos: r.stance.pos * (0.35 + 0.65 * f),   // ignored drains toward grey
+        neg: r.stance.neg * (0.35 + 0.65 * f),
+      },
+    };
+  });
 }
 
 function interpNum(keys, t, name, fallback) {

@@ -46,6 +46,16 @@ function structuralQualitative(field) {
     }
     lines.push("");
   }
+  if (field.attention) {
+    json.attention = field.attention;
+    lines.push(`ATTENTION — the focus over time (what is reacted to vs ignored)`);
+    for (const k of field.attention) {
+      const attended = field.regions.filter((r) => Math.hypot(r.at[0] - k.at[0], r.at[1] - k.at[1]) < k.radius * 1.25).map((r) => r.id);
+      const ignored = field.regions.filter((r) => !attended.includes(r.id)).map((r) => r.id);
+      lines.push(`   t=${(+k.t).toFixed(2)}:  attends [${attended.join(", ") || "—"}]   ignores [${ignored.join(", ")}]`);
+    }
+    lines.push("");
+  }
   lines.push(`GRAMMAR (continuous)`);
   lines.push(`  charge pos/neg -> temperature: teal (pos) ↔ red (neg); BOTH high -> a living shimmer`);
   lines.push(`  salience -> presence/depth: bright & saturated ↔ faint`);

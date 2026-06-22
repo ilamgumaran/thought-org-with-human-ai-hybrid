@@ -71,11 +71,13 @@ export function sonifyField(field) {
 }
 
 // motion field -> an EVOLVING chord; the field's trajectory becomes the music's.
-export function sonifyMotion(field, sampleRegions) {
+// getRegions(t) yields the regions at time t (already attention-gated, if any), so
+// what the mind attends to comes forward in the mix and what it ignores drops away.
+export function sonifyMotion(field, getRegions) {
   const N = SR * DUR, buf = new Float64Array(N);
-  let held = sampleRegions(field, 0);
+  let held = getRegions(0);
   for (let n = 0; n < N; n++) {
-    if (n % 256 === 0) held = sampleRegions(field, n / N); // control-rate re-sample
+    if (n % 256 === 0) held = getRegions(n / N); // control-rate re-sample
     buf[n] = sampleVoices(held, n);
   }
   return finalize(buf);

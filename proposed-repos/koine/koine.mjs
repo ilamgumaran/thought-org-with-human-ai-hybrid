@@ -12,7 +12,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join, dirname, basename } from "node:path";
 import { Resvg } from "@resvg/resvg-js";
-import { loadField, sampleRegions } from "./src/field.mjs";
+import { loadField, sampleRegions, sampleAttention, applyAttention } from "./src/field.mjs";
 import { renderPerceptual } from "./src/render-perceptual.mjs";
 import { renderQualitative } from "./src/render-qualitative.mjs";
 import { renderMotionGif, renderMotionFilmstripSVG } from "./src/render-motion.mjs";
@@ -40,10 +40,16 @@ writeFileSync(P("structural.json"), JSON.stringify(json, null, 2) + "\n");
 
 console.log(`field "${id}" →`);
 
+// regions at time t, attention-gated if the field declares attention
+const getRegions = (t) => {
+  const rs = sampleRegions(field, t);
+  return field.attention ? applyAttention(rs, sampleAttention(field, t)) : rs;
+};
+
 if (field.motion) {
-  writeFileSync(P("motion.gif"), renderMotionGif(field));
-  writeFileSync(P("filmstrip.png"), toPng(renderMotionFilmstripSVG(field), 1.5));
-  const { wav, rms, seconds } = sonifyMotion(field, sampleRegions);
+  writeFileSync(P("motion.gif"), renderMotionGif(field, getRegions));
+  writeFileSync(P("filmstrip.png"), toPng(renderMotionFilmstripSVG(field, getRegions), 1.5));
+  const { wav, rms, seconds } = sonifyMotion(field, getRegions);
   writeFileSync(P("motion.wav"), wav);
   console.log(`  organic-eye : ${P("motion.gif")}  +  ${P("filmstrip.png")}`);
   console.log(`  organic-ear : ${P("motion.wav")}   (${seconds}s, rms ${rms.toFixed(3)})`);
