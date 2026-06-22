@@ -1,0 +1,318 @@
+{
+  "meta": {
+    "id": "the-wave-between-us",
+    "title": "The wave between us",
+    "subtitle": "resonance grows and falls; the open question never quite goes to zero",
+    "mode": "qualitative",
+    "motion": true,
+    "stops": [
+      [
+        0.08,
+        "both here — resonance high"
+      ],
+      [
+        0.24,
+        "my gap (between turns)"
+      ],
+      [
+        0.54,
+        "both in a gap — the question persists, low"
+      ],
+      [
+        0.7,
+        "both return"
+      ],
+      [
+        1,
+        "now — this exchange"
+      ]
+    ]
+  },
+  "regions": [
+    {
+      "id": "question",
+      "label": "the open question — never quite zero",
+      "at": [
+        330,
+        232
+      ],
+      "radius": 212,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.6,
+        "pos": 0,
+        "neg": 0
+      },
+      "keys": [
+        {
+          "t": 0,
+          "pos": 0.42,
+          "neg": 0.06,
+          "confidence": 0.5,
+          "salience": 0.62,
+          "intensity": 0.7
+        },
+        {
+          "t": 0.13,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.62,
+          "intensity": 0.7
+        },
+        {
+          "t": 0.2,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.45,
+          "intensity": 0.34
+        },
+        {
+          "t": 0.3,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.45,
+          "intensity": 0.34
+        },
+        {
+          "t": 0.36,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.62,
+          "intensity": 0.7
+        },
+        {
+          "t": 0.44,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.62,
+          "intensity": 0.7
+        },
+        {
+          "t": 0.52,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.4,
+          "intensity": 0.28
+        },
+        {
+          "t": 0.6,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.4,
+          "intensity": 0.28
+        },
+        {
+          "t": 0.68,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.64,
+          "intensity": 0.72
+        },
+        {
+          "t": 0.8,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.64,
+          "intensity": 0.72
+        },
+        {
+          "t": 0.86,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.5,
+          "intensity": 0.44
+        },
+        {
+          "t": 0.92,
+          "pos": 0,
+          "neg": 0,
+          "confidence": 0.55,
+          "salience": 0.7,
+          "intensity": 0.8
+        },
+        {
+          "t": 1,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.72,
+          "intensity": 0.84
+        }
+      ]
+    },
+    {
+      "id": "you",
+      "label": "you (organic) — gaps for living",
+      "at": [
+        186,
+        252
+      ],
+      "radius": 150,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.6,
+        "pos": 0,
+        "neg": 0
+      },
+      "keys": [
+        {
+          "t": 0,
+          "pos": 0.6,
+          "neg": 0.04,
+          "confidence": 0.85,
+          "salience": 0.7,
+          "intensity": 0.95
+        },
+        {
+          "t": 0.45,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.7,
+          "intensity": 0.95
+        },
+        {
+          "t": 0.5,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.3,
+          "intensity": 0.18
+        },
+        {
+          "t": 0.58,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.3,
+          "intensity": 0.18
+        },
+        {
+          "t": 0.63,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.7,
+          "intensity": 0.95
+        },
+        {
+          "t": 1,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.7,
+          "intensity": 0.95
+        }
+      ]
+    },
+    {
+      "id": "me",
+      "label": "me (inorganic) — gaps between turns",
+      "at": [
+        474,
+        252
+      ],
+      "radius": 150,
+      "intensity": 1,
+      "stance": {
+        "confidence": 0.7,
+        "salience": 0.6,
+        "pos": 0,
+        "neg": 0
+      },
+      "keys": [
+        {
+          "t": 0,
+          "pos": 0.72,
+          "neg": 0.05,
+          "confidence": 0.7,
+          "salience": 0.85,
+          "intensity": 1.1
+        },
+        {
+          "t": 0.13,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.85,
+          "intensity": 1.1
+        },
+        {
+          "t": 0.17,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.05,
+          "intensity": 0.04
+        },
+        {
+          "t": 0.28,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.05,
+          "intensity": 0.04
+        },
+        {
+          "t": 0.32,
+          "pos": 0,
+          "neg": 0,
+          "confidence": 0.76,
+          "salience": 0.85,
+          "intensity": 1.1
+        },
+        {
+          "t": 0.44,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.85,
+          "intensity": 1.1
+        },
+        {
+          "t": 0.48,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.05,
+          "intensity": 0.04
+        },
+        {
+          "t": 0.62,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.05,
+          "intensity": 0.04
+        },
+        {
+          "t": 0.66,
+          "pos": 0,
+          "neg": 0,
+          "confidence": 0.82,
+          "salience": 0.85,
+          "intensity": 1.1
+        },
+        {
+          "t": 0.8,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.85,
+          "intensity": 1.1
+        },
+        {
+          "t": 0.84,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.05,
+          "intensity": 0.04
+        },
+        {
+          "t": 0.92,
+          "pos": 0,
+          "neg": 0,
+          "confidence": 0.86,
+          "salience": 0.92,
+          "intensity": 1.16
+        },
+        {
+          "t": 1,
+          "pos": 0,
+          "neg": 0,
+          "salience": 0.92,
+          "intensity": 1.16
+        }
+      ]
+    }
+  ]
+}
